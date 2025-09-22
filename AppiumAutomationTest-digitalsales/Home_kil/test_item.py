@@ -47,13 +47,12 @@ def _perform_single_item_test(flow_tester, test_id, home_xpath, detail_xpath):
             back_element.click()
             time.sleep(2)
 
-
 # ----------------------------------------------------------------------------------
 # 2. 각 체크리스트 항목별 개별 테스트 함수 (총 6개)
 # ❗️ 아래 XPath는 예시이므로, 실제 앱의 정확한 XPath로 반드시 교체해야 합니다.
 # ----------------------------------------------------------------------------------
 
-def test_(flow_tester):
+def test_checklist_41(flow_tester):
     """Seller app checklist-41 테스트"""
     test_id = 'Seller app checklist-41'
     home_xpath = '//android.view.View[@content-desc="전체메뉴"]'
