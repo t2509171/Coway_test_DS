@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import time
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -16,8 +16,17 @@ def test_order_status_visibility(flow_tester):
         "총주문": '//android.widget.TextView[@text="총주문"]',
         "순주문완료": '//android.widget.TextView[@text="순주문완료"]'
     }
-
     try:
+        # 1. '주문현황' 탭 클릭 (좌표 기반)
+        order_status_coords = (150, 310)
+        print(f"'주문현황' 탭 위치인 {order_status_coords} 좌표를 클릭합니다.")
+        try:
+            flow_tester.driver.tap([order_status_coords])
+            time.sleep(2)  # 탭 전환 애니메이션 대기
+        except Exception as e:
+            error_msg = f"실패: '주문현황' 탭 좌표 클릭 중 에러 발생: {e}"
+            save_screenshot_on_failure(flow_tester.driver, "order_status_tap_failed")
+            return False, error_msg
         missing_elements = []
 
         # 1. 정의된 XPath 목록을 순회하며 각 요소가 보이는지 확인
