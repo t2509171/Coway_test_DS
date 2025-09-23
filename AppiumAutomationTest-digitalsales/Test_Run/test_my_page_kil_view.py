@@ -6,9 +6,8 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'Login')))
 # 새로 추가한 콘텐츠 유닛 테스트 함수 import
 # from My_Page_kil.test_share_status_kil import test_share_status_page_navigation,test_total_share_count_validation,test_channel_share_count_visibility
-from My_Page_kil.test_share_status_kil import test_share_count_consistency
-from My_Page_kil.test_order_status_visibility import test_order_status_visibility
 from My_Page_kil.test_cody_matching_visibility import test_cody_matching_visibility
+
 # Google Sheets API 연동을 위해 필요한 함수를 임포트
 from Utils.test_result_input import update_test_result_in_sheet
 
@@ -148,6 +147,13 @@ def test_my_page_kil_view_run(flow_tester, sheets_service, tester_name):
         test_no = f"Seller app checklist-{test_no_counter}"
         overall_results["코디매칭 이동 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
         update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
+
+
+
+
+
+
+
 
 
 

@@ -17,7 +17,7 @@ from Utils.test_result_input import get_google_sheet_service_oauth,get_tester_na
 from Test_Run.test_mobile_order_view import test_mobile_order_view
 from Test_Run.test_search_view import test_search_view_run
 from Test_Run.test_my_page_view import test_my_page_view_run
-
+from Test_Run.test_shared_content_kil_view import test_my_page_kil_view_run
 from Test_Run.test_home_kil_view import test_home_kil_view_run
 from Test_Run.test_my_page_kil_view import test_my_page_kil_view_run
 
@@ -119,6 +119,7 @@ if __name__ == "__main__":
     print("테스트 케이스 5 완료.")
     print("-" * 50)
     """
+    """
     # --- test_my_page_kil_view_run 시나리오 실행 ---
     # sheets_service와 tester_name을 test_login 함수로 전달
     print("\n--- 마이페이지 시나리오 시작 ---")
@@ -126,7 +127,12 @@ if __name__ == "__main__":
     print("테스트 케이스 5 완료.")
     print("-" * 50)
     """
-
+    # --- test_shared_content_kil_view 시나리오 실행 ---
+    print("\n--- 공유 콘텐츠 / 자료실 시나리오 시작 ---")
+    my_page_passed, my_page_message = test_my_page_kil_view_run(appium_tester, sheets_service, tester_name)
+    print("테스트 케이스 5 완료.")
+    print("-" * 50)
+    """
 overall_end_time = time.time()  # 전체 테스트 스위트 종료 시간 기록
 overall_duration = overall_end_time - overall_start_time  # 총 실행 시간 계산
 
