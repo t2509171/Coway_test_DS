@@ -18,15 +18,26 @@ def test_cody_matching_visibility(flow_tester):
     result_message = "알 수 없는 이유로 시나리오가 완료되지 않았습니다."
 
     try:
-        # --- Step 1: '코디매칭' 탭으로 이동 ---
-        cody_matching_tab_xpath = '//android.view.View[@text="코디매칭"]'
-        print(f"💡 '{cody_matching_tab_xpath}' 탭을 찾습니다...")
-        cody_matching_tab = wait.until(
-            EC.element_to_be_clickable((AppiumBy.XPATH, cody_matching_tab_xpath))
-        )
-        print("✅ 탭을 찾았습니다. 클릭합니다.")
-        cody_matching_tab.click()
-        time.sleep(3)  # 페이지 로딩 대기
+        # 1. '코디매칭' 탭 클릭 (좌표 기반)
+        cody_matching_coords = (660, 310)
+        print(f"'코디매칭' 탭 위치인 {cody_matching_coords} 좌표를 클릭합니다.")
+        try:
+            flow_tester.driver.tap([cody_matching_coords])
+            time.sleep(2)  # 탭 전환 애니메이션 대기
+        except Exception as e:
+            error_msg = f"실패: '코디매칭' 탭 좌표 클릭 중 에러 발생: {e}"
+            save_screenshot_on_failure(flow_tester.driver, "cody_matching_tap_failed")
+            return False, error_msg
+
+        # # --- Step 1: '코디매칭' 탭으로 이동 ---
+        # cody_matching_tab_xpath = '//android.view.View[@text="코디매칭"]'
+        # print(f"💡 '{cody_matching_tab_xpath}' 탭을 찾습니다...")
+        # cody_matching_tab = wait.until(
+        #     EC.element_to_be_clickable((AppiumBy.XPATH, cody_matching_tab_xpath))
+        # )
+        # print("✅ 탭을 찾았습니다. 클릭합니다.")
+        # cody_matching_tab.click()
+        # time.sleep(3)  # 페이지 로딩 대기
 
         # --- Step 2: '코디매칭 총주문' 라벨 확인 ---
         print("💡 '코디매칭 총주문' 라벨 확인...")

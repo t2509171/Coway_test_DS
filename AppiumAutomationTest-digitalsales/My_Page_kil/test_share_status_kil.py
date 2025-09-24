@@ -21,6 +21,52 @@ from Utils.screenshot_helper import save_screenshot_on_failure
 #
 # # --- Test Case Functions ---
 #
+
+def test_verify_share_status_elements(flow_tester):
+    """
+    '공유하기' 탭으로 이동하여 관련 요소가 노출되는지 검증합니다.
+    """
+    print("\n--- 마이페이지 > 공유하기 탭 요소 노출 확인 시나리오 시작 ---")
+    try:
+        # 1. '공유하기' 탭 클릭 (좌표 기반)
+        share_status_coords = (400, 310)
+        print(f"'공유하기' 탭 위치인 {share_status_coords} 좌표를 클릭합니다.")
+        try:
+            flow_tester.driver.tap([share_status_coords])
+            time.sleep(2) # 탭 전환 애니메이션 대기
+        except Exception as e:
+            error_msg = f"실패: '공유하기' 탭 좌표 클릭 중 에러 발생: {e}"
+            save_screenshot_on_failure(flow_tester.driver, "share_status_tap_failed")
+            return False, error_msg
+
+        # (주석 처리된 기존 XPath 방식)
+        # share_tab_xpath = '//android.view.View[@text="공유하기"]'
+        # share_tab = WebDriverWait(flow_tester.driver, 10).until(
+        #     EC.presence_of_element_located((AppiumBy.XPATH, share_tab_xpath))
+        # )
+        # share_tab.click()
+
+        # 2. '공유하기' 화면의 특정 요소가 노출되는지 확인하는 로직 (필요 시 XPath 수정)
+        print("'공유하기' 화면의 요소들을 확인합니다.")
+        try:
+            share_element_xpath = '//android.widget.TextView[@text="콘텐츠 공유 현황"]'
+            WebDriverWait(flow_tester.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.XPATH, share_element_xpath))
+            )
+            print("✅ '콘텐츠 공유 현황' 텍스트가 성공적으로 노출되었습니다.")
+            return True, "'공유하기' 탭으로 성공적으로 이동했습니다."
+        except TimeoutException:
+            error_msg = "실패: '공유하기' 탭으로 이동 후 '콘텐츠 공유 현황' 텍스트를 찾을 수 없습니다."
+            save_screenshot_on_failure(flow_tester.driver, "share_status_element_missing")
+            return False, error_msg
+
+    except Exception as e:
+        return False, f"공유하기 탭 요소 확인 중 예외 발생: {e}"
+    finally:
+        print("--- 마이페이지 > 공유하기 탭 요소 노출 확인 시나리오 종료 ---")
+
+
+
 def test_share_status_page_navigation(flow_tester):
     """Seller app checklist-60 마이페이지 > 공유현황: '공유하기' 버튼 선택 시 공유현황 페이지로 이동"""
     print("\n--- 공유현황 페이지 이동 시나리오 시작 ---")
@@ -28,6 +74,17 @@ def test_share_status_page_navigation(flow_tester):
     share_button_xpath = '//android.view.View[@text="공유하기"]'
     share_page_title_xpath = '//android.widget.TextView[@text="공유하기"]'
     try:
+        # 1. '공유하기' 탭 클릭 (좌표 기반)
+        share_status_coords = (400, 310)
+        print(f"'공유하기' 탭 위치인 {share_status_coords} 좌표를 클릭합니다.")
+        try:
+            flow_tester.driver.tap([share_status_coords])
+            time.sleep(2)  # 탭 전환 애니메이션 대기
+        except Exception as e:
+            error_msg = f"실패: '공유하기' 탭 좌표 클릭 중 에러 발생: {e}"
+            save_screenshot_on_failure(flow_tester.driver, "share_status_tap_failed")
+            return False, error_msg
+
         print(f"'{share_button_xpath}' 버튼을 찾습니다...")
         share_button = WebDriverWait(flow_tester.driver, 10).until(
             EC.element_to_be_clickable((AppiumBy.XPATH, share_button_xpath))
