@@ -21,6 +21,7 @@ from Test_Run.test_shared_content_kil_view import test_shared_content_kil_view_r
 from Test_Run.test_home_kil_view import test_home_kil_view_run
 from Test_Run.test_my_page_kil_view import test_my_page_kil_view_run
 
+from Test_Run.test_update_kil_view import test_update_kil_view_run
 
 if __name__ == "__main__":
     print("=========================================")
@@ -53,6 +54,16 @@ if __name__ == "__main__":
     appium_tester.setup_driver()
     print("--- 드라이버 초기화 완료. ---")
     print("-" * 50)
+
+
+    # --- test_update_kil_view 시나리오 실행 ---
+    print("\n--- '앱 업데이트 테스트' 시나리오 시작 ---")
+    # sheets_service와 tester_name을 test_login 함수로 전달
+    login_passed, login_message = test_update_kil_view_run(appium_tester, sheets_service, tester_name)
+    print("테스트 케이스 5 완료.")
+    print("-" * 50)
+
+
 
     # # --- test_login 시나리오 실행 ---
     # print("\n--- '로그인 테스트' 시나리오 시작 ---")
@@ -127,11 +138,18 @@ if __name__ == "__main__":
     print("테스트 케이스 5 완료.")
     print("-" * 50)
     """
+
+    """
     # --- test_shared_content_kil_view 시나리오 실행 ---
     print("\n--- 공유 콘텐츠 / 자료실 시나리오 시작 ---")
     my_page_passed, my_page_message = test_shared_content_kil_view_run(appium_tester, sheets_service, tester_name)
     print("테스트 케이스 5 완료.")
     print("-" * 50)
+    """
+
+
+
+
     """
 overall_end_time = time.time()  # 전체 테스트 스위트 종료 시간 기록
 overall_duration = overall_end_time - overall_start_time  # 총 실행 시간 계산
