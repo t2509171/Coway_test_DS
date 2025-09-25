@@ -56,7 +56,7 @@ if __name__ == "__main__":
     print("-" * 50)
 
 
-    # --- test_update_kil_view 시나리오 실행 ---
+    # --- test_update_kil_view_run 시나리오 실행 ---
     print("\n--- '앱 업데이트 테스트' 시나리오 시작 ---")
     # sheets_service와 tester_name을 test_login 함수로 전달
     login_passed, login_message = test_update_kil_view_run(appium_tester, sheets_service, tester_name)
