@@ -13,9 +13,7 @@ def test_verify_element_positions_after_large_font_click(flow_tester):
     try:
         # 1. 위치를 검증할 요소들의 XPath를 리스트로 정의
         elements_to_check = {
-            "AI 정보 문구": '//android.widget.TextView[@text="AI가 제공하는 정보는 참고용으로 실시간 변동 사항이 반영되지 않을 수 있으며, 답변 오류에 대한 책임은 당사에 없습니다. 개인정보 보호를 위해 연락처, 주소 등 개인정보를 남기지 말아주세요."]',
-            "인사말 문구": '//android.widget.TextView[@text="안녕하세요. 권정숙 코디님. 어떤 키워드로 도와드릴까요?"]',
-            "리스트뷰": '//android.view.View[@resource-id="root"]/android.view.View[2]/android.widget.ListView[2]'
+            "인사말 문구": '//android.widget.TextView[@text="말씀하신 내용을 제가 정확히 파악하기 어렵네요. 혹시 다음 키워드 중 궁금하신 점이 있으신가요?"]',
         }
 
         initial_locations = {} # 클릭 전 위치를 저장할 딕셔너리

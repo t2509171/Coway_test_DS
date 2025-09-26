@@ -8,6 +8,9 @@ from Home_View_kil.test_webview_navigation import test_navigate_to_webview_from_
 from Home_View_kil.test_greeting_message import test_verify_greeting_message_in_menu
 from Home_View_kil.test_home_button_visibility import test_verify_home_button_visibility
 from Home_View_kil.test_large_font_mode import test_verify_element_positions_after_large_font_click
+from Home_View_kil.test_recommended_questions import test_verify_recommended_questions_for_managed_customers
+
+from Home_View_kil.test_cody_secretary_input import test_cody_secretary_keyboard_and_input
 
 # Google Sheets API 연동을 위해 필요한 함수를 임포트
 from Utils.test_result_input import update_test_result_in_sheet
@@ -119,15 +122,15 @@ def test_home_view_kil_view_run(flow_tester, sheets_service, tester_name):
     #     overall_results["AI 코디 비서 노출 확인 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
     #     update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
 
-    """Seller app checklist-139 : AI 코디 비서 큰글씨 모드 확인 테스트 실행"""
+    """Seller app checklist-1 : AI 코디 비서 키패드 확인 테스트 실행"""
     try:
         test_no_counter += 1
         test_no = f"Seller app checklist-{test_no_counter}"
-        print(f"\n--- {test_no}: AI 코디 비서 노출 확인---")
+        print(f"\n--- {test_no}: AI 코디 비서 키패드 노출 확인---")
 
-        content_unit_passed, content_unit_message = test_verify_element_positions_after_large_font_click(flow_tester)
+        content_unit_passed, content_unit_message = test_cody_secretary_keyboard_and_input(flow_tester)
 
-        overall_results["AI 코디 비서 노출 확인"] = {
+        overall_results["AI 코디 비서 키패드 노출 확인"] = {
             "test_no": test_no,
             "passed": content_unit_passed,
             "message": content_unit_message
@@ -142,11 +145,77 @@ def test_home_view_kil_view_run(flow_tester, sheets_service, tester_name):
         print(f"{test_no}테스트 케이스 완료.")
         print("-" * 50)
     except Exception as e:
-        print(f"🚨 AI 코디 비서 노출 확인 테스트 중 오류 발생: {e}")
+        print(f"🚨 AI 코디 비서 키패드 노출 확인 테스트 중 오류 발생: {e}")
         test_no = f"Seller app checklist-{test_no_counter}"
-        overall_results["AI 코디 비서 노출 확인 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
+        overall_results["AI 코디 비서 키패드 노출 확인 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
         update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
 
+
+
+
+
+
+
+    """Seller app checklist-139 : AI 코디 비서 큰글씨 모드 확인 테스트 실행"""
+    try:
+        test_no_counter += 1
+        test_no = f"Seller app checklist-{test_no_counter}"
+        print(f"\n--- {test_no}: AI 코디 비서 큰글씨 모드 노출 확인---")
+
+        content_unit_passed, content_unit_message = test_verify_element_positions_after_large_font_click(flow_tester)
+
+        overall_results["AI 코디 비서 큰글씨 모드 노출 확인"] = {
+            "test_no": test_no,
+            "passed": content_unit_passed,
+            "message": content_unit_message
+        }
+        if not content_unit_passed:
+            overall_test_passed = False
+            overall_test_message = "일부 검색 확인 테스트에서 실패가 발생했습니다."
+
+        status = "Pass" if content_unit_passed else "Fail"
+        update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
+        # 연관된 모든 체크리스트에 동일한 결과를 기록합니다.
+        print(f"{test_no}테스트 케이스 완료.")
+        print("-" * 50)
+    except Exception as e:
+        print(f"🚨 AI 코디 비서 큰글씨 모드 노출 확인 테스트 중 오류 발생: {e}")
+        test_no = f"Seller app checklist-{test_no_counter}"
+        overall_results["AI 코디 비서 큰글씨 모드 노출 확인 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
+        update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
+
+
+
+
+
+
+    """Seller app checklist-140 : AI 코디 비서 추천 질문 확인 테스트 실행"""
+    try:
+        test_no_counter += 1
+        test_no = f"Seller app checklist-{test_no_counter}"
+        print(f"\n--- {test_no}: AI 코디 비서 추천 질문 노출 확인---")
+
+        content_unit_passed, content_unit_message = test_verify_recommended_questions_for_managed_customers(flow_tester)
+
+        overall_results["AI 코디 비서 추천 질문 노출 확인"] = {
+            "test_no": test_no,
+            "passed": content_unit_passed,
+            "message": content_unit_message
+        }
+        if not content_unit_passed:
+            overall_test_passed = False
+            overall_test_message = "일부 검색 확인 테스트에서 실패가 발생했습니다."
+
+        status = "Pass" if content_unit_passed else "Fail"
+        update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
+        # 연관된 모든 체크리스트에 동일한 결과를 기록합니다.
+        print(f"{test_no}테스트 케이스 완료.")
+        print("-" * 50)
+    except Exception as e:
+        print(f"🚨 AI 코디 비서 추천 질문 노출 확인 테스트 중 오류 발생: {e}")
+        test_no = f"Seller app checklist-{test_no_counter}"
+        overall_results["AI 코디 비서 추천 질문 노출 확인 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
+        update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
 
 
 
