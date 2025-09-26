@@ -26,7 +26,7 @@ def test_navigate_to_webview_from_home(flow_tester):
             return False, error_msg
 
         # 2. WebView가 노출되었는지 확인
-        webview_xpath = '//android.webkit.WebView[@resource-id="com.coway.catalog.seller.stg:id/web_view"]'
+        webview_xpath = '//android.webkit.WebView[@text="Seller AI"]'
         print(f"'{webview_xpath}' (WebView)가 노출되는지 확인합니다 (20초 대기).")
         try:
             # WebView는 로딩이 느릴 수 있으므로 대기 시간을 20초로 넉넉하게 설정합니다.
@@ -34,7 +34,12 @@ def test_navigate_to_webview_from_home(flow_tester):
                 EC.presence_of_element_located((AppiumBy.XPATH, webview_xpath))
             )
             print("✅ WebView가 성공적으로 노출되었습니다.")
+
+            time.sleep(2)
+            flow_tester.driver.back()
+            time.sleep(3)
             return True, "홈 화면 버튼 클릭 후 WebView 이동 성공."
+
         except TimeoutException:
             error_msg = "실패: 버튼 클릭 후 WebView를 찾을 수 없습니다."
             save_screenshot_on_failure(flow_tester.driver, "webview_not_found_after_click")

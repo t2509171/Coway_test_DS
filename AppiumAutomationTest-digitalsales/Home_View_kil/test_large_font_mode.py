@@ -1,0 +1,88 @@
+import time
+from appium.webdriver.common.appiumby import AppiumBy
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
+from Utils.screenshot_helper import save_screenshot_on_failure
+
+def test_verify_element_positions_after_large_font_click(flow_tester):
+    """
+    '큰글씨' 버튼 클릭 전과 후의 주요 요소들의 좌표를 비교하여 위치 변경 여부를 검증합니다.
+    """
+    print("\n--- '큰글씨' 모드 > UI 요소 위치 변경 확인 시나리오 시작 ---")
+    try:
+        # 1. 위치를 검증할 요소들의 XPath를 리스트로 정의
+        elements_to_check = {
+            "AI 정보 문구": '//android.widget.TextView[@text="AI가 제공하는 정보는 참고용으로 실시간 변동 사항이 반영되지 않을 수 있으며, 답변 오류에 대한 책임은 당사에 없습니다. 개인정보 보호를 위해 연락처, 주소 등 개인정보를 남기지 말아주세요."]',
+            "인사말 문구": '//android.widget.TextView[@text="안녕하세요. 권정숙 코디님. 어떤 키워드로 도와드릴까요?"]',
+            "리스트뷰": '//android.view.View[@resource-id="root"]/android.view.View[2]/android.widget.ListView[2]'
+        }
+
+        initial_locations = {} # 클릭 전 위치를 저장할 딕셔너리
+
+        # 2. '큰글씨' 버튼 클릭 전, 각 요소의 초기 위치 저장
+        print("[1단계] '큰글씨' 버튼 클릭 전 요소들의 초기 위치를 저장합니다.")
+        for name, xpath in elements_to_check.items():
+            try:
+                element = WebDriverWait(flow_tester.driver, 5).until(
+                    EC.presence_of_element_located((AppiumBy.XPATH, xpath))
+                )
+                initial_locations[name] = element.location # {'x': 100, 'y': 200} 형태
+                print(f" - '{name}' 초기 위치: {initial_locations[name]}")
+            except TimeoutException:
+                error_msg = f"실패: 초기 상태의 '{name}' 요소를 찾을 수 없습니다."
+                save_screenshot_on_failure(flow_tester.driver, f"initial_{name.replace(' ', '_')}_not_found")
+                return False, error_msg
+
+        # 3. '큰글씨' 버튼 클릭
+        large_font_button_xpath = '//android.widget.Button[@text="큰글씨"]'
+        print(f"\n[2단계] '{large_font_button_xpath}' 버튼을 클릭합니다.")
+        try:
+            large_font_button = WebDriverWait(flow_tester.driver, 10).until(
+                EC.element_to_be_clickable((AppiumBy.XPATH, large_font_button_xpath))
+            )
+            large_font_button.click()
+            time.sleep(2) # UI가 변경될 시간을 줍니다.
+        except TimeoutException:
+            error_msg = "실패: '큰글씨' 버튼을 찾거나 클릭할 수 없습니다."
+            save_screenshot_on_failure(flow_tester.driver, "large_font_button_not_found")
+            return False, error_msg
+
+        # 4. '큰글씨' 버튼 클릭 후, 각 요소의 최종 위치와 초기 위치 비교
+        print("\n[3단계] '큰글씨' 버튼 클릭 후 요소들의 위치 변경 여부를 확인합니다.")
+        unchanged_elements = [] # 위치가 변경되지 않은 요소들의 이름을 저장할 리스트
+
+        for name, xpath in elements_to_check.items():
+            try:
+                final_element = WebDriverWait(flow_tester.driver, 5).until(
+                    EC.presence_of_element_located((AppiumBy.XPATH, xpath))
+                )
+                final_location = final_element.location
+                print(f" - '{name}' 최종 위치: {final_location}")
+
+                # 초기 위치와 최종 위치가 동일한지 비교
+                if initial_locations[name] == final_location:
+                    print(f"   ❌ '{name}' 요소의 위치가 변경되지 않았습니다.")
+                    unchanged_elements.append(name)
+                else:
+                    print(f"   ✅ '{name}' 요소의 위치가 성공적으로 변경되었습니다.")
+
+            except TimeoutException:
+                error_msg = f"실패: '큰글씨' 모드에서 '{name}' 요소를 찾을 수 없습니다."
+                save_screenshot_on_failure(flow_tester.driver, f"final_{name.replace(' ', '_')}_not_found")
+                return False, error_msg
+
+        # 5. 최종 결과 판정
+        if not unchanged_elements:
+            print("\n✅ 모든 검증 대상 요소들의 위치가 성공적으로 변경되었습니다.")
+            return True, "'큰글씨' 모드 UI 위치 변경 확인 성공."
+        else:
+            unchanged_list_str = ", ".join(unchanged_elements)
+            error_msg = f"실패: '큰글씨' 모드 적용 후 다음 요소들의 위치가 변경되지 않았습니다: [{unchanged_list_str}]"
+            save_screenshot_on_failure(flow_tester.driver, "elements_position_not_changed")
+            return False, error_msg
+
+    except Exception as e:
+        return False, f"'큰글씨' 모드 확인 중 예외 발생: {e}"
+    finally:
+        print("--- '큰글씨' 모드 > UI 요소 위치 변경 확인 시나리오 종료 ---")
