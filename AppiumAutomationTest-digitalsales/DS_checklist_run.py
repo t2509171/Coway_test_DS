@@ -57,7 +57,7 @@ if __name__ == "__main__":
 
 
     # --- test_managed_customers_kil_view 시나리오 실행 ---
-    print("\n--- '앱 업데이트 테스트' 시나리오 시작 ---")
+    print("\n--- '관리고객 테스트' 시나리오 시작 ---")
     # sheets_service와 tester_name을 test_login 함수로 전달
     login_passed, login_message = test_managed_customers_kil_view_run(appium_tester, sheets_service, tester_name)
     print("테스트 케이스 5 완료.")
