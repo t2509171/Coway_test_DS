@@ -95,6 +95,7 @@ def test_banner_swipe(flow_tester):
             flow_tester.driver.back()
             time.sleep(1)
             return True, "배너 스와이프, 터치, 소멸 확인 시나리오 성공."
+
         except TimeoutException:
             error_msg = "실패: 배너를 터치했지만 사라지지 않았습니다."
             save_screenshot_on_failure(flow_tester.driver, "banner_dismiss_fail_final")

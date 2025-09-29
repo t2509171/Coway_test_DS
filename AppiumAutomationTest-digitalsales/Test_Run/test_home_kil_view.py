@@ -16,6 +16,8 @@ from Home_kil.test_banner import test_banner_swipe
 from Home_kil.test_item import test_full_menu,test_checklist_42,test_management_customer,test_home,test_mobile_order,test_my_page
 from Home_kil.home_reset import reset_to_home_and_refresh
 from Home_kil.test_promotion import test_scroll_and_navigate_to_salesperson_promotion
+from Home_kil.test_gallery_sharing import test_gallery_facebook_share
+
 # Google Sheets API 연동을 위해 필요한 함수를 임포트
 from Utils.test_result_input import update_test_result_in_sheet
 
@@ -182,7 +184,34 @@ def test_home_kil_view_run(flow_tester, sheets_service, tester_name):
         overall_results["배너 팁 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
         update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
 
-
+    # # [Seller app checklist-23] --- 갤러리아체험 페이스북 공유하기 확인 테스트 실행 ---
+    # test_no_counter = 22
+    # try:
+    #     test_no_counter += 1
+    #     test_no = f"Seller app checklist-{test_no_counter}"
+    #     print(f"\n--- {test_no}: 갤러리아체험 페이스북 공유하기 기능 확인 (항목 수, 클릭) ---")
+    #
+    #     content_unit_passed, content_unit_message = test_gallery_facebook_share(flow_tester)
+    #
+    #     overall_results["갤러리아체험 페이스북 공유하기 팁 기능 확인"] = {
+    #         "test_no": test_no,
+    #         "passed": content_unit_passed,
+    #         "message": content_unit_message
+    #     }
+    #     if not content_unit_passed:
+    #         overall_test_passed = False
+    #         overall_test_message = "일부 홈 확인 테스트에서 실패가 발생했습니다."
+    #
+    #     status = "Pass" if content_unit_passed else "Fail"
+    #     update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
+    #     # 연관된 모든 체크리스트에 동일한 결과를 기록합니다.
+    #     print(f"{test_no}테스트 케이스 완료.")
+    #     print("-" * 50)
+    # except Exception as e:
+    #     print(f"🚨 갤러리아체험 페이스북 공유하기 팁 테스트 중 오류 발생: {e}")
+    #     test_no = f"Seller app checklist-{test_no_counter}"
+    #     overall_results["갤러리아체험 페이스북 공유하기 팁 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
+    #     update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
 
 
     test_no_counter = 28
@@ -330,7 +359,7 @@ def test_home_kil_view_run(flow_tester, sheets_service, tester_name):
         print("-" * 50)
     except Exception as e:
         print(f"🚨 콘텐츠 유닛 테스트 중 오류 발생: {e}")
-        test_no = "Seller app checklist-37"
+        test_no = f"Seller app checklist-{test_no_counter}"
         overall_results["콘텐츠 유닛 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
         update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
 
@@ -360,7 +389,7 @@ def test_home_kil_view_run(flow_tester, sheets_service, tester_name):
         print("-" * 50)
     except Exception as e:
         print(f"🚨 고객 프로모션 유닛 테스트 중 오류 발생: {e}")
-        test_no = "Seller app checklist-37"
+        test_no = f"Seller app checklist-{test_no_counter}"
         overall_results["고객 프로모션 유닛 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
         update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
 

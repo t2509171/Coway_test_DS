@@ -99,6 +99,8 @@ def test_gallery_facebook_share(flow_tester):
             EC.visibility_of_element_located((AppiumBy.XPATH, facebook_webview_xpath))
         )
         print("✅ 성공: 'Facebook에 공유' 화면이 정상적으로 노출되었습니다.")
+        flow_tester.driver.back()
+        time.sleep(1)
         return True, "코웨이 갤러리 페이스북 공유 기능 확인 성공"
 
     except (TimeoutException, NoSuchElementException) as e:

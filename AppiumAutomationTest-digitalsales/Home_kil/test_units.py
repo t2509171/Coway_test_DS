@@ -118,12 +118,20 @@ def test_home_content_unit(flow_tester, unit_container_xpath, unit_index_xpath, 
             return False, f"테스트에 필요한 최소 유닛(3개)을 찾지 못했습니다. (발견된 수: {total_items_found}개)"
 
         # 4. 3번째 항목 클릭하여 상세 페이지로 이동
-        print("콘텐츠 항목을 클릭합니다.")
-        target_item_xpath = '//android.widget.TextView[@text="3"]'
+        # print("콘텐츠 항목을 클릭합니다.")
+        # target_item_xpath = '//android.widget.TextView[@text="3"]'
+        # target_item = flow_tester.driver.find_element(AppiumBy.XPATH, target_item_xpath)
+        # target_item.click()
+        # time.sleep(5)
 
-        target_item = flow_tester.driver.find_element(AppiumBy.XPATH, target_item_xpath)
-        target_item.click()
-        time.sleep(5)
+        print("콘텐츠 항목을 클릭합니다.")
+        # 클릭할 좌표를 스와이프 시작 지점 근처의 아이템으로 가정하고 클릭합니다.
+        # 보통 첫 아이템은 왼쪽 영역에 있으므로, end_x 좌표를 사용합니다.
+        click_x = end_x + 50
+        click_y = y
+        print(f"스와이프 영역의 첫 아이템 위치로 추정되는 좌표 ({int(click_x)}, {int(click_y)})를 클릭합니다.")
+        flow_tester.driver.tap([(click_x, click_y)])
+        # --- 여기까지 로직 수정 ---
 
         # 5. 상세 페이지 진입 확인
         flow_tester.wait.until(
