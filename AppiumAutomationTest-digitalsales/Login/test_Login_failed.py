@@ -15,7 +15,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 #from Login.test_login_view import AppiumLoginviewTest
 
-def run_failed_login_scenario(loginview_tester):
+def login_failed(flow_tester):
     """
     유효하지 않은 자격 증명으로 로그인 실패 시나리오를 실행합니다.
     """
@@ -42,27 +42,20 @@ def run_failed_login_scenario(loginview_tester):
 
     try:
         print("앱이 성공적으로 실행되었습니다.")
-        """
-        # 로그인 화면 UI 요소 확인 (필요에 따라)
-        print("\n--- 로그인 화면 UI 요소 노출 테스트 시작 ---")
-        ui_elements_ok = loginview_tester.verify_login_ui_elements()
-        if not ui_elements_ok:
-            print("⚠️ 경고: 로그인 화면의 일부 UI 요소가 정상적으로 노출되지 않았습니다. 계속 진행.")
-        print("--- 로그인 화면 UI 요소 노출 테스트 종료 ---\n")
-        """
+
         # 로그인 작업 수행
         print(f"유효하지 않은 계정으로 로그인 시도: ID='{username}', PW='{password}'")
         # 예상: 로그인 실패 (메인 페이지로 이동하지 않음)
         try:
             # 아이디 입력 필드 찾기 및 텍스트 입력
-            id_field = loginview_tester.wait.until(
+            id_field = flow_tester.wait.until(
                 EC.element_to_be_clickable((AppiumBy.XPATH, '//android.widget.EditText[@resource-id="id"]')))
             id_field.clear()
             id_field.send_keys(username)
             print(f"아이디 '{username}' 입력 완료.")
 
             # 비밀번호 입력 필드 찾기 및 텍스트 입력
-            pwd_field = loginview_tester.wait.until(
+            pwd_field = flow_tester.wait.until(
                 EC.element_to_be_clickable((AppiumBy.XPATH, '//android.widget.EditText[@resource-id="pwd"]')))
             pwd_field.clear()
             pwd_field.send_keys(password)
@@ -73,7 +66,7 @@ def run_failed_login_scenario(loginview_tester):
                 auto_login_checkbox_locator = (AppiumBy.XPATH, '//android.widget.CheckBox[@resource-id="autoLogin"]')
                 # 자동 로그인 체크박스 요소를 찾습니다. (클릭 가능할 때까지 대기)
                 print(f"자동 로그인 체크박스 {auto_login_checkbox_locator}를 기다리는 중...")
-                auto_login_checkbox = loginview_tester.wait.until(
+                auto_login_checkbox = flow_tester.wait.until(
                     EC.element_to_be_clickable(auto_login_checkbox_locator),
                     message=f"자동 로그인 체크박스 {auto_login_checkbox_locator}를 20초 내에 찾지 못했습니다."
                 )
@@ -104,11 +97,11 @@ def run_failed_login_scenario(loginview_tester):
 
             except Exception as e:
                 print(f"자동 로그인 체크박스 처리 중 오류 발생: {e}")
-                loginview_tester.driver.save_screenshot("auto_login_checkbox_error.png")
+                flow_tester.driver.save_screenshot("auto_login_checkbox_error.png")
                 raise  # 오류 발생 시 상위로 예외를 다시 발생시켜 로그인 프로세스 중단
 
             # 로그인 버튼 찾기 및 클릭
-            login_button = loginview_tester.wait.until(
+            login_button = flow_tester.wait.until(
                 EC.element_to_be_clickable((AppiumBy.XPATH, '//android.widget.Button[@text="로그인"]')))
             login_button.click()
             print("로그인 버튼 클릭.")
@@ -119,7 +112,7 @@ def run_failed_login_scenario(loginview_tester):
             error_message_xpath = '//android.widget.TextView[@text="업무포탈 통합계정 정보를 확인해 주세요."]'  # 실제 오류 메시지 XPath로 변경
             try:
                 # 예상 오류 메시지가 나타날 때까지 명시적으로 대기
-                error_message_element = loginview_tester.wait.until(
+                error_message_element = flow_tester.wait.until(
                     EC.presence_of_element_located((AppiumBy.XPATH, error_message_xpath)),
                     message="예상 오류 메시지가 타임아웃 내에 나타나지 않았습니다."
                 )
@@ -133,7 +126,7 @@ def run_failed_login_scenario(loginview_tester):
                 # 추가 확인: 예상치 못하게 메인 페이지로 이동했는지 확인 (실패 시나리오에서 성공한 경우)
                 try:
                     main_page_element_locator_on_fail = (AppiumBy.XPATH, '//android.webkit.WebView[@content-desc="메인"]')
-                    loginview_tester.wait.until(EC.presence_of_element_located(main_page_element_locator_on_fail))
+                    flow_tester.wait.until(EC.presence_of_element_located(main_page_element_locator_on_fail))
                     print("❌ 예상치 못하게 메인 페이지로 이동했습니다. 로그인 실패 테스트 실패 처리.")
                     failed_login_result = False
                 except TimeoutException:
@@ -169,7 +162,3 @@ def run_failed_login_scenario(loginview_tester):
         # 드라이버 종료
         #loginview_tester.teardown_driver()
         print("--- 유효하지 않은 자격 증명으로 로그인 실패 시나리오 종료 ---\n")
-
-if __name__ == "__main__":
-    passed, message = run_failed_login_scenario()
-    print(f"Final Result: {'PASS' if passed else 'FAIL'} - {message}")

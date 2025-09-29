@@ -67,40 +67,6 @@ def test_customer_promotion_view(flow_tester, start_x=None, start_y=None):
         if not scenario_passed:
             return False, result_message
 
-        """
-        max_scrolls = 5  # 최대 스크롤 횟수 설정
-
-        for i in range(max_scrolls):
-            print(f"스크롤 시도 {i + 1}/{max_scrolls}")
-            try:
-                # '고객 프로모션' 요소가 보이는지 확인
-                customer_promotion_element = flow_tester.driver.find_element(AppiumBy.XPATH, customer_promotion_button_xpath)
-                if customer_promotion_element.is_displayed():
-                    print("✅ '고객 프로모션' 요소가 성공적으로 노출되었습니다.")
-                    scenario_passed = True
-                    result_message = "'고객 프로모션' 요소까지 W3C 스크롤 성공."
-                    # 요소가 보이면 테스트 성공으로 간주하고 루프 종료
-                    break
-            except NoSuchElementException:
-                # 요소가 현재 화면에 없으면 스크롤 수행
-                print("'고객 프로모션' 요소를 찾을 수 없습니다. W3C 스크롤을 시도합니다.")
-
-                # W3C Actions를 이용한 스크롤 동작
-                actions = ActionChains(flow_tester.driver)
-                actions.w3c_actions = ActionBuilder(flow_tester.driver,
-                                                                mouse=PointerInput(interaction.POINTER_TOUCH, "touch"))
-                actions.w3c_actions.pointer_action.move_to_location(550, 1800)
-                actions.w3c_actions.pointer_action.pointer_down()
-                actions.w3c_actions.pointer_action.pause(0.1)  # 짧은 일시정지 (선택 사항)
-                actions.w3c_actions.pointer_action.move_to_location(550, 1100)
-                actions.w3c_actions.pointer_action.release()
-                actions.perform()
-                time.sleep(0.5)  # 스크롤 후 페이지 로딩 대기
-
-        if not scenario_passed:
-            result_message = f"최대 스크롤 횟수({max_scrolls}) 내에 '고객 프로모션' 요소를 찾지 못했습니다."
-            return False, result_message
-        """
     except Exception as e:
         print(f"🚨 고객 프로모션 시나리오 실행 중 오류 발생: {e}")
         scenario_passed = False

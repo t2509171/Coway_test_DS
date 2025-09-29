@@ -13,13 +13,11 @@ from selenium.webdriver.support import expected_conditions as EC
 from appium.webdriver.common.appiumby import AppiumBy # AppiumBy
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
-#from Login.test_login_view import AppiumLoginviewTest
+def login_successful(flow_tester):
 
-def run_successful_login_scenario(loginview_tester):
-    """
-    유효한 자격 증명으로 로그인 성공 시나리오를 실행합니다.
-    """
     print("\n--- 유효한 자격 증명으로 로그인 성공 시나리오 시작 ---")
+    scenario_passed = False
+    result_message = "알 수 없는 이유로 시나리오가 완료되지 않았습니다."
 
     # Read valid credentials
     valid_credentials_path = os.path.join(os.path.dirname(__file__), 'valid_credentials.txt')
@@ -37,11 +35,6 @@ def run_successful_login_scenario(loginview_tester):
         print(f"Error: Invalid format in {valid_credentials_path}. Expected 'username,password'.")
         return False, "Invalid valid credentials format."
 
-    #loginview_tester = AppiumLoginviewTest()
-
-    successful_login_result = False
-    ui_elements_ok = False
-
     try:
         print("앱이 성공적으로 실행되었습니다.")
 
@@ -52,7 +45,7 @@ def run_successful_login_scenario(loginview_tester):
                                      '//android.widget.TextView[@text="디지털세일즈"]')
         try:
             # 일정 시간 동안 기다려 요소가 로드되는지 확인
-            loginview_tester.wait.until(EC.presence_of_element_located(main_page_element_locator))
+            flow_tester.wait.until(EC.presence_of_element_located(main_page_element_locator))
             print("✅ 메인 페이지 요소가 이미 존재합니다. 로그인 상태로 판단하고 로그인 과정을 스킵")
             return True, "Already logged in, skipped login process."
         except TimeoutException:
@@ -63,14 +56,14 @@ def run_successful_login_scenario(loginview_tester):
         print(f"유효한 계정으로 로그인 시도: ID='{username}', PW='{password}'")
         try:
             # 아이디 입력 필드 찾기 및 텍스트 입력
-            id_field = loginview_tester.wait.until(
+            id_field = flow_tester.wait.until(
                 EC.element_to_be_clickable((AppiumBy.XPATH, '//android.widget.EditText[@resource-id="id"]')))
             id_field.clear()
             id_field.send_keys(username)
             print(f"아이디 '{username}' 입력 완료.")
 
             # 비밀번호 입력 필드 찾기 및 텍스트 입력
-            pwd_field = loginview_tester.wait.until(
+            pwd_field = flow_tester.wait.until(
                 EC.element_to_be_clickable((AppiumBy.XPATH, '//android.widget.EditText[@resource-id="pwd"]')))
             pwd_field.clear()
             pwd_field.send_keys(password)
@@ -81,7 +74,7 @@ def run_successful_login_scenario(loginview_tester):
                 auto_login_checkbox_locator = (AppiumBy.XPATH, '//android.widget.CheckBox[@resource-id="autoLogin"]')
                 # 자동 로그인 체크박스 요소를 찾습니다. (클릭 가능할 때까지 대기)
                 print(f"자동 로그인 체크박스 {auto_login_checkbox_locator}를 기다리는 중...")
-                auto_login_checkbox = loginview_tester.wait.until(
+                auto_login_checkbox = flow_tester.wait.until(
                     EC.element_to_be_clickable(auto_login_checkbox_locator),
                     message=f"자동 로그인 체크박스 {auto_login_checkbox_locator}를 20초 내에 찾지 못했습니다."
                 )
@@ -105,11 +98,11 @@ def run_successful_login_scenario(loginview_tester):
 
             except Exception as e:
                     print(f"자동 로그인 체크박스 처리 중 오류 발생: {e}")
-                    loginview_tester.driver.save_screenshot("auto_login_checkbox_error.png")
+                    flow_tester.driver.save_screenshot("auto_login_checkbox_error.png")
                     raise  # 오류 발생 시 상위로 예외를 다시 발생시켜 로그인 프로세스 중단
 
             # 로그인 버튼 찾기 및 클릭
-            login_button = loginview_tester.wait.until(
+            login_button = flow_tester.wait.until(
                 EC.element_to_be_clickable((AppiumBy.XPATH, '//android.widget.Button[@text="로그인"]')))
             login_button.click()
             print("로그인 버튼 클릭.")
@@ -124,17 +117,17 @@ def run_successful_login_scenario(loginview_tester):
                 # 실제 앱의 메인 화면에 있는 고유한 요소를 Appium Inspector로 확인 후 정확히 변경해주세요.
                 main_page_element_locator = (AppiumBy.XPATH,
                                              '//android.widget.TextView[@text="디지털세일즈"]')  # 실제 메인 페이지의 요소로 변경 필수
-                loginview_tester.wait.until(EC.presence_of_element_located(main_page_element_locator))
+                flow_tester.wait.until(EC.presence_of_element_located(main_page_element_locator))
                 print("메인 페이지 요소 확인: 로그인 성공.")
                 successful_login_result = True
                 time.sleep(3)
             except TimeoutException:
                 print("❌ 메인 페이지 요소 확인 타임아웃: 로그인 성공 후 예상되는 메인 페이지 요소를 찾을 수 없습니다.")
-                loginview_tester.driver.save_screenshot("main_page_element_not_found_timeout.png")
+                flow_tester.driver.save_screenshot("main_page_element_not_found_timeout.png")
                 successful_login_result = False
             except NoSuchElementException:
                 print("❌ 메인 페이지 요소 확인 실패: 예상되는 메인 페이지 요소를 찾을 수 없습니다. XPath 확인 필요.")
-                loginview_tester.driver.save_screenshot("main_page_element_not_found_no_such_element.png")
+                flow_tester.driver.save_screenshot("main_page_element_not_found_no_such_element.png")
                 successful_login_result = False
             except Exception as ex:
                 print(f"메인 페이지 요소 확인 중 예상치 못한 오류 발생: {ex}")
@@ -153,11 +146,7 @@ def run_successful_login_scenario(loginview_tester):
     except Exception as e:
         print(f"🚨 유효한 자격 증명 로그인 시나리오 실행 중 오류 발생: {e}")
         return False, f"Error during successful login test: {e}"
-    finally:
-        # 드라이버 종료
-        #loginview_tester.teardown_driver()
-        print("--- 유효한 자격 증명으로 로그인 성공 시나리오 종료 ---\n")
 
-if __name__ == "__main__":
-    passed, message = run_successful_login_scenario()
-    print(f"Final Result: {'PASS' if passed else 'FAIL'} - {message}")
+    finally:
+        print("--- 로그인 화면 UI 요소 노출 확인 시나리오 종료 ---\n")
+    return scenario_passed, result_message

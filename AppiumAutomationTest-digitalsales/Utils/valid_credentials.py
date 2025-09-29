@@ -41,10 +41,7 @@ def get_user_data(file_path):
 
 # valid_credentials.txt 파일 경로 설정 (경로에 맞게 수정 필요)
 # 예: 현재 스크립트가 Login 폴더에 있다고 가정
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-file_path = os.path.join(project_root, 'Login', 'valid_credentials.txt')
-
-# file_path = os.path.join(os.path.dirname(__file__), 'valid_credentials.txt')
+file_path = os.path.join(os.path.dirname(__file__), 'valid_credentials.txt')
 
 # 사용자 데이터 가져오기
 try:

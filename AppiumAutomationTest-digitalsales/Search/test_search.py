@@ -19,7 +19,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import logging
 
 from Base.base_driver import BaseAppiumDriver
-from Login.test_Login_passed import run_successful_login_scenario
+from Login.test_Login_passed import login_successful
 
 # 검색 버튼 클릭 (44)
 def test_search_button_click(flow_tester):

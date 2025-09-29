@@ -25,96 +25,124 @@ def test_search_view_run(flow_tester, sheets_service, tester_name):
     overall_test_passed = True  # Initialize for the overall test result
     overall_test_message = "모든 검색 확인 테스트 시나리오가 성공적으로 완료되었습니다."  # Initialize success message
 
+    # 테스트 체크리스트 번호 동적 생성을 위한 카운터 변수 추가 (시작에서 -1을 한다)
+    test_no_counter = 46
+
     try:
-        # [Seller app checklist-44] --- 검색 버튼 클릭 확인 테스트 실행 ---
-        print("\n--- Seller app checklist-44:  검색 버튼 클릭 확인 ---")
-        lifestory_view_details_passed, lifestory_view_details_message = test_search_button_click(flow_tester)
-        overall_results["검색 페이지로 이동한다."] = {
-            "test_no": "Seller app checklist-44",  # You can assign a specific checklist number
-            "passed": lifestory_view_details_passed,
-            "message": lifestory_view_details_message
-        }
-        if not lifestory_view_details_passed:
-            overall_test_passed = False  # Mark overall test as failed
-            overall_test_message = "일부 전체메뉴 클릭 테스트 시나리오에서 실패가 발생했습니다. 상세 로그를 확인하세요."
+        # --- 검색 버튼 클릭 확인 테스트 실행 ---
+        try:
+            test_no_counter += 1
+            test_no = f"Seller app checklist-{test_no_counter}"
+            print(f"\n--- {test_no}:  검색 버튼 클릭 확인 ---")
+            my_page_view_passed, my_page_view_message = test_search_button_click(flow_tester)
+            overall_results["검색 페이지로 이동한다."] = {
+                "test_no": test_no,  # 동적 번호 할당
+                "passed": my_page_view_passed,
+                "message": my_page_view_message
+            }
+            if not my_page_view_passed:
+                overall_test_passed = False  # Mark overall test as failed
+                overall_test_message = "일부 전체메뉴 클릭 테스트 시나리오에서 실패가 발생했습니다. 상세 로그를 확인하세요."
+            # 스프레드시트에 테스트 결과 기록
+            status = "Pass" if my_page_view_passed else "Fail"
+            update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
+            print(f"{test_no} 테스트 케이스 완료.")
+            print("-" * 50)  # Separator
+        except Exception as e:
+            overall_test_passed = False
+            overall_test_message = f"검색 버튼 클릭 확인 실패: {e}"
 
-        # 스프레드시트에 테스트 결과 기록 (44)
-        status = "Pass" if lifestory_view_details_passed else "Fail"
-        update_test_result_in_sheet(sheets_service, "Seller app checklist-44", status, tester_name)
-        print("Seller app checklist-44 테스트 케이스 완료.")
-        print("-" * 50)  # Separator
-        """
-        # [Seller app checklist-45] --- 최근 검색어 노출 확인 테스트 실행 ---
-        print("\n--- Seller app checklist-45:  최근 검색어 노출 확인 ---")
-        lifestory_view_details_passed, lifestory_view_details_message = test_recent_Search_Words(flow_tester)
-        overall_results["최근 검색어 목록이 노출된다."] = {
-            "test_no": "Seller app checklist-45",  # You can assign a specific checklist number
-            "passed": lifestory_view_details_passed,
-            "message": lifestory_view_details_message
-        }
-        if not lifestory_view_details_passed:
-            overall_test_passed = False  # Mark overall test as failed
-            overall_test_message = "일부 전체메뉴 클릭 테스트 시나리오에서 실패가 발생했습니다. 상세 로그를 확인하세요."
+        # --- 최근 검색어 노출 확인 테스트 실행 ---
+        try:
+            test_no_counter += 1
+            test_no = f"Seller app checklist-{test_no_counter}"
+            print(f"\n--- {test_no}:  최근 검색어 노출 확인 ---")
+            my_page_view_passed, my_page_view_message = test_recent_Search_Words(flow_tester)
+            overall_results["최근 검색어 목록이 노출된다."] = {
+                "test_no": test_no,  # 동적 번호 할당
+                "passed": my_page_view_passed,
+                "message": my_page_view_message
+            }
+            if not my_page_view_passed:
+                overall_test_passed = False  # Mark overall test as failed
+                overall_test_message = "일부 전체메뉴 클릭 테스트 시나리오에서 실패가 발생했습니다. 상세 로그를 확인하세요."
+            # 스프레드시트에 테스트 결과 기록
+            status = "Pass" if my_page_view_passed else "Fail"
+            update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
+            print(f"{test_no} 테스트 케이스 완료.")
+            print("-" * 50)  # Separator
+        except Exception as e:
+            overall_test_passed = False
+            overall_test_message = f"최근 검색어 노출 확인 실패: {e}"
 
-        # 스프레드시트에 테스트 결과 기록 (45)
-        status = "Pass" if lifestory_view_details_passed else "Fail"
-        update_test_result_in_sheet(sheets_service, "Seller app checklist-45", status, tester_name)
-        print("Seller app checklist-45 테스트 케이스 완료.")
-        print("-" * 50)  # Separator
+        # --- 최근 본 제품 목록 노출 확인 테스트 실행 ---
+        try:
+            test_no_counter += 1
+            test_no = f"Seller app checklist-{test_no_counter}"
+            print(f"\n--- {test_no}:  최근 본 제품 목록 노출 확인 ---")
+            my_page_view_passed, my_page_view_message = test_recent_product(flow_tester)
+            overall_results["최근 본 제품 목록이 노출된다."] = {
+                "test_no": test_no,  # 동적 번호 할당
+                "passed": my_page_view_passed,
+                "message": my_page_view_message
+            }
+            if not my_page_view_passed:
+                overall_test_passed = False  # Mark overall test as failed
+                overall_test_message = "일부 전체메뉴 클릭 테스트 시나리오에서 실패가 발생했습니다. 상세 로그를 확인하세요."
+            # 스프레드시트에 테스트 결과 기록
+            status = "Pass" if my_page_view_passed else "Fail"
+            update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
+            print(f"{test_no} 테스트 케이스 완료.")
+            print("-" * 50)  # Separator
+        except Exception as e:
+            overall_test_passed = False
+            overall_test_message = f"최근 본 제품 목록 노출 확인 실패: {e}"
 
-        # [Seller app checklist-46] --- 최근 본 제품 목록 노출 확인 테스트 실행 ---
-        print("\n--- Seller app checklist-46:  최근 본 제품 목록 노출 확인 ---")
-        lifestory_view_details_passed, lifestory_view_details_message = test_recent_product(flow_tester)
-        overall_results["최근 본 제품 목록이 노출된다."] = {
-            "test_no": "Seller app checklist-46",  # You can assign a specific checklist number
-            "passed": lifestory_view_details_passed,
-            "message": lifestory_view_details_message
-        }
-        if not lifestory_view_details_passed:
-            overall_test_passed = False  # Mark overall test as failed
-            overall_test_message = "일부 전체메뉴 클릭 테스트 시나리오에서 실패가 발생했습니다. 상세 로그를 확인하세요."
+        # --- 인기 검색어 순위 목록 노출 확인 테스트 실행 ---
+        try:
+            test_no_counter += 1
+            test_no = f"Seller app checklist-{test_no_counter}"
+            print(f"\n--- {test_no}:  인기 검색어 순위 목록 노출 확인 ---")
+            my_page_view_passed, my_page_view_message = test_popular_search(flow_tester)
+            overall_results["인기 검색어 순위 목록이 노출된다."] = {
+                "test_no": test_no,  # 동적 번호 할당
+                "passed": my_page_view_passed,
+                "message": my_page_view_message
+            }
+            if not my_page_view_passed:
+                overall_test_passed = False  # Mark overall test as failed
+                overall_test_message = "일부 전체메뉴 클릭 테스트 시나리오에서 실패가 발생했습니다. 상세 로그를 확인하세요."
+            # 스프레드시트에 테스트 결과 기록
+            status = "Pass" if my_page_view_passed else "Fail"
+            update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
+            print(f"{test_no} 테스트 케이스 완료.")
+            print("-" * 50)  # Separator
+        except Exception as e:
+            overall_test_passed = False
+            overall_test_message = f"인기 검색어 순위 목록 노출 확인 실패: {e}"
 
-        # 스프레드시트에 테스트 결과 기록 (46)
-        status = "Pass" if lifestory_view_details_passed else "Fail"
-        update_test_result_in_sheet(sheets_service, "Seller app checklist-46", status, tester_name)
-        print("Seller app checklist-46 테스트 케이스 완료.")
-        print("-" * 50)  # Separator
-
-        # [Seller app checklist-47] --- 인기 검색어 순위 목록 노출 확인 테스트 실행 ---
-        print("\n--- Seller app checklist-47:  인기 검색어 순위 목록 노출 확인 ---")
-        lifestory_view_details_passed, lifestory_view_details_message = test_popular_search(flow_tester)
-        overall_results["인기 검색어 순위 목록이 노출된다."] = {
-            "test_no": "Seller app checklist-47",  # You can assign a specific checklist number
-            "passed": lifestory_view_details_passed,
-            "message": lifestory_view_details_message
-        }
-        if not lifestory_view_details_passed:
-            overall_test_passed = False  # Mark overall test as failed
-            overall_test_message = "일부 전체메뉴 클릭 테스트 시나리오에서 실패가 발생했습니다. 상세 로그를 확인하세요."
-
-        # 스프레드시트에 테스트 결과 기록 (47)
-        status = "Pass" if lifestory_view_details_passed else "Fail"
-        update_test_result_in_sheet(sheets_service, "Seller app checklist-47", status, tester_name)
-        print("Seller app checklist-47 테스트 케이스 완료.")
-        print("-" * 50)  # Separator
-        """
-        # [Seller app checklist-48] --- 제품 검색 노출 확인 테스트 실행 ---
-        print("\n--- Seller app checklist-48:  제품 검색 노출 확인 ---")
-        lifestory_view_details_passed, lifestory_view_details_message = test_random_search_functionality(flow_tester)
-        overall_results["입력한 검색어에 대한 결과가 노출된다."] = {
-            "test_no": "Seller app checklist-48",  # You can assign a specific checklist number
-            "passed": lifestory_view_details_passed,
-            "message": lifestory_view_details_message
-        }
-        if not lifestory_view_details_passed:
-            overall_test_passed = False  # Mark overall test as failed
-            overall_test_message = "일부 전체메뉴 클릭 테스트 시나리오에서 실패가 발생했습니다. 상세 로그를 확인하세요."
-
-        # 스프레드시트에 테스트 결과 기록 (48)
-        status = "Pass" if lifestory_view_details_passed else "Fail"
-        update_test_result_in_sheet(sheets_service, "Seller app checklist-48", status, tester_name)
-        print("Seller app checklist-48 테스트 케이스 완료.")
-        print("-" * 50)  # Separator
+        # --- 제품 검색 노출 확인 테스트 실행 ---
+        try:
+            test_no_counter += 1
+            test_no = f"Seller app checklist-{test_no_counter}"
+            print(f"\n--- {test_no}:  제품 검색 노출 확인 ---")
+            my_page_view_passed, my_page_view_message = test_random_search_functionality(flow_tester)
+            overall_results["입력한 검색어에 대한 결과가 노출된다."] = {
+                "test_no": test_no,  # 동적 번호 할당
+                "passed": my_page_view_passed,
+                "message": my_page_view_message
+            }
+            if not my_page_view_passed:
+                overall_test_passed = False  # Mark overall test as failed
+                overall_test_message = "일부 전체메뉴 클릭 테스트 시나리오에서 실패가 발생했습니다. 상세 로그를 확인하세요."
+            # 스프레드시트에 테스트 결과 기록
+            status = "Pass" if my_page_view_passed else "Fail"
+            update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
+            print(f"{test_no} 테스트 케이스 완료.")
+            print("-" * 50)  # Separator
+        except Exception as e:
+            overall_test_passed = False
+            overall_test_message = f"제품 검색 노출 확인 실패: {e}"
 
     except Exception as e:
         print(f"🚨 전체 테스트 스위트 실행 중 치명적인 오류 발생: {e}")

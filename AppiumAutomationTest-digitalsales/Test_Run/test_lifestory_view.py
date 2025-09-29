@@ -21,7 +21,7 @@ def test_lifestory_view_run(flow_tester, sheets_service, tester_name):
     print("=========================================\n")
 
     overall_results = {}
-    overall_test_passed = True  #  Initialize for the overall test result
+    overall_test_passed = True  # Initialize for the overall test result
     overall_test_message = "모든 라이프스토리 확인 테스트 시나리오가 성공적으로 완료되었습니다."  # Initialize success message
 
     # 테스트 체크리스트 번호 동적 생성을 위한 카운터 변수 추가 (시작에서 -1을 한다)

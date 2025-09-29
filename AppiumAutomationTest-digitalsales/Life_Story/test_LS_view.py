@@ -25,7 +25,7 @@ from selenium.webdriver.common.actions.action_builder import ActionBuilder
 from Utils.click_coordinate import w3c_click_coordinate
 
 from Base.base_driver import BaseAppiumDriver
-from Login.test_Login_passed import run_successful_login_scenario
+from Login.test_Login_passed import login_successful
 
 # 스크린샷 헬퍼 함수
 from Utils.screenshot_helper import save_screenshot_on_failure
@@ -553,7 +553,7 @@ def test_lifestory_mypage_count(flow_tester):
         print("드라이버 세션 재설정 완료.")
 
         # 로그인 시나리오 재실행
-        login_success, login_msg = run_successful_login_scenario(flow_tester)
+        login_success, login_msg = login_successful(flow_tester)
         if not login_success:
             return False, f"앱 재실행 후 로그인 실패: {login_msg}"
 
