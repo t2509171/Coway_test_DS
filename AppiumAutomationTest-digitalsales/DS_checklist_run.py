@@ -22,6 +22,7 @@ from Test_Run.test_home_kil_view import test_home_kil_view_run
 from Test_Run.test_my_page_kil_view import test_my_page_kil_view_run
 from Test_Run.test_update_kil_view import test_update_kil_view_run
 from Test_Run.test_managed_Customers_kil_view import test_managed_customers_kil_view_run
+from Test_Run.test_home_view_kil_view import test_home_view_kil_view_run
 
 if __name__ == "__main__":
     print("=========================================")
@@ -56,9 +57,9 @@ if __name__ == "__main__":
     print("-" * 50)
 
 
-    print("\n--- '앱 업데이트 테스트' 시나리오 시작 ---")
+    print("\n--- '홈 화면 테스트' 시나리오 시작 ---")
     # sheets_service와 tester_name을 test_login 함수로 전달
-    login_passed, login_message = test_managed_customers_kil_view_run(appium_tester, sheets_service, tester_name)
+    login_passed, login_message = test_home_view_kil_view_run(appium_tester, sheets_service, tester_name)
     print("테스트 케이스 5 완료.")
     print("-" * 50)
 
