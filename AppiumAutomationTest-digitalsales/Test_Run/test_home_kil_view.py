@@ -13,9 +13,9 @@ from Home_kil.test_product_shortcuts import test_verify_product_shortcuts_exist
 from Home_kil.test_recommended_products import test_find_shared_products_section
 from Home_kil.test_sales_content import test_recommended_sales_content
 from Home_kil.test_banner import test_banner_swipe
-from Home_kil.test_item import test_checklist_41,test_checklist_42,test_checklist_43,test_checklist_44,test_checklist_45,test_checklist_46
+from Home_kil.test_item import test_full_menu,test_checklist_42,test_management_customer,test_home,test_mobile_order,test_my_page
 from Home_kil.home_reset import reset_to_home_and_refresh
-
+from Home_kil.test_promotion import test_scroll_and_navigate_to_salesperson_promotion
 # Google Sheets API 연동을 위해 필요한 함수를 임포트
 from Utils.test_result_input import update_test_result_in_sheet
 
@@ -185,11 +185,6 @@ def test_home_kil_view_run(flow_tester, sheets_service, tester_name):
 
 
 
-
-
-
-
-
     test_no_counter = 28
     # [Seller app checklist-29] --- 제품 바로가기 확인 테스트 실행 ---
 
@@ -279,7 +274,6 @@ def test_home_kil_view_run(flow_tester, sheets_service, tester_name):
         overall_results["추천 제품 유닛 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
         update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
 
-    # test_no_counter =34
     # [Seller app checklist-35] --- 추천 콘텐츠 확인 테스트 실행 ---
     test_no_counter = 34
     try:
@@ -308,7 +302,6 @@ def test_home_kil_view_run(flow_tester, sheets_service, tester_name):
         test_no = f"Seller app checklist-{test_no_counter}"
         overall_results["추천 콘텐츠 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
         update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
-
 
 
         # --- 추가된 부분: '콘텐츠 유닛' 테스트 ---
@@ -373,13 +366,31 @@ def test_home_kil_view_run(flow_tester, sheets_service, tester_name):
 
     # -----------------------------------------
 
+    # --- test_checklist_39 판매인 프로모션 확인 테스트 실행 ---
+    try:
+        test_no_counter += 1
+        test_no = f"Seller app checklist-{test_no_counter}"
+        print(f"\n--- {test_no}:  판매인 프로모션 확인 ---")
+        my_page_view_passed, my_page_view_message = test_scroll_and_navigate_to_salesperson_promotion(flow_tester)
+        overall_results["판매인 프로모션 확인."] = {
+            "test_no": test_no,  # 동적 번호 할당
+            "passed": my_page_view_passed,
+            "message": my_page_view_message
+        }
+        if not my_page_view_passed:
+            overall_test_passed = False  # Mark overall test as failed
+            overall_test_message = "판매인 프로모션 확인을 실패했습니다. 상세 로그를 확인하세요."
+        # 스프레드시트에 테스트 결과 기록
+        status = "Pass" if my_page_view_passed else "Fail"
+        update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
+        print(f"{test_no} 테스트 케이스 완료.")
+        print("-" * 50)  # Separator
+    except Exception as e:
+        overall_test_passed = False
+        overall_test_message = f"독바 전체메뉴 노출 확인 실패: {e}"
 
 
 
-
-
-
-    test_no_counter += 39
     # --- test_checklist_40 공지사항 이동 확인 테스트 실행 ---
     try:
         test_no_counter += 1
@@ -401,14 +412,18 @@ def test_home_kil_view_run(flow_tester, sheets_service, tester_name):
         print("-" * 50)  # Separator
     except Exception as e:
         overall_test_passed = False
-        overall_test_message = f"독바 전체메뉴 노출 확인 실패: {e}"
+        overall_test_message = f"공지사항 이동 확인 실패: {e}"
+
+
+
+
 
     # --- 독바 전체메뉴 test_checklist_41 확인 테스트 실행 ---
     try:
         test_no_counter += 1
         test_no = f"Seller app checklist-{test_no_counter}"
         print(f"\n--- {test_no}:  독바 전체메뉴 노출 확인 ---")
-        my_page_view_passed, my_page_view_message = test_checklist_41(flow_tester)
+        my_page_view_passed, my_page_view_message = test_full_menu(flow_tester)
         overall_results["독바 전체메뉴가 노출된다."] = {
             "test_no": test_no,  # 동적 번호 할당
             "passed": my_page_view_passed,
@@ -456,7 +471,7 @@ def test_home_kil_view_run(flow_tester, sheets_service, tester_name):
         test_no_counter += 1
         test_no = f"Seller app checklist-{test_no_counter}"
         print(f"\n--- {test_no}:  독바 관리고객 노출 확인 ---")
-        my_page_view_passed, my_page_view_message = test_checklist_43(flow_tester)
+        my_page_view_passed, my_page_view_message = test_management_customer(flow_tester)
         overall_results["독바 관리고객 노출된다."] = {
             "test_no": test_no,  # 동적 번호 할당
             "passed": my_page_view_passed,
@@ -479,7 +494,7 @@ def test_home_kil_view_run(flow_tester, sheets_service, tester_name):
         test_no_counter += 1
         test_no = f"Seller app checklist-{test_no_counter}"
         print(f"\n--- {test_no}:  독바 홈 노출 확인 ---")
-        my_page_view_passed, my_page_view_message = test_checklist_44(flow_tester)
+        my_page_view_passed, my_page_view_message = test_home(flow_tester)
         overall_results["독바 홈이 노출된다."] = {
             "test_no": test_no,  # 동적 번호 할당
             "passed": my_page_view_passed,
@@ -502,7 +517,7 @@ def test_home_kil_view_run(flow_tester, sheets_service, tester_name):
         test_no_counter += 1
         test_no = f"Seller app checklist-{test_no_counter}"
         print(f"\n--- {test_no}:  독바 모바일주문 노출 확인 ---")
-        my_page_view_passed, my_page_view_message = test_checklist_45(flow_tester)
+        my_page_view_passed, my_page_view_message = test_mobile_order(flow_tester)
         overall_results["독바 모바일주문 노출된다."] = {
             "test_no": test_no,  # 동적 번호 할당
             "passed": my_page_view_passed,
@@ -525,7 +540,7 @@ def test_home_kil_view_run(flow_tester, sheets_service, tester_name):
         test_no_counter += 1
         test_no = f"Seller app checklist-{test_no_counter}"
         print(f"\n--- {test_no}:  독바 마이페이지 노출 확인 ---")
-        my_page_view_passed, my_page_view_message = test_checklist_46(flow_tester)
+        my_page_view_passed, my_page_view_message = test_my_page(flow_tester)
         overall_results["독바 마이페이지가 노출된다."] = {
             "test_no": test_no,  # 동적 번호 할당
             "passed": my_page_view_passed,

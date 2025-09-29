@@ -75,7 +75,7 @@ def test_home_content_unit(flow_tester, unit_container_xpath, unit_index_xpath, 
         # 3. 모든 콘텐츠 항목을 수집하고 개수 확인 (스와이프 포함)
         print("스와이프를 통해 모든 콘텐츠 항목을 수집하고 개수를 확인합니다.")
         base_item_xpath = '//android.widget.TextView[@text="'
-        container_element = flow_tester.driver.find_element(AppiumBy.XPATH, unit_container_xpath)
+        container_element = flow_tester.driver.find_element(AppiumBy.XPATH, unit_index_xpath)
         swipe_area = container_element.rect
         start_x = swipe_area['x'] + swipe_area['width'] * 1.0
         end_x = swipe_area['x'] + swipe_area['width'] * 0.1
@@ -119,7 +119,8 @@ def test_home_content_unit(flow_tester, unit_container_xpath, unit_index_xpath, 
 
         # 4. 3번째 항목 클릭하여 상세 페이지로 이동
         print("콘텐츠 항목을 클릭합니다.")
-        target_item_xpath = '//android.widget.TextView[@text="5"]'
+        target_item_xpath = '//android.widget.TextView[@text="3"]'
+
         target_item = flow_tester.driver.find_element(AppiumBy.XPATH, target_item_xpath)
         target_item.click()
         time.sleep(5)
@@ -161,9 +162,9 @@ def test_content_unit(flow_tester):
     return test_home_content_unit(flow_tester, unit_container_xpath, unit_index_xpath, content_detail_page_title_xpath)
 
 
-# Seller app checklist-37 컨텐츠 유닛 확인
+# Seller app checklist-38 프로모션 유닛 확인
 def test_client_unit(flow_tester):
-    unit_container_xpath = '//android.widget.TextView[@text="공유할 영업 콘텐츠를 추천 드려요"]'
+    unit_container_xpath = '//android.widget.TextView[@text="공유할 프로모션을 추천 드려요"]'
     unit_index_xpath = '//android.view.View[android.widget.TextView[@text="1"]]'
-    content_detail_page_title_xpath = '//android.widget.TextView[@text="라이프 스토리"]'
+    content_detail_page_title_xpath = '//android.widget.TextView[@text="고객 프로모션"]'
     return test_home_content_unit(flow_tester, unit_container_xpath, unit_index_xpath, content_detail_page_title_xpath)

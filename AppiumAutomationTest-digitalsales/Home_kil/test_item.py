@@ -49,10 +49,9 @@ def _perform_single_item_test(flow_tester, test_id, home_xpath, detail_xpath):
 
 # ----------------------------------------------------------------------------------
 # 2. 각 체크리스트 항목별 개별 테스트 함수 (총 6개)
-# ❗️ 아래 XPath는 예시이므로, 실제 앱의 정확한 XPath로 반드시 교체해야 합니다.
 # ----------------------------------------------------------------------------------
 
-def test_checklist_41(flow_tester):
+def test_full_menu(flow_tester):
     """Seller app checklist-41 테스트"""
     test_id = 'Seller app checklist-41'
     home_xpath = '//android.view.View[@content-desc="전체메뉴"]'
@@ -68,7 +67,7 @@ def test_checklist_42(flow_tester):
     return True
 
 
-def test_checklist_43(flow_tester):
+def test_management_customer(flow_tester):
     """Seller app checklist-43 테스트"""
     test_id = 'Seller app checklist-43'
     home_xpath = '//android.view.View[@content-desc="관리고객"]'
@@ -76,7 +75,7 @@ def test_checklist_43(flow_tester):
     return _perform_single_item_test(flow_tester, test_id, home_xpath, detail_xpath)
 
 
-def test_checklist_44(flow_tester):
+def test_home(flow_tester):
     """Seller app checklist-44 테스트"""
     test_id = 'Seller app checklist-44'
     home_xpath = '//android.view.View[@content-desc="홈"]'
@@ -84,7 +83,7 @@ def test_checklist_44(flow_tester):
     return _perform_single_item_test(flow_tester, test_id, home_xpath, detail_xpath)
 
 
-def test_checklist_45(flow_tester):
+def test_mobile_order(flow_tester):
     """Seller app checklist-45 테스트"""
     test_id = 'Seller app checklist-45'
     home_xpath = '//android.view.View[@content-desc="모바일 주문"]'
@@ -92,7 +91,7 @@ def test_checklist_45(flow_tester):
     return _perform_single_item_test(flow_tester, test_id, home_xpath, detail_xpath)
 
 
-def test_checklist_46(flow_tester):
+def test_my_page(flow_tester):
     """Seller app checklist-46 테스트"""
     test_id = 'Seller app checklist-46'
     home_xpath = '//android.view.View[@content-desc="마이페이지"]'

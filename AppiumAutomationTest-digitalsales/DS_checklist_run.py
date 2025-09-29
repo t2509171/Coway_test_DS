@@ -111,7 +111,7 @@ if __name__ == "__main__":
     print("-" * 50)
     """
 
-    """
+
     # --- test_home_kil_view_run 시나리오 실행 ---
     # sheets_service와 tester_name을 test_login 함수로 전달
     print("\n--- 홈 시나리오 시작 ---")
@@ -127,6 +127,8 @@ if __name__ == "__main__":
     print("-" * 50)
     """
 
+
+"""
 overall_end_time = time.time()  # 전체 테스트 스위트 종료 시간 기록
 overall_duration = overall_end_time - overall_start_time  # 총 실행 시간 계산
 

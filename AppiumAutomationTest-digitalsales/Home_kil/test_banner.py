@@ -19,7 +19,7 @@ def test_banner_swipe(flow_tester):
     print("\n--- 배너 스와이프 > 터치 > 소멸 확인 최종 시나리오 시작 ---")
     try:
         # 1. XPath 정의
-        banner_xpath = '//android.view.View[@resource-id="root"]/android.view.View[2]/android.view.View/android.view.View/android.view.View[3]/android.view.View'
+        banner_xpath = '//android.view.View[@resource-id="root"]/android.view.View[2]/android.view.View/android.view.View/android.view.View[4]/android.view.View'
         home_container_xpath = '//android.view.View[@content-desc="홈"]'  # 위치 비교 기준
 
         max_scroll_attempts = 10
@@ -92,7 +92,8 @@ def test_banner_swipe(flow_tester):
                 EC.invisibility_of_element_located((AppiumBy.XPATH, banner_xpath))
             )
             print("✅ Pass: 배너가 성공적으로 사라졌습니다.")
-
+            flow_tester.driver.back()
+            time.sleep(1)
             return True, "배너 스와이프, 터치, 소멸 확인 시나리오 성공."
         except TimeoutException:
             error_msg = "실패: 배너를 터치했지만 사라지지 않았습니다."
