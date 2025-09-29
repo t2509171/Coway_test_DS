@@ -75,7 +75,7 @@ def test_home_content_unit(flow_tester, unit_container_xpath, unit_index_xpath, 
         # 3. 모든 콘텐츠 항목을 수집하고 개수 확인 (스와이프 포함)
         print("스와이프를 통해 모든 콘텐츠 항목을 수집하고 개수를 확인합니다.")
         base_item_xpath = '//android.widget.TextView[@text="'
-        container_element = flow_tester.driver.find_element(AppiumBy.XPATH, unit_container_xpath)
+        container_element = flow_tester.driver.find_element(AppiumBy.XPATH, unit_index_xpath)
         swipe_area = container_element.rect
         start_x = swipe_area['x'] + swipe_area['width'] * 1.0
         end_x = swipe_area['x'] + swipe_area['width'] * 0.1
@@ -118,11 +118,20 @@ def test_home_content_unit(flow_tester, unit_container_xpath, unit_index_xpath, 
             return False, f"테스트에 필요한 최소 유닛(3개)을 찾지 못했습니다. (발견된 수: {total_items_found}개)"
 
         # 4. 3번째 항목 클릭하여 상세 페이지로 이동
+        # print("콘텐츠 항목을 클릭합니다.")
+        # target_item_xpath = '//android.widget.TextView[@text="3"]'
+        # target_item = flow_tester.driver.find_element(AppiumBy.XPATH, target_item_xpath)
+        # target_item.click()
+        # time.sleep(5)
+
         print("콘텐츠 항목을 클릭합니다.")
-        target_item_xpath = '//android.widget.TextView[@text="5"]'
-        target_item = flow_tester.driver.find_element(AppiumBy.XPATH, target_item_xpath)
-        target_item.click()
-        time.sleep(5)
+        # 클릭할 좌표를 스와이프 시작 지점 근처의 아이템으로 가정하고 클릭합니다.
+        # 보통 첫 아이템은 왼쪽 영역에 있으므로, end_x 좌표를 사용합니다.
+        click_x = end_x + 50
+        click_y = y
+        print(f"스와이프 영역의 첫 아이템 위치로 추정되는 좌표 ({int(click_x)}, {int(click_y)})를 클릭합니다.")
+        flow_tester.driver.tap([(click_x, click_y)])
+        # --- 여기까지 로직 수정 ---
 
         # 5. 상세 페이지 진입 확인
         flow_tester.wait.until(
@@ -161,9 +170,9 @@ def test_content_unit(flow_tester):
     return test_home_content_unit(flow_tester, unit_container_xpath, unit_index_xpath, content_detail_page_title_xpath)
 
 
-# Seller app checklist-37 컨텐츠 유닛 확인
+# Seller app checklist-38 프로모션 유닛 확인
 def test_client_unit(flow_tester):
-    unit_container_xpath = '//android.widget.TextView[@text="공유할 영업 콘텐츠를 추천 드려요"]'
+    unit_container_xpath = '//android.widget.TextView[@text="공유할 프로모션을 추천 드려요"]'
     unit_index_xpath = '//android.view.View[android.widget.TextView[@text="1"]]'
-    content_detail_page_title_xpath = '//android.widget.TextView[@text="라이프 스토리"]'
+    content_detail_page_title_xpath = '//android.widget.TextView[@text="고객 프로모션"]'
     return test_home_content_unit(flow_tester, unit_container_xpath, unit_index_xpath, content_detail_page_title_xpath)

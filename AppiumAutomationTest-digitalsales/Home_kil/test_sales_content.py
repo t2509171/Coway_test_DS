@@ -97,6 +97,8 @@ def test_recommended_sales_content(flow_tester):
             return False, error_msg
 
         # 모든 검증 통과
+        flow_tester.driver.back()
+        time.sleep(1)
         return True, "공유할 영업 콘텐츠 확인 시나리오 성공."
 
     except Exception as e:

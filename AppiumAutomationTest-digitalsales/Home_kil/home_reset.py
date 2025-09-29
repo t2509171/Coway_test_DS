@@ -39,19 +39,19 @@ def reset_to_home_and_refresh(flow_tester):
         start_y = size['height'] * 0.4
         end_y = size['height'] * 0.8
 
-        for _ in range(5):
+        for _ in range(1):
             driver.swipe(start_x, start_y, start_x, end_y, 400)
             time.sleep(0.5)
 
         print("최상단 스크롤 완료.")
         time.sleep(1)
 
-        # 3. 화면 새로고침 (아래로 당기기 - Pull to Refresh)
-        print("화면을 아래로 당겨 새로고침합니다.")
-        refresh_start_y = size['height'] * 0.2
-        refresh_end_y = size['height'] * 0.8
-        driver.swipe(start_x, refresh_start_y, start_x, refresh_end_y, 500)
-        time.sleep(4)  # 새로고침 및 데이터 로딩 대기
+        # # 3. 화면 새로고침 (아래로 당기기 - Pull to Refresh)
+        # print("화면을 아래로 당겨 새로고침합니다.")
+        # refresh_start_y = size['height'] * 0.2
+        # refresh_end_y = size['height'] * 0.8
+        # driver.swipe(start_x, refresh_start_y, start_x, refresh_end_y, 500)
+        # time.sleep(4)  # 새로고침 및 데이터 로딩 대기
 
         print("✅ 화면 초기화 완료.")
 

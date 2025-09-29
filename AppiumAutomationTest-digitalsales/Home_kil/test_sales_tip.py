@@ -20,7 +20,7 @@ def test_sales_tip_interaction(flow_tester):
     """Seller app checklist-18: 판매 팁 기능 확인 (스와이프 및 터치)"""
     print("\n--- 판매 팁 기능 확인 시나리오 시작 (checklist-18) ---")
 
-    sales_tip_xpath = '//android.view.View[@resource-id="root"]/android.view.View[2]/android.view.View/android.view.View/android.view.View[3]'
+    sales_tip_xpath = '//android.widget.TextView[@text="공지사항으로 이동하기 >"]'
     home_container_xpath = '//android.view.View[@content-desc="홈"]'
 
     try:
