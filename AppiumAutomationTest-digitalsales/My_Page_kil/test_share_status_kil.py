@@ -239,7 +239,7 @@ def extract_count_from_text(text):
         return int(match.group(1))
     return -1
 
-# 공유하기 건수 확인 (58)
+# 공유하기 건수 확인 ()
 def test_share_count_consistency(flow_tester):
     """
     카카오톡과 문자의 건수를 합산하여 공유하기 총 건수와 비교하는 테스트.
