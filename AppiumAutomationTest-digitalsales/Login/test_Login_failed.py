@@ -107,6 +107,8 @@ def login_failed(flow_tester):
             print("로그인 버튼 클릭.")
             time.sleep(3)  # 로그인 처리 시간을 위해 잠시 대기
 
+
+
             # 로그인 실패 확인 (예상 오류 메시지 또는 메인 페이지로 이동하지 않음)
             print("로그인 실패. 오류 메시지 확인 중...")
             error_message_xpath = '//android.widget.TextView[@text="업무포탈 통합계정 정보를 확인해 주세요."]'  # 실제 오류 메시지 XPath로 변경

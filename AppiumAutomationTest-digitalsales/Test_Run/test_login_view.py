@@ -8,6 +8,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'Login')
 from Login.test_login_view import test_login_main_view
 from Login.test_Login_failed import login_failed
 from Login.test_Login_passed import login_successful
+from Login.test_pw_change import run_password_change_button_back_scenario, run_password_reset_button_back_scenario
 
 # Google Sheets API 연동을 위해 필요한 함수를 임포트
 from Utils.test_result_input import update_test_result_in_sheet
@@ -208,7 +209,7 @@ def test_login(flow_tester, sheets_service, tester_name):
         update_test_result_in_sheet(sheets_service, "Seller app checklist-16", status, tester_name)
         print("Seller app checklist-16 테스트 케이스 완료.")
         print("-" * 50)  # Separator
-        """
+    """
 
     except Exception as e:
         print(f"🚨 전체 테스트 스위트 실행 중 치명적인 오류 발생: {e}")

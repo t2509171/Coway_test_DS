@@ -7,6 +7,11 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'Login')
 # 새로 추가한 콘텐츠 유닛 테스트 함수 import
 # from My_Page_kil.test_share_status_kil import test_share_status_page_navigation,test_total_share_count_validation,test_channel_share_count_visibility
 from My_Page_kil.test_cody_matching_visibility import test_cody_matching_visibility
+from My_Page_kil.test_BC_greeting_edit import test_greeting_message_edit
+from My_Page_kil.test_BC_image_download import test_image_card_download
+from My_Page_kil.test_BC_navigation import test_business_card_navigation
+from My_Page_kil.test_BC_text_copy import test_text_card_copy
+from My_Page_kil.test_BC_user_info_visibility import test_user_info_visibility
 
 # Google Sheets API 연동을 위해 필요한 함수를 임포트
 from My_Page_kil.test_mypage_navigation import test_verify_mypage_icon_in_menu, test_navigate_to_mypage
@@ -27,9 +32,9 @@ def test_my_page_kil_view_run(flow_tester, sheets_service, tester_name):
     overall_test_passed = True  # Initialize for the overall test result
     overall_test_message = "모든 홈 확인 테스트 시나리오가 성공적으로 완료되었습니다."  # Initialize success message
 
-    test_no_counter = 50 # 마이페이지 화면 시작 Seller app checklist-51
+    test_no_counter = 51 # 마이페이지 화면 시작 Seller app checklist-51
 
-    """Seller app checklist-50 : 진입경로 노출 확인 테스트 실행"""
+    """Seller app checklist-52 : 진입경로 노출 확인 테스트 실행"""
     try:
         test_no_counter += 1
         test_no = f"Seller app checklist-{test_no_counter}"
@@ -59,7 +64,7 @@ def test_my_page_kil_view_run(flow_tester, sheets_service, tester_name):
         update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
 
 
-    """Seller app checklist-51 : 진입경로 이동 확인 테스트 실행"""
+    """Seller app checklist-53 : 진입경로 이동 확인 테스트 실행"""
 
     try:
         test_no_counter += 1
@@ -88,6 +93,48 @@ def test_my_page_kil_view_run(flow_tester, sheets_service, tester_name):
         test_no = f"Seller app checklist-{test_no_counter}"
         overall_results["진입경로 이동 확인 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
         update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
+
+
+    """Seller app checklist-54 : 진입경로 이동 확인 테스트 실행"""
+
+    try:
+        test_no_counter += 1
+        test_no = f"Seller app checklist-{test_no_counter}"
+        print(f"\n--- {test_no}: 진입경로 이동 확인---")
+
+        content_unit_passed, content_unit_message = test_navigate_to_mypage(flow_tester)
+
+        overall_results["진입경로 이동 확인"] = {
+            "test_no": test_no,
+            "passed": content_unit_passed,
+            "message": content_unit_message
+        }
+        if not content_unit_passed:
+            overall_test_passed = False
+            overall_test_message = "일부 검색 확인 테스트에서 실패가 발생했습니다."
+
+        status = "Pass" if content_unit_passed else "Fail"
+        update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
+        # 연관된 모든 체크리스트에 동일한 결과를 기록합니다.
+        print(f"{test_no}테스트 케이스 완료.")
+        print("-" * 50)
+
+    except Exception as e:
+        print(f"🚨 진입경로 이동 확인 테스트 중 오류 발생: {e}")
+        test_no = f"Seller app checklist-{test_no_counter}"
+        overall_results["진입경로 이동 확인 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
+        update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
+
+
+
+
+
+
+
+
+
+
+
 
 
 

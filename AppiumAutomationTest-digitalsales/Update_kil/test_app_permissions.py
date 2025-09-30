@@ -208,11 +208,7 @@ def test_login_after_relaunch_and_verify_version(flow_tester):
             save_screenshot_on_failure(flow_tester.driver, "auto_login_exception_after_relaunch")
             return False, error_msg
 
-        # --- 로직 추가 시작 ---
-        # 2-1. (선택적) 시스템 권한 팝업 확인 및 처리
-
-
-            # 3. 전체 메뉴에서 '최신 버전 입니다.' 텍스트 확인
+        # 3. 전체 메뉴에서 '최신 버전 입니다.' 텍스트 확인
         print("\n[3단계] 전체 메뉴에서 '최신 버전 입니다.' 텍스트를 스크롤하여 확인합니다.")
         try:
             menu_button_xpath = '//android.view.View[@content-desc="전체메뉴"]'

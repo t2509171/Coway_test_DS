@@ -78,7 +78,7 @@ def test_promotion_view(flow_tester, sheets_service, tester_name):
             except Exception as e:
                 overall_test_passed = False
                 overall_test_message = f"고객 프로모션 목록 화면 이동 확인 실패: {e}"
-            """
+
             # --- 고객 프로모션 게시글 노출 확인 테스트 실행 ---
             try:
                 test_no_counter += 1
@@ -314,7 +314,7 @@ def test_promotion_view(flow_tester, sheets_service, tester_name):
             except Exception as e:
                 overall_test_passed = False
                 overall_test_message = f"판매인 프로모션 목록 버튼 클릭 확인 실패: {e}"
-        """
+
         except Exception as e:
             overall_test_passed = False
             overall_test_message = f"판매인 프로모션 테스트 시나리오 확인 실패: {e}"

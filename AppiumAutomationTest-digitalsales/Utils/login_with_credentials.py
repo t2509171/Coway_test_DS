@@ -23,11 +23,29 @@ def login_with_credentials(flow_tester, username, password):
         pwd_field.send_keys(password)
         print("비밀번호 입력 완료.")
 
+
+
         login_button = flow_tester.wait.until(
             EC.element_to_be_clickable((AppiumBy.XPATH, '//android.widget.Button[@text="로그인"]')))
         login_button.click()
         print("로그인 버튼 클릭.")
         time.sleep(5)
+        # --- 로직 추가 시작 ---
+        try:
+            # '앱 사용 중에만 허용' 버튼이 5초 내에 나타나는지 확인
+            permission_button_xpath = '//android.widget.Button[@resource-id="com.android.permissioncontroller:id/permission_allow_foreground_only_button"]'
+            permission_button = WebDriverWait(flow_tester.driver, 5).until(
+                EC.presence_of_element_located((AppiumBy.XPATH, permission_button_xpath))
+            )
+            print("   - 시스템 권한 팝업을 발견하여 '앱 사용 중에만 허용' 버튼을 클릭합니다.")
+            permission_button.click()
+            time.sleep(2)  # 클릭 후 안정화를 위한 대기
+        except TimeoutException:
+            # 5초 동안 팝업이 나타나지 않으면, 이미 처리되었거나 불필요한 경우로 간주하고 테스트 계속 진행
+            print("   - 시스템 권한 팝업이 표시되지 않았습니다. 다음 단계로 진행합니다.")
+            # --- 로직 추가 종료 ---
+
+
 
         main_page_element_locator = (AppiumBy.XPATH,
                                      '//android.widget.TextView[@text="디지털세일즈"]')

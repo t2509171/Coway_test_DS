@@ -26,63 +26,63 @@ def test_managed_customers_kil_view_run(flow_tester, sheets_service, tester_name
     test_no_counter = 79 # 홈화면 시작 Seller app checklist-15
 
     # """Seller app checklist-80 관리고객 노출 확인"""
-    # try:
-    #     test_no_counter += 1
-    #     test_no = f"Seller app checklist-{test_no_counter}"
-    #     print(f"\n--- {test_no}: 관리고객 노출 확인 (항목 수, 클릭) ---")
-    #
-    #     content_unit_passed, content_unit_message = test_find_customized_sharing_menu(flow_tester)
-    #
-    #     overall_results["관리고객 노출 확인"] = {
-    #         "test_no": test_no,
-    #         "passed": content_unit_passed,
-    #         "message": content_unit_message
-    #     }
-    #     if not content_unit_passed:
-    #         overall_test_passed = False
-    #         overall_test_message = "일부 검색 확인 테스트에서 실패가 발생했습니다."
-    #
-    #     status = "Pass" if content_unit_passed else "Fail"
-    #     update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
-    #     # 연관된 모든 체크리스트에 동일한 결과를 기록합니다.
-    #     print(f"{test_no}테스트 케이스 완료.")
-    #     print("-" * 50)
-    #
-    # except Exception as e:
-    #     print(f"🚨 관리고객 노출 테스트 중 오류 발생: {e}")
-    #     test_no = f"Seller app checklist-{test_no_counter}"
-    #     overall_results["관리고객 노출 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
-    #     update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
-    #
-    #
-    # """Seller app checklist-81 관리고객 이동 확인"""
-    # try:
-    #     test_no_counter += 1
-    #     test_no = f"Seller app checklist-{test_no_counter}"
-    #     print(f"\n--- {test_no}: 관리고객 이동 기능 확인 (항목 수, 클릭) ---")
-    #
-    #     content_unit_passed, content_unit_message = test_navigate_to_customized_sharing_view(flow_tester)
-    #
-    #     overall_results["관리고객 이동 기능 확인"] = {
-    #         "test_no": test_no,
-    #         "passed": content_unit_passed,
-    #         "message": content_unit_message
-    #     }
-    #     if not content_unit_passed:
-    #         overall_test_passed = False
-    #         overall_test_message = "일부 검색 확인 테스트에서 실패가 발생했습니다."
-    #
-    #     status = "Pass" if content_unit_passed else "Fail"
-    #     update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
-    #     # 연관된 모든 체크리스트에 동일한 결과를 기록합니다.
-    #     print(f"{test_no}테스트 케이스 완료.")
-    #     print("-" * 50)
-    #
-    # except Exception as e:
-    #     print(f"🚨 관리고객 이동 테스트 중 오류 발생: {e}")
-    #     test_no = f"Seller app checklist-{test_no_counter}"
-    #     overall_results["관리고객 이동 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
-    #     update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
+    try:
+        test_no_counter += 1
+        test_no = f"Seller app checklist-{test_no_counter}"
+        print(f"\n--- {test_no}: 관리고객 노출 확인 (항목 수, 클릭) ---")
+
+        content_unit_passed, content_unit_message = test_find_customized_sharing_menu(flow_tester)
+
+        overall_results["관리고객 노출 확인"] = {
+            "test_no": test_no,
+            "passed": content_unit_passed,
+            "message": content_unit_message
+        }
+        if not content_unit_passed:
+            overall_test_passed = False
+            overall_test_message = "일부 검색 확인 테스트에서 실패가 발생했습니다."
+
+        status = "Pass" if content_unit_passed else "Fail"
+        update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
+        # 연관된 모든 체크리스트에 동일한 결과를 기록합니다.
+        print(f"{test_no}테스트 케이스 완료.")
+        print("-" * 50)
+
+    except Exception as e:
+        print(f"🚨 관리고객 노출 테스트 중 오류 발생: {e}")
+        test_no = f"Seller app checklist-{test_no_counter}"
+        overall_results["관리고객 노출 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
+        update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
+
+
+    """Seller app checklist-81 관리고객 이동 확인"""
+    try:
+        test_no_counter += 1
+        test_no = f"Seller app checklist-{test_no_counter}"
+        print(f"\n--- {test_no}: 관리고객 이동 기능 확인 (항목 수, 클릭) ---")
+
+        content_unit_passed, content_unit_message = test_navigate_to_customized_sharing_view(flow_tester)
+
+        overall_results["관리고객 이동 기능 확인"] = {
+            "test_no": test_no,
+            "passed": content_unit_passed,
+            "message": content_unit_message
+        }
+        if not content_unit_passed:
+            overall_test_passed = False
+            overall_test_message = "일부 검색 확인 테스트에서 실패가 발생했습니다."
+
+        status = "Pass" if content_unit_passed else "Fail"
+        update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
+        # 연관된 모든 체크리스트에 동일한 결과를 기록합니다.
+        print(f"{test_no}테스트 케이스 완료.")
+        print("-" * 50)
+
+    except Exception as e:
+        print(f"🚨 관리고객 이동 테스트 중 오류 발생: {e}")
+        test_no = f"Seller app checklist-{test_no_counter}"
+        overall_results["관리고객 이동 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
+        update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
 
 
     """Seller app checklist-83 게시글 필터 기능 확인"""
@@ -141,6 +141,9 @@ def test_managed_customers_kil_view_run(flow_tester, sheets_service, tester_name
         test_no = f"Seller app checklist-{test_no_counter}"
         overall_results["게시글 필터 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
         update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
+
+
+
 
     finally:
     # --- 최종 테스트 결과 종합 ---

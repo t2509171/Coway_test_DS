@@ -24,7 +24,7 @@ def scroll_down(driver, start_x=None, start_y=None, end_x=None, end_y=None, dura
             start_x = screen_size['width'] // 2
             start_y = screen_size['height'] * 0.8
             end_x = screen_size['width'] // 2
-            end_y = screen_size['height'] * 0.2
+            end_y = screen_size['height'] * 0.6
 
         actions = ActionChains(driver)
         actions.w3c_actions = ActionBuilder(driver, mouse=PointerInput(interaction.POINTER_TOUCH, "touch"))
