@@ -6,10 +6,13 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'Login')))
 
 # AppiumLoginTest 클래스를 임포트합니다.
-from Login.test_Login_passed import run_successful_login_scenario
+from Login.test_Login_passed import login_successful
 
 # Google Sheets API 연동을 위해 필요한 함수를 임포트
 from Utils.test_result_input import update_test_result_in_sheet
+
+
+
 
 # sheets_service와 tester_name 인자를 추가
 def test_login(flow_tester, sheets_service, tester_name):
@@ -98,7 +101,7 @@ def test_login(flow_tester, sheets_service, tester_name):
         """
         # [Seller app checklist-7/9] --- 유효한 자격 증명으로 로그인 성공 테스트 실행 ---
         print("\n--- Seller app checklist-7/9 : 유효한 자격 증명으로 로그인 성공 ---")
-        success_test_passed, success_test_message = run_successful_login_scenario(flow_tester)
+        success_test_passed, success_test_message = login_successful(flow_tester)
         overall_results["정상적으로 로그인 진행시 메인페이지가 노출된다."] = {
             "test_no": "Seller app checklist-7/Seller app checklist-9",
             "passed": success_test_passed,

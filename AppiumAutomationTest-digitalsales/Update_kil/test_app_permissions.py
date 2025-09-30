@@ -8,10 +8,9 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from Login.test_login_view import AppiumLoginviewTest
 from Base.base_driver import BaseAppiumDriver
 # 로그인 관련 함수들을 import 합니다.
-from Utils.login_with_credentials import fist_login_with_credentials
+from Utils.login_with_credentials import login_with_credentials
 from Utils.scrolling_function import scroll_down
 from Utils.screenshot_helper import save_screenshot_on_failure
-
 
 def test_verify_permission_guide_title(flow_tester):
     """
@@ -196,7 +195,7 @@ def test_login_after_relaunch_and_verify_version(flow_tester):
         try:
             user_id ="CWDS#QCL1"
             user_pw ="Test1234!"
-            login_successful, message = fist_login_with_credentials(flow_tester, user_id, user_pw)
+            login_successful, message = login_with_credentials(flow_tester, user_id, user_pw)
 
             if not login_successful:
                 return False, message
