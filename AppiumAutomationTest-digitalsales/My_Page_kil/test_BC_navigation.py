@@ -14,8 +14,8 @@ def test_business_card_navigation(flow_tester):
 
     # 이 테스트는 '마이페이지'에 진입한 상태에서 시작한다고 가정합니다.
     business_card_button_xpath = '//android.widget.Button[@text="명함설정"]'
-    # 명함설정 페이지의 대표적인 요소 '이미지 명함 다운로드' 버튼으로 이동을 확인
-    page_verification_xpath = '//android.widget.Button[@text="이미지 명함 다운로드"]'
+
+    page_verification_xpath = '//android.widget.TextView[@text="명함 설정"]'
 
     try:
         # 1. '명함설정' 버튼 클릭
@@ -24,6 +24,7 @@ def test_business_card_navigation(flow_tester):
             EC.element_to_be_clickable((AppiumBy.XPATH, business_card_button_xpath))
         )
         print("✅ 버튼을 찾았습니다. 클릭합니다.")
+        time.sleep(2)
         business_card_button.click()
         time.sleep(3)
 

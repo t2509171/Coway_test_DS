@@ -36,8 +36,8 @@ def test_navigate_to_webview_from_home(flow_tester):
             print("✅ WebView가 성공적으로 노출되었습니다.")
 
             time.sleep(2)
-            flow_tester.driver.back()
-            time.sleep(3)
+            # flow_tester.driver.back()
+            # time.sleep(3)
             return True, "홈 화면 버튼 클릭 후 WebView 이동 성공."
 
         except TimeoutException:

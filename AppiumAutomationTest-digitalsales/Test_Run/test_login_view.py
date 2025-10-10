@@ -1,6 +1,7 @@
 # PythonProject/Appuim_Test.py
 import os
 import sys
+import time
 
 # Ensure the Login directory is in the Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'Login')))
@@ -9,9 +10,10 @@ from Login.test_login_view import test_login_main_view
 from Login.test_Login_failed import login_failed
 from Login.test_Login_passed import login_successful
 from Login.test_pw_change import run_password_change_button_back_scenario, run_password_reset_button_back_scenario
-
+from Home.test_etc import test_etc_setting_view, test_etc_setting_set_notifications, test_etc_setting_sign_out # 로그아웃을 위해
 # Google Sheets API 연동을 위해 필요한 함수를 임포트
 from Utils.test_result_input import update_test_result_in_sheet
+from Update_kil.test_app_permissions import test_verify_no_permission_guide_after_relaunch
 
 # sheets_service와 tester_name 인자를 추가
 def test_login(flow_tester, sheets_service, tester_name):
@@ -26,10 +28,49 @@ def test_login(flow_tester, sheets_service, tester_name):
     overall_test_passed = True  # Initialize for the overall test result
     overall_test_message = "모든 로그인 테스트 시나리오가 성공적으로 완료되었습니다."  # Initialize success message
 
-    # 테스트 체크리스트 번호 동적 생성을 위한 카운터 변수 추가 (시작에서 -1을 한다)
-    test_no_counter = 8
+    test_etc_setting_view(flow_tester)
+    test_etc_setting_set_notifications(flow_tester)
+    test_etc_setting_sign_out(flow_tester)
 
+    # 테스트 체크리스트 번호 동적 생성을 위한 카운터 변수 추가 (시작에서 -1을 한다)
+
+    print("테스트를 위해 teardown_driver()를 호출하여 드라이버 세션을 종료합니다.")
+    if flow_tester.driver:
+        flow_tester.teardown_driver()
+    time.sleep(3)
+
+    print("setup_driver()를 호출하여 새로운 드라이버 세션을 시작하고 앱을 실행합니다.")
+    flow_tester.setup_driver()
+    print("✅ 앱이 성공적으로 재실행되었습니다.")
+
+    print("앱 안정화를 위해 8초간 대기합니다...")
+    time.sleep(3)
     try:
+        # --- Seller app checklist- 12 자동 로그인 확인 테스트 실행 --- 5번 케이스 앱 재실행 테스트와 결과 같게 처리
+        try:
+            test_no_counter =12
+            test_no = f"Seller app checklist-{test_no_counter}"
+            print(f"\n--- {test_no}:  자동 로그인 확인 ---")
+            login_main_view_passed, login_main_view_message = test_verify_no_permission_guide_after_relaunch(flow_tester)
+            overall_results["자동로그인 체크 후 로그인 진행하면 App 종료후 재실행시 자동로그인이 되어 메인 페이지가 노출된다."] = {
+                "test_no": test_no,  # 동적 번호 할당
+                "passed": login_main_view_passed,
+                "message": login_main_view_message
+            }
+            if not login_main_view_passed:
+                overall_test_passed = False  # Mark overall test as failed
+                overall_test_message = "로그인 테스트 시나리오에서 실패가 발생했습니다. 상세 로그를 확인하세요."
+            # 스프레드시트에 테스트 결과 기록
+            status = "Pass" if login_main_view_passed else "Fail"
+            update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
+            print(f"{test_no} 테스트 케이스 완료.")
+            print("-" * 50)  # Separator
+        except Exception as e:
+            overall_test_passed = False
+            overall_test_message = f"로그인 화면 노출 확인 실패: {e}"
+
+        test_no_counter = 8
+
         # --- 로그인 화면 노출 확인 테스트 실행 ---
         try:
             test_no_counter += 1
@@ -53,7 +94,8 @@ def test_login(flow_tester, sheets_service, tester_name):
             overall_test_passed = False
             overall_test_message = f"로그인 화면 노출 확인 실패: {e}"
 
-        # --- 로그인 실패 확인 테스트 실행 ---
+        test_no_counter = 10
+        # --- Seller app checklist-11 로그인 실패 확인 테스트 실행 ---
         try:
             test_no_counter += 1
             test_no = f"Seller app checklist-{test_no_counter}"
@@ -76,8 +118,59 @@ def test_login(flow_tester, sheets_service, tester_name):
             overall_test_passed = False
             overall_test_message = f"정상적인 로그인 진행 후, 메인 페이지 노출 확인 실패: {e}"
 
-        # --- 정상적인 로그인 진행 후, 메인 페이지 노출 확인 테스트 실행 ---
+        # --- Seller app checklist-13 비밀번호 초기화 페이지 이동 확인 테스트 실행 ---
         try:
+            test_no_counter = 12
+            test_no_counter += 1
+            test_no = f"Seller app checklist-{test_no_counter}"
+            print(f"\n--- {test_no}:  비밀번호 초기화 페이지 이동 확인 ---")
+            login_successful_passed, login_successful_message = run_password_reset_button_back_scenario(flow_tester)
+            overall_results["비밀번호 초기화 페이지로 이동된다."] = {
+                "test_no": test_no,  # 동적 번호 할당
+                "passed": login_successful_passed,
+                "message": login_successful_message
+            }
+            if not login_successful_passed:
+                overall_test_passed = False  # Mark overall test as failed
+                overall_test_message = "일부 로그인 테스트 시나리오에서 실패가 발생했습니다. 상세 로그를 확인하세요."
+            # 스프레드시트에 테스트 결과 기록
+            status = "Pass" if login_successful_passed else "Fail"
+            update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
+            print(f"{test_no} 테스트 케이스 완료.")
+            print("-" * 50)  # Separator
+        except Exception as e:
+            overall_test_passed = False
+            overall_test_message = f"비밀번호 초기화 페이지 이동 확인 실패: {e}"
+
+        # --- Seller app checklist-14 비밀번호 변경 페이지 이동 확인 테스트 실행 ---
+        try:
+            test_no_counter = 13
+            test_no_counter += 1
+            test_no = f"Seller app checklist-{test_no_counter}"
+            print(f"\n--- {test_no}:  비밀번호 변경 페이지 이동 확인 ---")
+            login_successful_passed, login_successful_message = run_password_change_button_back_scenario(flow_tester)
+            overall_results["비밀번호 변경 페이지로 이동된다."] = {
+                "test_no": test_no,  # 동적 번호 할당
+                "passed": login_successful_passed,
+                "message": login_successful_message
+            }
+            if not login_successful_passed:
+                overall_test_passed = False  # Mark overall test as failed
+                overall_test_message = "일부 로그인 테스트 시나리오에서 실패가 발생했습니다. 상세 로그를 확인하세요."
+            # 스프레드시트에 테스트 결과 기록
+            status = "Pass" if login_successful_passed else "Fail"
+            update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
+            print(f"{test_no} 테스트 케이스 완료.")
+            print("-" * 50)  # Separator
+        except Exception as e:
+            overall_test_passed = False
+            overall_test_message = f"비밀번호 변경 페이지 이동 확인 실패: {e}"
+
+
+
+        # --- Seller app checklist-10 정상적인 로그인 진행 후, 메인 페이지 노출 확인 테스트 실행 ---
+        try:
+            test_no_counter = 9
             test_no_counter += 1
             test_no = f"Seller app checklist-{test_no_counter}"
             print(f"\n--- {test_no}:  정상적인 로그인 진행 후, 메인 페이지 노출 확인 ---")
@@ -98,9 +191,6 @@ def test_login(flow_tester, sheets_service, tester_name):
         except Exception as e:
             overall_test_passed = False
             overall_test_message = f"정상적인 로그인 진행 후, 메인 페이지 노출 확인 실패: {e}"
-
-
-
 
 
 
@@ -155,7 +245,7 @@ def test_login(flow_tester, sheets_service, tester_name):
         update_test_result_in_sheet(sheets_service, "Seller app checklist-10", status, tester_name)
         print("Seller app checklist-10 테스트 케이스 완료.")
         print("-" * 50)  # Separator
-        
+
         # [Seller app checklist-7/9] --- 유효한 자격 증명으로 로그인 성공 테스트 실행 ---
         print("\n--- Seller app checklist-7/9 : 유효한 자격 증명으로 로그인 성공 ---")
         success_test_passed, success_test_message = run_successful_login_scenario(flow_tester)

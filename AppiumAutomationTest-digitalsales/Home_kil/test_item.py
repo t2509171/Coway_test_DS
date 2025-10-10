@@ -53,11 +53,11 @@ def _perform_single_item_test(flow_tester, test_id, home_xpath, detail_xpath):
 
 def test_full_menu(flow_tester):
     """Seller app checklist-41 테스트"""
-    test_id = 'Seller app checklist-41'
+    test_id = "전체메뉴"
     home_xpath = '//android.view.View[@content-desc="전체메뉴"]'
     detail_xpath = '//android.view.View[@resource-id="mySidenav"]/android.view.View[1]/android.widget.Button'
     test = _perform_single_item_test(flow_tester, test_id, home_xpath, detail_xpath)
-    return test
+    return test, f"{test_id} 확인 성공"
 
 
 def test_checklist_42(flow_tester):
@@ -69,31 +69,37 @@ def test_checklist_42(flow_tester):
 
 def test_management_customer(flow_tester):
     """Seller app checklist-43 테스트"""
-    test_id = 'Seller app checklist-43'
+    test_id = "관리고객"
     home_xpath = '//android.view.View[@content-desc="관리고객"]'
     detail_xpath = '//android.widget.TextView[@text="관리고객 맞춤 공유하기"]'
-    return _perform_single_item_test(flow_tester, test_id, home_xpath, detail_xpath)
+    test = _perform_single_item_test(flow_tester, test_id, home_xpath, detail_xpath)
+    return test, f"{test_id} 확인 성공"
 
 
 def test_home(flow_tester):
     """Seller app checklist-44 테스트"""
-    test_id = 'Seller app checklist-44'
+    test_id = "홈"
     home_xpath = '//android.view.View[@content-desc="홈"]'
     detail_xpath = '//android.widget.TextView[@text="디지털세일즈"]'
-    return _perform_single_item_test(flow_tester, test_id, home_xpath, detail_xpath)
+    test = _perform_single_item_test(flow_tester, test_id, home_xpath, detail_xpath)
+
+    return test, f"{test_id} 확인 성공"
 
 
 def test_mobile_order(flow_tester):
     """Seller app checklist-45 테스트"""
-    test_id = 'Seller app checklist-45'
+    test_id = "모바일 주문"
     home_xpath = '//android.view.View[@content-desc="모바일 주문"]'
     detail_xpath = '(//android.widget.TextView[@text="모바일 주문"])[1]'
-    return _perform_single_item_test(flow_tester, test_id, home_xpath, detail_xpath)
+    test = _perform_single_item_test(flow_tester, test_id, home_xpath, detail_xpath)
+
+    return test, f"{test_id} 확인 성공"
 
 
 def test_my_page(flow_tester):
     """Seller app checklist-46 테스트"""
-    test_id = 'Seller app checklist-46'
+    test_id = '마이페이지'
     home_xpath = '//android.view.View[@content-desc="마이페이지"]'
     detail_xpath = '(//android.widget.TextView[@text="마이페이지"])[1]'
-    return _perform_single_item_test(flow_tester, test_id, home_xpath, detail_xpath)
+    test = _perform_single_item_test(flow_tester, test_id, home_xpath, detail_xpath)
+    return test, f"{test_id} 확인 성공"

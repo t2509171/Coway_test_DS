@@ -446,7 +446,6 @@ def test_home_kil_view_run(flow_tester, sheets_service, tester_name):
 
 
 
-
     # --- 독바 전체메뉴 test_checklist_41 확인 테스트 실행 ---
     try:
         test_no_counter += 1

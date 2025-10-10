@@ -392,6 +392,11 @@ def test_etc_setting_sign_out(flow_tester):
         login_id_field_xpath = '//android.widget.TextView[@text="디지털 세일즈"]'
         if flow_tester.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, login_id_field_xpath))):
             scenario_passed = True
+
+            flow_tester.driver.back()
+            time.sleep(0.2)  # 페이지 전환 대기
+            flow_tester.driver.back()
+            time.sleep(2)  # 페이지 전환 대기
             result_message = "로그아웃 성공: 로그인 화면으로 정상 이동."
 
     except Exception as e:

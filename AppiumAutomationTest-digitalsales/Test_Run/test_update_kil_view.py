@@ -255,6 +255,7 @@ def test_update_kil_view_run(flow_tester, sheets_service, tester_name):
 
         status = "Pass" if content_unit_passed else "Fail"
         update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
+        # update_test_result_in_sheet(sheets_service, "Seller app checklist-12", status, tester_name)
         # 연관된 모든 체크리스트에 동일한 결과를 기록합니다.
         print(f"{test_no}테스트 케이스 완료.")
         print("-" * 50)

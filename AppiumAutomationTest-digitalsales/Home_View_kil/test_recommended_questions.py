@@ -12,6 +12,7 @@ def test_verify_recommended_questions_for_managed_customers(flow_tester):
     print("\n--- '관리고객' 추천 질문 노출 확인 시나리오 시작 ---")
     try:
         # 1. '관리고객' 버튼 클릭
+        time.sleep(2)  # 화면이 로드될 시간을 기다립니다.
         managed_customer_button_xpath = '//android.widget.Button[@text="관리고객"]'
         print(f"'{managed_customer_button_xpath}' 버튼을 클릭합니다.")
         try:

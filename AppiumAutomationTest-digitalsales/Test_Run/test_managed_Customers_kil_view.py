@@ -88,6 +88,7 @@ def test_managed_customers_kil_view_run(flow_tester, sheets_service, tester_name
     """Seller app checklist-83 게시글 필터 기능 확인"""
     try:
         test_no_counter += 1
+        test_no_counter += 1
         test_no = f"Seller app checklist-{test_no_counter}"
         print(f"\n--- {test_no}: 게시글 필터 기능 확인 (항목 수, 클릭) ---")
 
@@ -114,14 +115,17 @@ def test_managed_customers_kil_view_run(flow_tester, sheets_service, tester_name
         overall_results["게시글 필터 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
         update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
 
+
+    """Seller app checklist-84 게시글 이동 기능 확인"""
     try:
+
         test_no_counter += 1
         test_no = f"Seller app checklist-{test_no_counter}"
-        print(f"\n--- {test_no}: 게시글 필터 기능 확인 (항목 수, 클릭) ---")
+        print(f"\n--- {test_no}: 게시글 이동 기능 확인 (항목 수, 클릭) ---")
 
         content_unit_passed, content_unit_message = test_navigate_to_recommended_product_settings(flow_tester)
 
-        overall_results["게시글 필터 기능 확인"] = {
+        overall_results["게시글 이동 기능 확인"] = {
             "test_no": test_no,
             "passed": content_unit_passed,
             "message": content_unit_message
@@ -137,9 +141,9 @@ def test_managed_customers_kil_view_run(flow_tester, sheets_service, tester_name
         print("-" * 50)
 
     except Exception as e:
-        print(f"🚨 게시글 필터 기능 테스트 중 오류 발생: {e}")
+        print(f"🚨 게시글 이동 기능 테스트 중 오류 발생: {e}")
         test_no = f"Seller app checklist-{test_no_counter}"
-        overall_results["게시글 필터 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
+        overall_results["게시글 이동 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
         update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
 
 

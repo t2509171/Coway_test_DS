@@ -1,51 +1,157 @@
-# -*- coding: utf-8 -*-
+import re
+import sys
+import os
+import time
 
+# 필요한 라이브러리 임포트
+from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
+import logging
 
+# W3C Actions를 위한 추가 임포트
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.actions.pointer_input import PointerInput
+from selenium.webdriver.common.actions import interaction
+from selenium.webdriver.common.actions.action_builder import ActionBuilder
+
+from Base.base_driver import BaseAppiumDriver
+from Login.test_Login_passed import login_successful
+
+# 스크린샷 헬퍼 함수
 from Utils.screenshot_helper import save_screenshot_on_failure
 
-def test_user_info_visibility(flow_tester):
-    """마이페이지 > 명함설정: 사용자명, 직함, 소속, 연락처 노출 확인"""
-    print("\n--- 명함설정 사용자 정보 노출 확인 시나리오 시작 ---")
+# 동적 Xpath 생성 함수
+from Utils.valid_credentials import get_user_data
 
-    # 각 정보 필드를 대표하는 XPath (실제 앱의 구조에 맞게 조정 필요)
-    # 예시: '사용자명'이라는 TextView와 그 값을 포함하는 형제 View를 찾는 방식
-    info_xpaths = {
-        "사용자명": '//android.widget.TextView[@text="사용자명"]/following-sibling::android.view.View',
-        "직함": '//android.widget.TextView[@text="직함"]/following-sibling::android.view.View',
-        "소속": '//android.widget.TextView[@text="소속"]/following-sibling::android.view.View',
-        "연락처": '//android.widget.TextView[@text="연락처"]/following-sibling::android.view.View'
-    }
+
+#명함 설정 페이지 노출 확인 (52)
+# def test_business_card_page_view(flow_tester):
+#     scenario_passed = True
+#     result_message = "알 수 없는 이유로 시나리오가 완료되지 않았습니다."
+#     error_messages = []
+#
+#     try:
+#         # 1. 테스트 데이터 로드
+#         data_file_path = os.path.join(os.path.dirname(__file__), '..', 'Login', 'valid_credentials.txt')
+#         user_info = get_user_data(data_file_path)
+#
+#         # 명함 설정 페이지 노출 확인
+#         print("명함 설정 페이지의 '사용자명','직함','소속','연락처'를 확인합니다.")
+#
+#         # 2. 동적 XPath 생성
+#         dynamic_username_xpath = f'//android.widget.TextView[@text="안녕하세요 {user_info["username"]} {user_info["title"]}입니다."]'
+#         dynamic_title_xpath = f'//android.widget.TextView[@text="{user_info["title"]}"]'
+#         #dynamic_affiliation_xpath = f'//android.widget.TextView[@text=" {user_info["affiliation"]}"]'
+#         dynamic_affiliation_xpath = f'//android.widget.TextView[contains(@text, "{user_info["affiliation"]}")]'
+#         dynamic_contact_information_xpath = f'//android.widget.TextView[@text="{user_info["contact_information"]}"]'
+#
+#         elements_to_check = [
+#             (dynamic_username_xpath, "사용자명"),
+#             (dynamic_title_xpath, "직함"),
+#             (dynamic_affiliation_xpath, "소속"),
+#             (dynamic_contact_information_xpath, "연락처")
+#         ]
+#
+#         # 3. 모든 요소에 대해 순차적으로 노출 확인
+#         for xpath, name in elements_to_check:
+#             print(f"'{name}' 요소 노출을 확인합니다.")
+#             try:
+#                 flow_tester.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, xpath)))
+#                 print(f"✅ '{name}' 요소가 성공적으로 노출되었습니다.")
+#             except Exception as e:
+#                 error_msg = f"❌ '{name}' 요소 노출 확인 실패: {e}"
+#                 print(error_msg)
+#                 error_messages.append(error_msg)
+#                 scenario_passed = False  # 하나라도 실패하면 전체 시나리오 실패로 설정
+#
+#         # 모든 요소 확인 후 최종 결과 메시지 정리
+#         if not scenario_passed:
+#             result_message = "명함 설정 페이지의 일부 UI 요소 노출 확인 실패."
+#             save_screenshot_on_failure(flow_tester.driver, "business_card_page_view_failure")
+#             print(f"⚠️ {result_message}")
+#             return False, "\n".join(error_messages)
+#
+#         print(f"✅ 명함 설정 페이지의 모든 UI 요소 노출 확인 완료.")
+#         return True, result_message
+#
+#     except TimeoutException as e:
+#         result_message = f"명함 설정 페이지의 UI 요소 노출 확인 중 타임아웃 오류 발생: {e}"
+#         print(f"❌ {result_message}")
+#         save_screenshot_on_failure(flow_tester.driver, "home_search_icon_click")
+#         return False, result_message
+#     except Exception as e:
+#         result_message = f"명함 설정 페이지의 UI 요소 노출 확인 중 예상치 못한 오류 발생: {e}"
+#         print(f"🚨 {result_message}")
+#         save_screenshot_on_failure(flow_tester.driver, "home_search_icon_click")
+#         return False, result_message
+
+
+
+
+#명함 설정 페이지 노출 확인 (52)
+
+def test_business_card_page_view(flow_tester):
+    scenario_passed = True
+    result_message = "알 수 없는 이유로 시나리오가 완료되지 않았습니다."
+    error_messages = []
 
     try:
-        all_info_visible = True
-        missing_elements = []
+        # 1. 테스트 데이터 로드
+        data_file_path = os.path.join(os.path.dirname(__file__), '..', 'Login', 'valid_credentials.txt')
+        user_info = get_user_data(data_file_path)
 
-        # 1. 각 정보 필드가 존재하는지 순차적으로 확인
-        for field, xpath in info_xpaths.items():
-            print(f"'{field}' 정보가 노출되는지 확인합니다...")
+        # 명함 설정 페이지 노출 확인
+        print(f'명함 설정 페이지의  {user_info["username"]}, {user_info["title"]}, {user_info["title"]}, {user_info["affiliation"]}, {user_info["contact_information"]}  를 확인합니다.')
+
+        # 2. 동적 XPath 생성
+        dynamic_username_xpath = f'//android.widget.TextView[@text="안녕하세요\n{user_info["username"]} {user_info["title"]}입니다."]'
+        dynamic_title_xpath = f'//android.widget.TextView[@text="{user_info["title"]}"]'
+        dynamic_affiliation_xpath = f'//android.widget.TextView[contains(@text, "{user_info["affiliation"]}")]'
+        dynamic_contact_information_xpath = f'//android.widget.TextView[@text="{user_info["contact_information"]}"]'
+        # dynamic_username_xpath = '//android.widget.TextView[@text="안녕하세요 권정숙 코디입니다."]'
+        print(dynamic_username_xpath)
+        print(dynamic_title_xpath)
+        print(dynamic_affiliation_xpath)
+        print(dynamic_contact_information_xpath)
+
+        elements_to_check = [
+            (dynamic_username_xpath, "사용자명"),
+            (dynamic_title_xpath, "직함"),
+            (dynamic_affiliation_xpath, "소속"),
+            (dynamic_contact_information_xpath, "연락처")
+        ]
+
+        # 3. 모든 요소에 대해 순차적으로 노출 확인
+        for xpath, name in elements_to_check:
+            print(f"'{name}' 요소 노출을 확인합니다.")
             try:
-                WebDriverWait(flow_tester.driver, 5).until(
-                    EC.visibility_of_element_located((AppiumBy.XPATH, xpath))
-                )
-                print(f"✅ '{field}' 정보가 노출됩니다.")
-            except TimeoutException:
-                print(f"❌ 실패: '{field}' 정보를 찾을 수 없습니다.")
-                all_info_visible = False
-                missing_elements.append(field)
+                flow_tester.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, xpath)))
+                print(f"✅ '{name}' 요소가 성공적으로 노출되었습니다.")
+            except Exception as e:
+                error_msg = f"❌ '{name}' 요소 노출 확인 실패: {e}"
+                print(error_msg)
+                error_messages.append(error_msg)
+                scenario_passed = False  # 하나라도 실패하면 전체 시나리오 실패로 설정
 
-        # 2. 최종 결과 반환
-        if all_info_visible:
-            return True, "모든 사용자 정보(이름, 직함, 소속, 연락처)가 정상 노출됩니다."
-        else:
-            save_screenshot_on_failure(flow_tester.driver, "bc_user_info_missing")
-            return False, f"실패: 다음 정보가 누락되었습니다 - {', '.join(missing_elements)}"
+        # 모든 요소 확인 후 최종 결과 메시지 정리
+        if not scenario_passed:
+            result_message = "명함 설정 페이지의 일부 UI 요소 노출 확인 실패."
+            save_screenshot_on_failure(flow_tester.driver, "business_card_page_view_failure")
+            print(f"⚠️ {result_message}")
+            return False, "\n".join(error_messages)
 
+        print(f"✅ 명함 설정 페이지의 모든 UI 요소 노출 확인 완료.")
+        return True, result_message
+
+    except TimeoutException as e:
+        result_message = f"명함 설정 페이지의 UI 요소 노출 확인 중 타임아웃 오류 발생: {e}"
+        print(f"❌ {result_message}")
+        save_screenshot_on_failure(flow_tester.driver, "home_search_icon_click")
+        return False, result_message
     except Exception as e:
-        save_screenshot_on_failure(flow_tester.driver, "bc_user_info_failure")
-        return False, f"실패: 사용자 정보 확인 중 오류 발생: {e}"
-    finally:
-        print("--- 명함설정 사용자 정보 노출 확인 시나리오 종료 ---")
+        result_message = f"명함 설정 페이지의 UI 요소 노출 확인 중 예상치 못한 오류 발생: {e}"
+        print(f"🚨 {result_message}")
+        save_screenshot_on_failure(flow_tester.driver, "home_search_icon_click")
+        return False, result_message

@@ -33,12 +33,16 @@ def test_text_card_copy(flow_tester):
         )
 
         message_text = toast_element.text
+
+        flow_tester.driver.back()
+        time.sleep(3)
         if "복사되었습니다" in message_text or "클립보드에 복사" in message_text:
             print(f"✅ 성공: 토스트 메시지 '{message_text}'가 노출되었습니다.")
             return True, "텍스트 명함 복사 및 '복사' 알림 확인 성공"
         else:
             save_screenshot_on_failure(flow_tester.driver, "bc_text_copy_toast_wrong_text")
             return False, f"실패: 예상과 다른 토스트 메시지 출력 - '{message_text}'"
+
 
     except (TimeoutException, NoSuchElementException) as e:
         save_screenshot_on_failure(flow_tester.driver, "bc_text_copy_fail")

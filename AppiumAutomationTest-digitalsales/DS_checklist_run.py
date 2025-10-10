@@ -58,7 +58,7 @@ if __name__ == "__main__":
     print("--- 드라이버 초기화 완료. ---")
     print("-" * 50)
 
-
+    #
     # # --- test_update_kil_view 시나리오 실행 ---
     # print("\n--- '앱 업데이트 테스트' 시나리오 시작 ---")
     # # sheets_service와 tester_name을 test_login 함수로 전달
@@ -101,8 +101,8 @@ if __name__ == "__main__":
     my_page_passed, my_page_message = test_my_page_kil_view_run(appium_tester, sheets_service, tester_name)
     print("테스트 케이스 5 완료.")
     print("-" * 50)
-
-
+    #
+    #
     # --- test_mobile_order_view 시나리오 실행 ---
     print("\n--- '모바일주문 테스트' 시나리오 시작 ---")
     # sheets_service와 tester_name을 test_login 함수로 전달
@@ -146,6 +146,7 @@ if __name__ == "__main__":
     print("테스트 케이스 5 완료.")
     print("-" * 50)
 
+
     # --- test_fullMenu_view 시나리오 실행 ---
     print("\n--- '전체메뉴' 시나리오 시작 ---")
     # sheets_service와 tester_name을 test_login 함수로 전달
@@ -153,6 +154,12 @@ if __name__ == "__main__":
     print("테스트 케이스 5 완료.")
     print("-" * 50)
 
+
+    appium_tester = AppiumLoginviewTest()
+    appium_tester.setup_driver()
+    user_id = "CWDS#QCL1"
+    user_pw = "Test1234!"
+    login_with_credentials(appium_tester, user_id, user_pw)
 
     print("\n--- '홈 화면 테스트' 시나리오 시작 ---")
     # sheets_service와 tester_name을 test_login 함수로 전달

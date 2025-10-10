@@ -49,7 +49,7 @@ def test_sales_tip_interaction(flow_tester):
         size = sales_tip_element.size
         center_y = location['y'] + size['height'] // 2
         start_x = location['x'] + size['width'] * 0.8
-        end_x = location['x'] + size['width'] * 0.2
+        end_x = location['x'] + size['width'] * 0.1
 
         def perform_swipe(start_x, start_y, end_x, end_y, duration_ms=500):
             actions = ActionChains(flow_tester.driver)

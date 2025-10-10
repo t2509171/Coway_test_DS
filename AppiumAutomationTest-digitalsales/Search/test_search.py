@@ -59,12 +59,12 @@ def test_recent_Search_Words(flow_tester):
         # 최근 검색어 목록 노출 확인
         print("최근 검색어 목록 노출을 확인합니다.")
         recent_Search_Words_details_view_xpath = '//android.widget.ListView'
-        #ls_dv_tab1_details_view_xpath = '//android.view.View[@resource-id="root"]/android.view.View[2]'
+        ls_dv_tab1_details_view_xpath = '//android.view.View[@resource-id="root"]/android.view.View[2]'
         try:
             flow_tester.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, recent_Search_Words_details_view_xpath)))
             print("✅ 최근 검색어 목록이 성공적으로 노출되었습니다.")
-        #    flow_tester.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, ls_dv_tab1_details_view_xpath)))
-        #    print("✅ '상세글 뷰'가 성공적으로 노출되었습니다.")
+            flow_tester.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, ls_dv_tab1_details_view_xpath)))
+            print("✅ '상세글 뷰'가 성공적으로 노출되었습니다.")
             time.sleep(2)
             scenario_passed = True
             result_message = "최근 검색어 목록 노출 확인 성공."
@@ -141,12 +141,12 @@ def test_popular_search(flow_tester):
         # 최근 본 제품 목록 노출 확인
         print("인기 검색어 순위 목록 노출을 확인합니다.")
         recent_product_details_view_xpath = '//android.widget.ListView'
-        #ls_dv_tab1_details_view_xpath = '//android.view.View[@resource-id="root"]/android.view.View[2]'
+        ls_dv_tab1_details_view_xpath = '//android.view.View[@resource-id="root"]/android.view.View[2]'
         try:
             flow_tester.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, recent_product_details_view_xpath)))
             print("✅ 인기 검색어 순위 목록이 성공적으로 노출되었습니다.")
-        #    flow_tester.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, ls_dv_tab1_details_view_xpath)))
-        #    print("✅ '상세글 뷰'가 성공적으로 노출되었습니다.")
+            flow_tester.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, ls_dv_tab1_details_view_xpath)))
+            print("✅ '상세글 뷰'가 성공적으로 노출되었습니다.")
             time.sleep(2)
             scenario_passed = True
             result_message = "인기 검색어 순위 목록 노출 확인 성공."

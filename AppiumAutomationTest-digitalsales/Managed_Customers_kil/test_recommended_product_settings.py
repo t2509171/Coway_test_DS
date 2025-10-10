@@ -11,6 +11,7 @@ def test_navigate_to_recommended_product_settings(flow_tester):
     """
     print("\n--- '관리고객 추천 제품 설정' 화면 이동 확인 시나리오 시작 ---")
     try:
+        time.sleep(2)  # 화면 전환 대기
         # 1. 지정된 좌표 (943, 1426) 클릭
         coords_to_tap = (943, 1426)
         print(f"지정된 좌표 {coords_to_tap}를 클릭합니다.")
@@ -30,6 +31,9 @@ def test_navigate_to_recommended_product_settings(flow_tester):
                 EC.presence_of_element_located((AppiumBy.XPATH, title_xpath))
             )
             print("✅ '관리고객 추천 제품 설정' 화면으로 성공적으로 이동했습니다.")
+
+            flow_tester.driver.back()
+            time.sleep(2) # 화면 전환 대기
             return True, "'관리고객 추천 제품 설정' 화면 이동 성공."
         except TimeoutException:
             error_msg = "실패: 좌표 클릭 후 '관리고객 추천 제품 설정' 타이틀을 찾을 수 없습니다."

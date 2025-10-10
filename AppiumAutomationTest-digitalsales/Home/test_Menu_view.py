@@ -437,7 +437,7 @@ def test_berex_bed_menu_view(flow_tester):
 
         # 'BEREX 침대' 버튼 클릭 (전체메뉴 내)
         print("'BEREX 침대' 버튼을 찾고 클릭합니다.")
-        mypage_button_xpath = '//android.view.View[@content-desc="BEREX 침대"]'
+        mypage_button_xpath = '//android.widget.TextView[@text="BEREX 침대"]' # 오타 수정
         try:
             mypage_button = flow_tester.wait.until(
                 EC.element_to_be_clickable((AppiumBy.XPATH, mypage_button_xpath)),
@@ -452,7 +452,7 @@ def test_berex_bed_menu_view(flow_tester):
 
         # 'BEREX 침대' 타이틀 노출 확인
         print("'BEREX 침대' 타이틀 노출을 확인합니다.")
-        mypage_title_xpath = '//android.widget.Button[@text="BEREX 침대"]'
+        mypage_title_xpath = '//android.widget.Button[@text="BEREX 침대"]'  #xpath 수정
         try:
             flow_tester.wait.until(
                 EC.presence_of_element_located((AppiumBy.XPATH, mypage_title_xpath)),
@@ -517,7 +517,7 @@ def test_berex_massage_chair_menu_view(flow_tester):
 
         # 'BEREX 안마의자' 버튼 클릭 (전체메뉴 내)
         print("'BEREX 안마의자' 버튼을 찾고 클릭합니다.")
-        mypage_button_xpath = '//android.view.View[@content-desc="BEREX 안마의자"]'
+        mypage_button_xpath = '//android.widget.TextView[@text="BEREX 안마의자"]' #xpath 수정
         try:
             mypage_button = flow_tester.wait.until(
                 EC.element_to_be_clickable((AppiumBy.XPATH, mypage_button_xpath)),
