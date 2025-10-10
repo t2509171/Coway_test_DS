@@ -20,8 +20,8 @@ def test_recommended_sales_content(flow_tester):
     print("\n--- 홈 > 공유할 영업 콘텐츠 추천 확인 시나리오 시작 ---")
     try:
         # ⭐️ 1. XPath 정의 (하단 '홈' UI 포함)
-        title_xpath = '//android.view.View[@content-desc="공유할 영업 콘텐츠를 추천 드려요"]/android.widget.TextView[2]'
-        sort_button_xpath = '//android.widget.Button[@text="유입순"]'
+        title_xpath = '//android.view.View[@content-desc="공유할 영업 콘텐츠를 추천 드려요"]'
+        sort_button_xpath = '//android.widget.Button[@text="신규"]'
         home_container_xpath = '//android.view.View[@content-desc="홈"]'  # 위치 비교 기준이 될 하단 고정 UI
         print(f"'{title_xpath}'와 '{sort_button_xpath}'를 찾고, '{home_container_xpath}'보다 위에 있는지 확인합니다.")
 

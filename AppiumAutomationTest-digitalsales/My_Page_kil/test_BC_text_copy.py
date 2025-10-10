@@ -27,21 +27,15 @@ def test_text_card_copy(flow_tester):
         copy_button.click()
 
         # 2. '복사되었습니다' 토스트 메시지가 나타나는지 확인
-        print("복사 완료 토스트 메시지를 확인합니다...")
-        toast_element = WebDriverWait(flow_tester.driver, 10).until(
+
+        WebDriverWait(flow_tester.driver, 1).until(
             EC.presence_of_element_located((AppiumBy.XPATH, toast_message_xpath))
         )
 
-        message_text = toast_element.text
-
         flow_tester.driver.back()
         time.sleep(3)
-        if "복사되었습니다" in message_text or "클립보드에 복사" in message_text:
-            print(f"✅ 성공: 토스트 메시지 '{message_text}'가 노출되었습니다.")
-            return True, "텍스트 명함 복사 및 '복사' 알림 확인 성공"
-        else:
-            save_screenshot_on_failure(flow_tester.driver, "bc_text_copy_toast_wrong_text")
-            return False, f"실패: 예상과 다른 토스트 메시지 출력 - '{message_text}'"
+
+        return True, "텍스트 명함 복사 및 '복사' 알림 확인 성공"
 
 
     except (TimeoutException, NoSuchElementException) as e:

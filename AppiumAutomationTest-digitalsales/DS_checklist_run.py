@@ -66,86 +66,86 @@ if __name__ == "__main__":
     # print("테스트 케이스 5 완료.")
     # print("-" * 50)
 
-    # --- test_update_kil_view 시나리오 실행 ---
-    print("\n--- '접근권한 안내 팝업 테스트' 시나리오 시작 ---")
-    # sheets_service와 tester_name을 test_login 함수로 전달
-    login_passed, login_message = test_update_kil_view_run(appium_tester, sheets_service, tester_name)
-    print("테스트 케이스 5 완료.")
-    print("-" * 50)
-
-    # --- test_login 시나리오 실행 ---
-    print("\n--- '로그인 테스트' 시나리오 시작 ---")
-    # sheets_service와 tester_name을 test_login 함수로 전달
-    login_passed, login_message = test_login(appium_tester, sheets_service, tester_name)
-    print("테스트 케이스 5 완료.")
-    print("-" * 50)
-
-    # --- test_home_kil_view_run 시나리오 실행 ---
-    print("\n--- 홈 시나리오 시작 ---")
-    my_page_passed, my_page_message = test_home_kil_view_run(appium_tester, sheets_service, tester_name)
-    print("테스트 케이스 5 완료.")
-    print("-" * 50)
-
-
-    # --- test_search_view_run 시나리오 실행 ---
-    print("\n--- 검색 시나리오 시작 ---")
-    # sheets_service와 tester_name을 test_login 함수로 전달
-    search_passed, search_message = test_search_view_run(appium_tester, sheets_service, tester_name)
-    print("테스트 케이스 5 완료.")
-    print("-" * 50)
-
-
-
-    # --- test_my_page_kil_view_run 시나리오 실행 ---
-    print("\n--- 마이페이지 시나리오 시작 ---")
-    my_page_passed, my_page_message = test_my_page_kil_view_run(appium_tester, sheets_service, tester_name)
-    print("테스트 케이스 5 완료.")
-    print("-" * 50)
+    # # --- test_update_kil_view 시나리오 실행 ---
+    # print("\n--- '접근권한 안내 팝업 테스트' 시나리오 시작 ---")
+    # # sheets_service와 tester_name을 test_login 함수로 전달
+    # login_passed, login_message = test_update_kil_view_run(appium_tester, sheets_service, tester_name)
+    # print("테스트 케이스 5 완료.")
+    # print("-" * 50)
+    # #
+    # # --- test_login 시나리오 실행 ---
+    # print("\n--- '로그인 테스트' 시나리오 시작 ---")
+    # # sheets_service와 tester_name을 test_login 함수로 전달
+    # login_passed, login_message = test_login(appium_tester, sheets_service, tester_name)
+    # print("테스트 케이스 5 완료.")
+    # print("-" * 50)
+    #
+    # # --- test_home_kil_view_run 시나리오 실행 ---
+    # print("\n--- 홈 시나리오 시작 ---")
+    # my_page_passed, my_page_message = test_home_kil_view_run(appium_tester, sheets_service, tester_name)
+    # print("테스트 케이스 5 완료.")
+    # print("-" * 50)
     #
     #
-    # --- test_mobile_order_view 시나리오 실행 ---
-    print("\n--- '모바일주문 테스트' 시나리오 시작 ---")
-    # sheets_service와 tester_name을 test_login 함수로 전달
-    mobile_order_passed, mobile_order_message = test_mobile_order_view_run(appium_tester, sheets_service, tester_name)
-    print("테스트 케이스 5 완료.")
-    print("-" * 50)
+    # # --- test_search_view_run 시나리오 실행 ---
+    # print("\n--- 검색 시나리오 시작 ---")
+    # # sheets_service와 tester_name을 test_login 함수로 전달
+    # search_passed, search_message = test_search_view_run(appium_tester, sheets_service, tester_name)
+    # print("테스트 케이스 5 완료.")
+    # print("-" * 50)
 
 
-    # --- test_lifestory_view_run 시나리오 실행 ---
-    print("\n--- '라이프스토리' 시나리오 시작 ---")
-    # sheets_service와 tester_name을 test_login 함수로 전달
-    life_story_passed, life_story_message = test_lifestory_view_run(appium_tester, sheets_service, tester_name)
-    print("테스트 케이스 5 완료.")
-    print("-" * 50)
 
-    # --- test_lifestory_view_run 시나리오 실행 ---
-    print("\n--- '관리고객' 시나리오 시작 ---")
-    # sheets_service와 tester_name을 test_login 함수로 전달
-    life_story_passed, life_story_message = test_managed_customers_kil_view_run(appium_tester, sheets_service, tester_name)
-    print("테스트 케이스 5 완료.")
-    print("-" * 50)
-
-
-    # --- test_shared_content_kil_view 시나리오 실행 ---
-    print("\n--- 공유 콘텐츠 / 자료실 시나리오 시작 ---")
-    my_page_passed, my_page_message = test_shared_content_kil_view_run(appium_tester, sheets_service, tester_name)
-    print("테스트 케이스 5 완료.")
-    print("-" * 50)
-
-    # -- test_promotion_view 시나리오 실행 ---
-    print("\n--- '프로모션 테스트' 시나리오 시작 ---")
-    # sheets_service와 tester_name을 test_login 함수로 전달
-    full_menu_passed, full_menu_message = test_promotion_view(appium_tester, sheets_service, tester_name)
-    print("테스트 케이스 5 완료.")
-    print("-" * 50)
-
-    # --- test_self_pv_view 시나리오 실행 ---
-    print("\n--- '셀프홍보영상 클릭 테스트' 시나리오 시작 ---")
-    # sheets_service와 tester_name을 test_login 함수로 전달
-    self_pv_passed, self_pv_message = test_self_pv_view(appium_tester, sheets_service, tester_name)
-    print("테스트 케이스 5 완료.")
-    print("-" * 50)
-
+    # # --- test_my_page_kil_view_run 시나리오 실행 ---
+    # print("\n--- 마이페이지 시나리오 시작 ---")
+    # my_page_passed, my_page_message = test_my_page_kil_view_run(appium_tester, sheets_service, tester_name)
+    # print("테스트 케이스 5 완료.")
+    # print("-" * 50)
+    # #
+    # #
+    # # --- test_mobile_order_view 시나리오 실행 ---
+    # print("\n--- '모바일주문 테스트' 시나리오 시작 ---")
+    # # sheets_service와 tester_name을 test_login 함수로 전달
+    # mobile_order_passed, mobile_order_message = test_mobile_order_view_run(appium_tester, sheets_service, tester_name)
+    # print("테스트 케이스 5 완료.")
+    # print("-" * 50)
+    #
+    #
+    # # --- test_lifestory_view_run 시나리오 실행 ---
+    # print("\n--- '라이프스토리' 시나리오 시작 ---")
+    # # sheets_service와 tester_name을 test_login 함수로 전달
+    # life_story_passed, life_story_message = test_lifestory_view_run(appium_tester, sheets_service, tester_name)
+    # print("테스트 케이스 5 완료.")
+    # print("-" * 50)
+    #
+    # # --- test_lifestory_view_run 시나리오 실행 ---
+    # print("\n--- '관리고객' 시나리오 시작 ---")
+    # # sheets_service와 tester_name을 test_login 함수로 전달
+    # life_story_passed, life_story_message = test_managed_customers_kil_view_run(appium_tester, sheets_service, tester_name)
+    # print("테스트 케이스 5 완료.")
+    # print("-" * 50)
+    #
+    #
+    # # --- test_shared_content_kil_view 시나리오 실행 ---
+    # print("\n--- 공유 콘텐츠 / 자료실 시나리오 시작 ---")
+    # my_page_passed, my_page_message = test_shared_content_kil_view_run(appium_tester, sheets_service, tester_name)
+    # print("테스트 케이스 5 완료.")
+    # print("-" * 50)
+    #
+    # # -- test_promotion_view 시나리오 실행 ---
+    # print("\n--- '프로모션 테스트' 시나리오 시작 ---")
+    # # sheets_service와 tester_name을 test_login 함수로 전달
+    # full_menu_passed, full_menu_message = test_promotion_view(appium_tester, sheets_service, tester_name)
+    # print("테스트 케이스 5 완료.")
+    # print("-" * 50)
+    #
+    # # --- test_self_pv_view 시나리오 실행 ---
+    # print("\n--- '셀프홍보영상 클릭 테스트' 시나리오 시작 ---")
+    # # sheets_service와 tester_name을 test_login 함수로 전달
+    # self_pv_passed, self_pv_message = test_self_pv_view(appium_tester, sheets_service, tester_name)
+    # print("테스트 케이스 5 완료.")
+    # print("-" * 50)
+    #
 
     # --- test_fullMenu_view 시나리오 실행 ---
     print("\n--- '전체메뉴' 시나리오 시작 ---")

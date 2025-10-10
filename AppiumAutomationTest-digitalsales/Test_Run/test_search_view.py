@@ -52,28 +52,8 @@ def test_search_view_run(flow_tester, sheets_service, tester_name):
             overall_test_passed = False
             overall_test_message = f"검색 버튼 클릭 확인 실패: {e}"
 
-        # --- 최근 검색어 노출 확인 테스트 실행 ---
-        try:
-            test_no_counter += 1
-            test_no = f"Seller app checklist-{test_no_counter}"
-            print(f"\n--- {test_no}:  최근 검색어 노출 확인 ---")
-            my_page_view_passed, my_page_view_message = test_recent_Search_Words(flow_tester)
-            overall_results["최근 검색어 목록이 노출된다."] = {
-                "test_no": test_no,  # 동적 번호 할당
-                "passed": my_page_view_passed,
-                "message": my_page_view_message
-            }
-            if not my_page_view_passed:
-                overall_test_passed = False  # Mark overall test as failed
-                overall_test_message = "일부 전체메뉴 클릭 테스트 시나리오에서 실패가 발생했습니다. 상세 로그를 확인하세요."
-            # 스프레드시트에 테스트 결과 기록
-            status = "Pass" if my_page_view_passed else "Fail"
-            update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
-            print(f"{test_no} 테스트 케이스 완료.")
-            print("-" * 50)  # Separator
-        except Exception as e:
-            overall_test_passed = False
-            overall_test_message = f"최근 검색어 노출 확인 실패: {e}"
+
+        test_no_counter += 1
 
         # --- 최근 본 제품 목록 노출 확인 테스트 실행 ---
         try:
@@ -143,6 +123,30 @@ def test_search_view_run(flow_tester, sheets_service, tester_name):
         except Exception as e:
             overall_test_passed = False
             overall_test_message = f"제품 검색 노출 확인 실패: {e}"
+
+        # --- 최근 검색어 노출 확인 테스트 실행 --- 검색 후 테스트하게 순서 변경 그로 인한 검색 버튼 다시 클릭 후 케이스 진행
+        try:
+            test_no_counter = 48
+            test_no = f"Seller app checklist-{test_no_counter}"
+            print(f"\n--- {test_no}:  최근 검색어 노출 확인 ---")
+            test_search_button_click(flow_tester)
+            my_page_view_passed, my_page_view_message = test_recent_Search_Words(flow_tester)
+            overall_results["최근 검색어 목록이 노출된다."] = {
+                "test_no": test_no,  # 동적 번호 할당
+                "passed": my_page_view_passed,
+                "message": my_page_view_message
+            }
+            if not my_page_view_passed:
+                overall_test_passed = False  # Mark overall test as failed
+                overall_test_message = "일부 전체메뉴 클릭 테스트 시나리오에서 실패가 발생했습니다. 상세 로그를 확인하세요."
+            # 스프레드시트에 테스트 결과 기록
+            status = "Pass" if my_page_view_passed else "Fail"
+            update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
+            print(f"{test_no} 테스트 케이스 완료.")
+            print("-" * 50)  # Separator
+        except Exception as e:
+            overall_test_passed = False
+            overall_test_message = f"최근 검색어 노출 확인 실패: {e}"
 
     except Exception as e:
         print(f"🚨 전체 테스트 스위트 실행 중 치명적인 오류 발생: {e}")

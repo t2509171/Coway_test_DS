@@ -63,7 +63,7 @@ def test_banner_swipe(flow_tester):
         banner_element_to_swipe = flow_tester.driver.find_element(AppiumBy.XPATH, banner_xpath)
         rect = banner_element_to_swipe.rect
         start_x = rect['x'] + rect['width'] * 0.8
-        end_x = rect['x'] + rect['width'] * 0.2
+        end_x = rect['x'] + rect['width'] * 0.1
         y = rect['y'] + rect['height'] / 2
         flow_tester.driver.swipe(start_x, y, end_x, y, 500)
         time.sleep(2)  # 스와이프 애니메이션 대기

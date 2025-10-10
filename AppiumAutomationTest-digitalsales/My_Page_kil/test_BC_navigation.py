@@ -16,7 +16,7 @@ def test_business_card_navigation(flow_tester):
     business_card_button_xpath = '//android.widget.Button[@text="명함설정"]'
 
     page_verification_xpath = '//android.widget.TextView[@text="명함 설정"]'
-
+    time.sleep(2)
     try:
         # 1. '명함설정' 버튼 클릭
         print(f"'{business_card_button_xpath}' 버튼을 찾습니다...")
