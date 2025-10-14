@@ -30,7 +30,6 @@ def test_mobile_order_view(flow_tester):
             message="홈 화면의 '홈' 요소를 20초 내에 찾지 못했습니다. 로딩 실패."
         )
         print("✅ 홈 화면 로딩 완료 확인.")
-
         # '모바일 주문' 버튼 클릭
         print(" '모바일 주문' 버튼을 찾고 클릭합니다.")
         mobile_order_button_xpath = '//android.view.View[@content-desc="모바일 주문"]'
@@ -84,6 +83,7 @@ def test_general_order_acceptance_order_view(flow_tester):
         # '일반 주문하기' 버튼 클릭
         print(" '일반 주문하기' 버튼을 찾고 클릭합니다.")
         general_order_button_xpath = '//android.widget.Button[@text="일반 주문하기"]'
+        time.sleep(2) # 홈 화면 로딩 대기
         try:
             general_order_button = flow_tester.wait.until(
                 EC.element_to_be_clickable((AppiumBy.XPATH, general_order_button_xpath)),
@@ -155,6 +155,7 @@ def test_pre_ordering_view(flow_tester):
     print("\n--- 모바일 주문 > 사전계약 주문하기 진입 및 타이틀 확인 시나리오 시작 ---")
     scenario_passed = False
     result_message = "알 수 없는 이유로 시나리오가 완료되지 않았습니다."
+    time.sleep(2)  # 홈 화면 로딩 대기
 
     try:
         # '사전계약 주문하기' 버튼 클릭
@@ -279,7 +280,7 @@ def test_general_order_status_view(flow_tester):
             )
             general_order_button.click()
             print(" 종료 팝업 '확인' 버튼 클릭 완료.")
-            time.sleep(2)  # 페이지 전환 대기
+            time.sleep(3)  # 페이지 전환 대기
         except Exception as e:
             print(f" 종료 팝업 '확인' 버튼 클릭 중 오류 발생: {e}")
             result_message = f"종료 팝업 '확인' 버튼 클릭 실패: {e}"
@@ -302,7 +303,7 @@ def test_pre_contract_order_status_view(flow_tester):
     print("\n--- 모바일 주문 > 사전계약 주문 이어하기 진입 및 타이틀 확인 시나리오 시작 ---")
     scenario_passed = False
     result_message = "알 수 없는 이유로 시나리오가 완료되지 않았습니다."
-
+    time.sleep(2)  # 홈 화면 로딩 대기
     try:
         # '사전계약' 탭 타이틀 노출 확인
         print(" '사전계약' 탭 타이틀 노출을 확인합니다.")

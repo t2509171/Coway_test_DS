@@ -259,10 +259,8 @@ def test_verify_no_permission_guide_after_relaunch(flow_tester):
     """
     앱 재실행 후, 이전에 확인했던 '접근권한 안내' 화면이 다시 노출되지 않는지 검증합니다.
     """
-    flow_tester.driver.back()
-    time.sleep(0.2)
-    flow_tester.driver.back()
-    time.sleep(2)
+    flow_tester.teardown_driver()
+    time.sleep(3)
     print("\n--- [6/6] 앱 재실행 > 접근 권한 안내 미노출 확인 시나리오 시작 ---")
     try:
         # 1. teardown_driver()와 setup_driver()를 이용한 앱 재실행
@@ -286,7 +284,6 @@ def test_verify_no_permission_guide_after_relaunch(flow_tester):
             WebDriverWait(flow_tester.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, permission_title_xpath))
             )
-
             # 이 코드가 실행된다는 것은 요소가 화면에 나타났다는 의미이므로 실패 처리
             error_msg = "실패: 앱 재실행 후 접근 권한 안내 화면이 다시 노출되었습니다."
             save_screenshot_on_failure(flow_tester.driver, "permission_guide_reappeared")
@@ -295,6 +292,17 @@ def test_verify_no_permission_guide_after_relaunch(flow_tester):
         except TimeoutException:
             # 5초 동안 요소를 찾지 못하면 TimeoutException이 발생하며, 이것이 성공 케이스
             print("✅ 접근 권한 안내 화면이 노출되지 않았습니다. (성공)")
+            print("테스트를 위해 teardown_driver()를 호출하여 드라이버 세션을 종료합니다.")
+            if flow_tester.driver:
+                flow_tester.teardown_driver()
+            time.sleep(3)
+
+            print("setup_driver()를 호출하여 새로운 드라이버 세션을 시작하고 앱을 실행합니다.")
+            flow_tester.setup_driver()
+            print("✅ 앱이 성공적으로 재실행되었습니다.")
+
+            print("앱 안정화를 위해 8초간 대기합니다...")
+            time.sleep(8)
             return True, "앱 재실행 후 접근 권한 안내 미노출 확인 성공."
 
     except Exception as e:
