@@ -259,8 +259,12 @@ def test_verify_no_permission_guide_after_relaunch(flow_tester):
     """
     앱 재실행 후, 이전에 확인했던 '접근권한 안내' 화면이 다시 노출되지 않는지 검증합니다.
     """
+    flow_tester.driver.back()
+    flow_tester.driver.back()
+    time.sleep(2)
     flow_tester.teardown_driver()
     time.sleep(3)
+
     print("\n--- [6/6] 앱 재실행 > 접근 권한 안내 미노출 확인 시나리오 시작 ---")
     try:
         # 1. teardown_driver()와 setup_driver()를 이용한 앱 재실행

@@ -11,25 +11,22 @@ from Utils.scrolling_function import scroll_down
 
 def test_recommended_sales_content(flow_tester):
     """
-    홈 화면의 '공유할 영업 콘텐츠' 섹션을 테스트합니다.
-    1. 섹션과 '유입순' 버튼이 하단 '홈' UI보다 위에 보일 때까지 스크롤하여 섹션을 클릭
-    2. 상세 페이지에서 '라이프 스토리' 확인
-    3. '목록' 버튼 클릭
-    4. 목록 페이지에서 '라이프스토리' 확인
+    홈 화면 '영업 콘텐츠' 섹션의 세 가지 주요 UI가 올바른 순서로
+    (제목 > 정렬 버튼 > 하단 홈 UI) 정렬될 때까지 스크롤하고 검증합니다.
     """
-    print("\n--- 홈 > 공유할 영업 콘텐츠 추천 확인 시나리오 시작 ---")
+    print("\n--- 홈 > 공유할 영업 콘텐츠 추천 (Y 좌표 정렬) 시나리오 시작 ---")
     try:
-        # ⭐️ 1. XPath 정의 (하단 '홈' UI 포함)
+        # 1. XPath 정의
         title_xpath = '//android.view.View[@content-desc="공유할 영업 콘텐츠를 추천 드려요"]'
         sort_button_xpath = '//android.widget.Button[@text="신규"]'
-        home_container_xpath = '//android.view.View[@content-desc="홈"]'  # 위치 비교 기준이 될 하단 고정 UI
-        print(f"'{title_xpath}'와 '{sort_button_xpath}'를 찾고, '{home_container_xpath}'보다 위에 있는지 확인합니다.")
+        home_container_xpath = '//android.view.View[@content-desc="홈"]'
+        print("세 요소의 Y 좌표 순서가 맞을 때까지 스크롤을 시작합니다.")
 
         max_scroll_attempts = 10
-        section_found_and_clickable = False
+        section_in_correct_order = False
         target_element = None
 
-        # ⭐️ 2. 지정된 횟수만큼 스크롤하며 요소의 위치를 확인하는 루프
+        # 2. 지정된 횟수만큼 스크롤하며 요소들의 Y 좌표 순서를 확인하는 루프
         for i in range(max_scroll_attempts):
             try:
                 # 2-1. 필요한 세 가지 요소를 모두 찾습니다.
@@ -37,35 +34,30 @@ def test_recommended_sales_content(flow_tester):
                 sort_button_element = flow_tester.driver.find_element(AppiumBy.XPATH, sort_button_xpath)
                 home_container_element = flow_tester.driver.find_element(AppiumBy.XPATH, home_container_xpath)
 
-                # 2-2. 대상 요소들이 화면에 보이는지 먼저 확인합니다.
-                if target_element.is_displayed() and sort_button_element.is_displayed():
-                    print("✅ '공유할 영업 콘텐츠'와 '유입순' 버튼을 화면에서 찾았습니다. 이제 위치를 비교합니다.")
+                # 2-2. 세 요소가 모두 화면에 보이는지 확인합니다.
+                if all(elem.is_displayed() for elem in [target_element, sort_button_element, home_container_element]):
+                    print("✅ 세 요소를 모두 화면에서 찾았습니다. Y 좌표 순서를 비교합니다.")
 
-                    # ⭐️ 2-3. 위치 정보(.rect)를 가져와 Y 좌표를 비교합니다.
-                    target_rect = target_element.rect
-                    home_rect = home_container_element.rect
+                    # 2-3. 각 요소의 Y 좌표를 가져옵니다.
+                    title_y = target_element.location['y']
+                    sort_button_y = sort_button_element.location['y']
+                    home_container_y = home_container_element.location['y']
 
-                    # 대상 UI의 가장 아래쪽 Y 좌표
-                    target_bottom_y = target_rect['y'] + target_rect['height']
-                    # '홈' UI의 가장 위쪽 Y 좌표
-                    home_top_y = home_rect['y']
+                    print(f"  -> 제목 Y: {title_y}, 정렬 버튼 Y: {sort_button_y}, 홈 UI Y: {home_container_y}")
 
-                    print(f"  -> 대상 UI 하단 Y: {target_bottom_y}, 홈 컨테이너 상단 Y: {home_top_y}")
-
-                    # ⭐️ 2-4. 대상 UI가 '홈' UI보다 완전히 위에 있는지 확인
-                    if target_bottom_y < home_top_y:
-                        print("✅ 위치 조건 충족! 대상 UI가 하단 '홈' UI보다 위에 있습니다.")
-                        section_found_and_clickable = True
+                    # ✨ 2-4. Y 좌표 순서(제목 < 정렬 버튼 < 홈 UI)가 올바른지 확인
+                    if title_y < sort_button_y < home_container_y:
+                        print("✅ 위치 조건 충족! 세 요소가 올바른 순서로 정렬되었습니다.")
+                        section_in_correct_order = True
                         break  # 루프를 성공적으로 종료합니다.
                     else:
-                        print("⚠️ 위치 조건 불충족. 대상이 '홈' UI에 가려져 있습니다. 스크롤합니다.")
+                        print("⚠️ 위치 조건 불충족. 요소들이 아직 올바른 순서가 아닙니다. 스크롤합니다.")
                 else:
-                    # 요소는 찾았으나 화면에 아직 표시되지 않은 경우
-                    print("요소는 찾았지만 화면에 완전히 표시되지 않았습니다. 스크롤합니다.")
+                    print("요소는 찾았지만 일부가 화면에 표시되지 않았습니다. 스크롤합니다.")
 
             except NoSuchElementException:
                 # 세 요소 중 하나라도 DOM에서 찾지 못한 경우
-                print("필요한 요소를 찾지 못했습니다. 스크롤합니다.")
+                print("필요한 요소를 모두 찾지 못했습니다. 스크롤합니다.")
                 pass
 
             # 루프의 마지막에 스크롤을 실행합니다.
@@ -73,17 +65,17 @@ def test_recommended_sales_content(flow_tester):
             scroll_down(flow_tester.driver)
 
         # 3. 루프 종료 후, 성공 여부를 확인합니다.
-        if not section_found_and_clickable:
-            error_msg = f"실패: {max_scroll_attempts}번 스크롤 했지만 클릭 가능한 위치에서 섹션을 찾지 못했습니다."
-            save_screenshot_on_failure(flow_tester.driver, "sales_content_section_not_found")
+        if not section_in_correct_order:
+            error_msg = f"실패: {max_scroll_attempts}번 스크롤 했지만 세 요소의 정렬을 확인할 수 없었습니다."
+            save_screenshot_on_failure(flow_tester.driver, "sales_content_section_not_aligned")
             return False, error_msg
 
-        # 4. 검증이 완료된 요소를 클릭합니다.
+        # 4. 검증이 완료된 제목 요소를 클릭합니다.
         print("정확한 위치에서 섹션을 확인하고 클릭합니다.")
         target_element.click()
         time.sleep(3)
 
-        # 5. 최종 목록 페이지에서 '라이프스토리' 텍스트 확인 (기존 코드 유지)
+        # 5. 최종 목록 페이지에서 '라이프스토리' 텍스트 확인
         final_page_text_xpath = '//android.widget.TextView[@text="라이프스토리"]'
         print(f"목록 페이지에서 '{final_page_text_xpath}' 텍스트를 확인합니다.")
         try:

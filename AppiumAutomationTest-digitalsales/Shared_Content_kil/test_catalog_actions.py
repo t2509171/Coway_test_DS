@@ -226,7 +226,7 @@ def test_download_catalog(flow_tester):
 
         # ※ 참고: 실제 파일 다운로드 완료 여부는 Appium 테스트 범위를 벗어날 수 있으므로,
         # '확인' 버튼 클릭까지만 검증합니다.
-
+        time.sleep(2)
         return True, "카탈로그 다운로드 기능 검증 성공."
 
     except Exception as e:

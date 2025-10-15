@@ -3,7 +3,7 @@
 class AndroidConfig:
     APPIUM_SERVER_URL = 'http://127.0.0.1:4723'
     PLATFORM_NAME = 'Android'
-    PLATFORM_VERSION = '14'
+    PLATFORM_VERSION = '15'
     #DEVICE_NAME = ('10.131.62.168:44603')
     DEVICE_NAME = ('R3CT70V2T5H')
     APP_PACKAGE = 'com.coway.catalog.seller.stg'

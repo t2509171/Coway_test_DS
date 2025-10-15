@@ -252,16 +252,18 @@ def test_random_search_functionality(flow_tester):
             print(f"✅ '{random_text}'에 대한 검색 결과가 성공적으로 노출되었습니다.")
             scenario_passed = True
             result_message = f"무작위 검색어 '{random_text}'에 대한 검색 기능 성공."
+            w3c_click_coordinate(flow_tester.driver, 950, 300)
+            time.sleep(1)  # 전체메뉴로 돌아오는 시간 대기
         except Exception as e:
             result_message = f"'{random_text}'에 대한 검색 결과 노출 확인 실패: {e}"
             return False, result_message
+
 
         # 뒤로가기 (Back) 액션 수행
         print("뒤로가기 버튼(디바이스 백 버튼)을 클릭합니다.")
         flow_tester.driver.back()
         print("뒤로가기 액션 수행 완료.")
         time.sleep(3)  # 전체메뉴로 돌아오는 시간 대기
-
         # 뒤로가기 (Back) 액션 수행
         print("뒤로가기 버튼(디바이스 백 버튼)을 클릭합니다.")
         flow_tester.driver.back()

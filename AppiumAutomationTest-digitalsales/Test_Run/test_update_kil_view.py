@@ -28,8 +28,6 @@ def test_update_kil_view_run(flow_tester, sheets_service, tester_name):
 
 
 
-
-
     """Seller app checklist-1 : 업데이트 얼럿 노출 확인 테스트 실행"""
     try:
         test_no_counter += 1

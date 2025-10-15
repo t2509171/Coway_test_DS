@@ -135,7 +135,7 @@ def test_customer_promotion_view(flow_tester):
         print("뒤로가기 버튼(디바이스 백 버튼)을 클릭합니다.")
         flow_tester.driver.back()
         print("뒤로가기 액션 수행 완료.")
-        time.sleep(2)  # 전체메뉴로 돌아오는 시간 대기
+        time.sleep(3)  # 전체메뉴로 돌아오는 시간 대기
 
     except Exception as e:
         print(f"🚨 고객 프로모션 시나리오 실행 중 오류 발생: {e}")
@@ -241,7 +241,7 @@ def test_salesperson_promotion(flow_tester):
         print("뒤로가기 버튼(디바이스 백 버튼)을 클릭합니다.")
         flow_tester.driver.back()
         print("뒤로가기 액션 수행 완료.")
-        time.sleep(2)  # 전체메뉴로 돌아오는 시간 대기
+        time.sleep(3)  # 전체메뉴로 돌아오는 시간 대기
 
     except Exception as e:
         print(f"🚨 판매인 프로모션 시나리오 실행 중 오류 발생: {e}")

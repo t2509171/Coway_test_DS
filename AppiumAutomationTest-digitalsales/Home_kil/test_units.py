@@ -30,6 +30,7 @@ def test_home_content_unit(flow_tester, unit_container_xpath, unit_index_xpath, 
     try:
         # 1. XPath 정의 (매개변수로 받은 값을 그대로 사용)
         home_container_xpath = '//android.view.View[@content-desc="홈"]'
+        target_y = None # 유닛의 Y 좌표를 저장할 변수
 
         # 2. '콘텐츠' 유닛 컨테이너와 인덱스가 지정된 위치에 올 때까지 스크롤
         print("콘텐츠 유닛이 지정된 위치에 보일 때까지 스크롤합니다.")
@@ -55,6 +56,8 @@ def test_home_content_unit(flow_tester, unit_container_xpath, unit_index_xpath, 
 
                     if is_container_above_index and is_index_above_home:
                         print("✅ 위치 조건 충족! (컨테이너 > 인덱스 > 홈 버튼)")
+                        target_y = index_rect['y']  # 조건 만족 시 index_rect의 Y값을 저장
+                        print(f"✅ 타겟 유닛의 Y 좌표 저장: {target_y}")
                         element_in_view = True
                         break  # 조건 만족 시 스크롤 중단
                     else:
@@ -86,14 +89,25 @@ def test_home_content_unit(flow_tester, unit_container_xpath, unit_index_xpath, 
 
         while item_index <= 5:
             indexed_xpath = f'{base_item_xpath}{item_index}"]'
+            item_found_on_correct_y = False
             try:
-                print(f"콘텐츠 유닛 [{item_index}] 확인 시도...{indexed_xpath}")
-                flow_tester.driver.find_element(AppiumBy.XPATH, indexed_xpath)
-                print(f"✅ 콘텐츠 유닛 [{item_index}] 발견.{indexed_xpath}")
-                total_items_found = item_index
-                item_index += 1
-                continue
+                # Y 좌표가 동일한 유닛만 검사하는 로직
+                possible_elements = flow_tester.driver.find_elements(AppiumBy.XPATH, indexed_xpath)
+                print(f"콘텐츠 유닛 [{item_index}] 확인 시도... (발견된 요소 수: {len(possible_elements)})")
+                for element in possible_elements:
+                    if element.is_displayed() and element.rect['y'] == target_y:
+                        print(f"✅ 콘텐츠 유닛 [{item_index}] 발견. (좌표: {element.rect['x']}, {element.rect['y']})")
+                        item_found_on_correct_y = True
+                        total_items_found = item_index
+                        item_index += 1
+                        break  # 올바른 Y 좌표에서 요소를 찾았으므로 내부 루프 종료
+
+                if not item_found_on_correct_y:
+                    raise NoSuchElementException  # 올바른 Y 좌표에 요소가 없으면 예외 발생시켜 스와이프 로직으로 이동
+
             except NoSuchElementException:
+                if item_found_on_correct_y: continue  # 이미 찾았으면 다음 인덱스로
+
                 print(f"콘텐츠 유닛 [{item_index}] 없음. 스와이프를 시도합니다.")
                 actions = ActionChains(flow_tester.driver)
                 actions.w3c_actions = ActionBuilder(flow_tester.driver,
@@ -103,11 +117,22 @@ def test_home_content_unit(flow_tester, unit_container_xpath, unit_index_xpath, 
                 actions.perform()
                 time.sleep(2)
                 try:
-                    print(f"스와이프 후, 유닛 [{item_index}] 다시 확인...{indexed_xpath}")
-                    flow_tester.driver.find_element(AppiumBy.XPATH, indexed_xpath)
-                    print(f"✅ 스와이프 후, 유닛 [{item_index}] 발견.{indexed_xpath}")
-                    total_items_found = item_index
-                    item_index += 1
+                    # 스와이프 후, Y 좌표가 동일한 유닛만 다시 검사
+                    possible_elements_after_swipe = flow_tester.driver.find_elements(AppiumBy.XPATH, indexed_xpath)
+                    print(f"스와이프 후, 유닛 [{item_index}] 다시 확인... (발견된 요소 수: {len(possible_elements_after_swipe)})")
+                    item_found_after_swipe = False
+                    for element in possible_elements_after_swipe:
+                        if element.is_displayed() and element.rect['y'] == target_y:
+                            print(f"✅ 스와이프 후, 유닛 [{item_index}] 발견. (좌표: {element.rect['x']}, {element.rect['y']})")
+                            total_items_found = item_index
+                            item_index += 1
+                            item_found_after_swipe = True
+                            break
+
+                    if not item_found_after_swipe:
+                        print(f"스와이프 후에도 유닛 [{item_index}] 없음. 탐색을 종료합니다.")
+                        break  # 스와이프 후에도 없으면 최종 종료
+
                 except NoSuchElementException:
                     print(f"스와이프 후에도 유닛 [{item_index}] 없음. 탐색을 종료합니다.")
                     break
@@ -127,7 +152,7 @@ def test_home_content_unit(flow_tester, unit_container_xpath, unit_index_xpath, 
         print("콘텐츠 항목을 클릭합니다.")
         # 클릭할 좌표를 스와이프 시작 지점 근처의 아이템으로 가정하고 클릭합니다.
         # 보통 첫 아이템은 왼쪽 영역에 있으므로, end_x 좌표를 사용합니다.
-        click_x = end_x + 50
+        click_x = end_x + 150
         click_y = y
         print(f"스와이프 영역의 첫 아이템 위치로 추정되는 좌표 ({int(click_x)}, {int(click_y)})를 클릭합니다.")
         flow_tester.driver.tap([(click_x, click_y)])
@@ -157,7 +182,7 @@ def test_home_content_unit(flow_tester, unit_container_xpath, unit_index_xpath, 
 # Seller app checklist-31 제품 유닛 확인
 def test_product_unit(flow_tester):
     unit_container_xpath = '//android.widget.Button[@text="판매순"]'
-    unit_index_xpath = '//android.view.View[android.widget.TextView[@text="1"]]'
+    unit_index_xpath = '//android.widget.TextView[@text="1"]'
     content_detail_page_title_xpath = '//android.view.View[@resource-id="iframe"]'
     return test_home_content_unit(flow_tester, unit_container_xpath, unit_index_xpath, content_detail_page_title_xpath)
 
@@ -165,7 +190,7 @@ def test_product_unit(flow_tester):
 # Seller app checklist-37 컨텐츠 유닛 확인
 def test_content_unit(flow_tester):
     unit_container_xpath = '//android.widget.TextView[@text="공유할 영업 콘텐츠를 추천 드려요"]'
-    unit_index_xpath = '//android.view.View[android.widget.TextView[@text="1"]]'
+    unit_index_xpath = '//android.widget.TextView[@text="1"]'
     content_detail_page_title_xpath = '//android.widget.TextView[@text="라이프 스토리"]'
     return test_home_content_unit(flow_tester, unit_container_xpath, unit_index_xpath, content_detail_page_title_xpath)
 
@@ -173,6 +198,7 @@ def test_content_unit(flow_tester):
 # Seller app checklist-38 프로모션 유닛 확인
 def test_client_unit(flow_tester):
     unit_container_xpath = '//android.widget.TextView[@text="공유할 프로모션을 추천 드려요"]'
-    unit_index_xpath = '//android.view.View[android.widget.TextView[@text="1"]]'
+    unit_index_xpath = '//android.widget.TextView[@text="1"]'
     content_detail_page_title_xpath = '//android.widget.TextView[@text="고객 프로모션"]'
     return test_home_content_unit(flow_tester, unit_container_xpath, unit_index_xpath, content_detail_page_title_xpath)
+

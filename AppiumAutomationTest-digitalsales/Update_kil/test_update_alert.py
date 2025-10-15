@@ -140,7 +140,7 @@ def test_perform_app_update(flow_tester):
             )
             print("✅ '알림 허용' 화면이 확인되었습니다. 스위치를 클릭합니다.")
 
-            switch_widget_xpath = '//android.widget.Switch[@resource-id="com.android.settings:id/switch_widget"]'
+            switch_widget_xpath = '//android.widget.Switch[@content-desc="알림 허용"]'
             switch_widget = flow_tester.driver.find_element(AppiumBy.XPATH, switch_widget_xpath)
             switch_widget.click()
 

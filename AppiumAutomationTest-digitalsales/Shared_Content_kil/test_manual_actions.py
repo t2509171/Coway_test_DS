@@ -206,7 +206,7 @@ def test_download_manual(flow_tester):
             flow_tester.driver.back()
             time.sleep(2)
             flow_tester.driver.back()
-            time.sleep(2)
+            time.sleep(3)
         except TimeoutException:
             error_msg = "실패: 다운로드 확인 팝업 또는 '확인' 버튼을 찾을 수 없습니다."
             save_screenshot_on_failure(flow_tester.driver, "manual_download_confirm_popup_not_found")

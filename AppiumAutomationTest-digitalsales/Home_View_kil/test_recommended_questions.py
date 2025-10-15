@@ -27,7 +27,7 @@ def test_verify_recommended_questions_for_managed_customers(flow_tester):
             return False, error_msg
 
         # 2. 추천 질문 텍스트 노출 확인
-        recommendation_text_xpath = "//android.widget.TextView[@text=\"👍'관리 고객'에 대한 추천 질문 입니다.\"]"
+        recommendation_text_xpath = '//android.view.View[@resource-id="root"]/android.view.View[2]/android.widget.ListView[2]'
         print(f"'{recommendation_text_xpath}' 텍스트가 노출되는지 확인합니다.")
         try:
             WebDriverWait(flow_tester.driver, 10).until(

@@ -24,6 +24,7 @@ def _navigate_to_full_menu(flow_tester):
     """
     홈 화면에서 전체메뉴 버튼을 클릭하여 전체 메뉴 화면으로 진입합니다.
     """
+    time.sleep(2)
     print(" '전체메뉴' 버튼을 찾고 클릭합니다.")
     all_menu_button_xpath = '//android.view.View[@content-desc="전체메뉴"]'
     try:
@@ -47,7 +48,6 @@ def test_etc_Notice(flow_tester):
     print("\n--- 전체메뉴 > 고객 프로모션 진입 및 UI 요소 확인 시나리오 시작 ---")
     scenario_passed = False
     result_message = "알 수 없는 이유로 시나리오가 완료되지 않았습니다."
-
     try:
         # 1. 전체메뉴 진입
         nav_success, nav_msg = _navigate_to_full_menu(flow_tester)

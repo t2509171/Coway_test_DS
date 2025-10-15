@@ -33,7 +33,7 @@ def test_navigate_to_recommended_product_settings(flow_tester):
             print("✅ '관리고객 추천 제품 설정' 화면으로 성공적으로 이동했습니다.")
 
             flow_tester.driver.back()
-            time.sleep(2) # 화면 전환 대기
+            time.sleep(3) # 화면 전환 대기
             return True, "'관리고객 추천 제품 설정' 화면 이동 성공."
         except TimeoutException:
             error_msg = "실패: 좌표 클릭 후 '관리고객 추천 제품 설정' 타이틀을 찾을 수 없습니다."
