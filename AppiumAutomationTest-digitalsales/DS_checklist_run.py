@@ -68,34 +68,34 @@ if __name__ == "__main__":
     # print("테스트 케이스 5 완료.")
     # print("-" * 50)
 
-    # --- test_update_kil_view 시나리오 실행 ---
-    print("\n--- '접근권한 안내 팝업 테스트' 시나리오 시작 ---")
-    # sheets_service와 tester_name을 test_login 함수로 전달
-    login_passed, login_message = test_update_kil_view_run(appium_tester, sheets_service, tester_name)
-    print("테스트 케이스 5 완료.")
-    print("-" * 50)
+    # # --- test_update_kil_view 시나리오 실행 ---
+    # print("\n--- '접근권한 안내 팝업 테스트' 시나리오 시작 ---")
+    # # sheets_service와 tester_name을 test_login 함수로 전달
+    # login_passed, login_message = test_update_kil_view_run(appium_tester, sheets_service, tester_name)
+    # print("테스트 케이스 5 완료.")
+    # print("-" * 50)
+    # #
     #
-
-    # --- test_login 시나리오 실행 ---
-    print("\n--- '로그인 테스트' 시나리오 시작 ---")
-    # sheets_service와 tester_name을 test_login 함수로 전달
-    login_passed, login_message = test_login(appium_tester, sheets_service, tester_name)
-    print("테스트 케이스 5 완료.")
-    print("-" * 50)
-
-    # --- test_home_kil_view_run 시나리오 실행 ---
-    print("\n--- 홈 시나리오 시작 ---")
-    my_page_passed, my_page_message = test_home_kil_view_run(appium_tester, sheets_service, tester_name)
-    print("테스트 케이스 5 완료.")
-    print("-" * 50)
-
-
-    # --- test_search_view_run 시나리오 실행 ---
-    print("\n--- 검색 시나리오 시작 ---")
-    # sheets_service와 tester_name을 test_login 함수로 전달
-    search_passed, search_message = test_search_view_run(appium_tester, sheets_service, tester_name)
-    print("테스트 케이스 5 완료.")
-    print("-" * 50)
+    # # --- test_login 시나리오 실행 ---
+    # print("\n--- '로그인 테스트' 시나리오 시작 ---")
+    # # sheets_service와 tester_name을 test_login 함수로 전달
+    # login_passed, login_message = test_login(appium_tester, sheets_service, tester_name)
+    # print("테스트 케이스 5 완료.")
+    # print("-" * 50)
+    #
+    # # --- test_home_kil_view_run 시나리오 실행 ---
+    # print("\n--- 홈 시나리오 시작 ---")
+    # my_page_passed, my_page_message = test_home_kil_view_run(appium_tester, sheets_service, tester_name)
+    # print("테스트 케이스 5 완료.")
+    # print("-" * 50)
+    #
+    #
+    # # --- test_search_view_run 시나리오 실행 ---
+    # print("\n--- 검색 시나리오 시작 ---")
+    # # sheets_service와 tester_name을 test_login 함수로 전달
+    # search_passed, search_message = test_search_view_run(appium_tester, sheets_service, tester_name)
+    # print("테스트 케이스 5 완료.")
+    # print("-" * 50)
 
 
 

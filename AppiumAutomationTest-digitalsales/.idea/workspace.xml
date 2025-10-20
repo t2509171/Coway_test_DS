@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5f75c860-a388-4fb7-9107-ac045f0dcfe1" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/PythonProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PythonProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DS_checklist_run.py" beforeDir="false" afterPath="$PROJECT_DIR$/DS_checklist_run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My_Page_kil/test_BC_greeting_edit.py" beforeDir="false" afterPath="$PROJECT_DIR$/My_Page_kil/test_BC_greeting_edit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test_Run/test_shared_content_kil_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test_Run/test_shared_content_kil_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Update_kil/test_app_permissions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Update_kil/test_app_permissions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Xpath/xpath_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/Xpath/xpath_repository.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;t2509171&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/t2509171/Coway_test_DS.git&quot;,
+    &quot;accountId&quot;: &quot;ec18f6c4-9465-48f7-a0e1-6fd27f108877&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="34BW5MXrBSm1PO6VHhO2LkeWZqj" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "ios",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/Coway_test/Coway_test/AppiumAutomationTest-digitalsales",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "to.speed.mode.migration.done": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Coway_test\Coway_test\AppiumAutomationTest-digitalsales" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-ce6832f46686-7b97d883f26b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.25557.178" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="5f75c860-a388-4fb7-9107-ac045f0dcfe1" name="변경" comment="" />
+      <created>1760687265064</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1760687265064</updated>
+    </task>
+    <servers />
+  </component>
+</project>

@@ -20,6 +20,9 @@ def test_shared_content_kil_view_run(flow_tester, sheets_service, tester_name):
     print("=========================================\n")
 
     overall_results = {}
+
+
+
     overall_test_passed = True  # Initialize for the overall test result
     overall_test_message = "모든 홈 확인 테스트 시나리오가 성공적으로 완료되었습니다."  # Initialize success message
 
