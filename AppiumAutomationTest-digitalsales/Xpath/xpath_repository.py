@@ -283,6 +283,19 @@ class SharedContentKilLocators(BaseLocators):
         kakaotalk_xpath = '//android.widget.TextView[@text="카카오톡"]'
 
     class IOS(BaseLocators.IOS):
+        menu_button_xpath = '//android.view.View[@content-desc="전체메뉴"]'
+        ecatalog_item_xpath = '//android.view.View[@content-desc="e카탈로그"]'
+        home_item_xpath = '//android.view.View[@content-desc="홈"]'
+        library_text_xpath = '//android.widget.TextView[@text="라이브러리"]'
+        share_button_xpath = '//android.widget.Button[@text="공유하기"]'
+        facebook_xpath = '//android.widget.TextView[@text="페이스북"]'
+        legal_notice_xpath = '//android.widget.TextView[@resource-id="com.coway.catalog.seller.stg:id/tv_title"]'
+        agree_button_xpath = '//android.widget.Button[@resource-id="com.coway.catalog.seller.stg:id/btn_agree"]'
+        delete_button_xpath = '//android.widget.Button[@text="삭제"]'
+        download_button_xpath = '//android.widget.Button[@text="다운로드"]'
+        confirm_button_xpath = '//android.widget.Button[@resource-id="android:id/button1"]'
+        manual_item_xpath = '//android.view.View[@content-desc="제품 사용설명서"]'
+        kakaotalk_xpath = '//android.widget.TextView[@text="카카오톡"]'
         pass
 
 

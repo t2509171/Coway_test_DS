@@ -6,15 +6,25 @@
   <component name="ChangeListManager">
     <list default="true" id="5f75c860-a388-4fb7-9107-ac045f0dcfe1" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/My_Page_kil/test_BC_greeting_edit.py" beforeDir="false" afterPath="$PROJECT_DIR$/My_Page_kil/test_BC_greeting_edit.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/My_Page_kil/test_BC_image_download.py" beforeDir="false" afterPath="$PROJECT_DIR$/My_Page_kil/test_BC_image_download.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/My_Page_kil/test_BC_navigation.py" beforeDir="false" afterPath="$PROJECT_DIR$/My_Page_kil/test_BC_navigation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/My_Page_kil/test_BC_text_copy.py" beforeDir="false" afterPath="$PROJECT_DIR$/My_Page_kil/test_BC_text_copy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/My_Page_kil/test_BC_user_info_visibility.py" beforeDir="false" afterPath="$PROJECT_DIR$/My_Page_kil/test_BC_user_info_visibility.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/My_Page_kil/test_cody_matching_visibility.py" beforeDir="false" afterPath="$PROJECT_DIR$/My_Page_kil/test_cody_matching_visibility.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/My_Page_kil/test_commission_visibility.py" beforeDir="false" afterPath="$PROJECT_DIR$/My_Page_kil/test_commission_visibility.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/My_Page_kil/test_mypage_navigation.py" beforeDir="false" afterPath="$PROJECT_DIR$/My_Page_kil/test_mypage_navigation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Search/test_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/Search/test_search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_View_kil/test_ai_cody_assistant.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_View_kil/test_ai_cody_assistant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_View_kil/test_cody_secretary_input.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_View_kil/test_cody_secretary_input.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_View_kil/test_greeting_message.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_View_kil/test_greeting_message.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_View_kil/test_home_button_visibility.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_View_kil/test_home_button_visibility.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_View_kil/test_large_font_mode.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_View_kil/test_large_font_mode.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_View_kil/test_recommended_questions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_View_kil/test_recommended_questions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_View_kil/test_webview_navigation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_View_kil/test_webview_navigation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Life_Story/test_LS_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/Life_Story/test_LS_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Managed_Customers_kil/test_customer_list_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/Managed_Customers_kil/test_customer_list_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Managed_Customers_kil/test_customized_sharing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Managed_Customers_kil/test_customized_sharing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Managed_Customers_kil/test_recommended_product_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Managed_Customers_kil/test_recommended_product_settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mobile_Order/test_mobile_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mobile_Order/test_mobile_order.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Promotion/test_customer_promotion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Promotion/test_customer_promotion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Promotion/test_salesperson_promotion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Promotion/test_salesperson_promotion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Self_pv/test_self_pv.py" beforeDir="false" afterPath="$PROJECT_DIR$/Self_pv/test_self_pv.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared_Content_kil/test_catalog_actions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shared_Content_kil/test_catalog_actions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared_Content_kil/test_manual_actions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shared_Content_kil/test_manual_actions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared_Content_kil/test_menu_navigation_verification.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shared_Content_kil/test_menu_navigation_verification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Xpath/xpath_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/Xpath/xpath_repository.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
