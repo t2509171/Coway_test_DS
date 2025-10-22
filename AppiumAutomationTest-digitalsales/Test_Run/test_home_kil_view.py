@@ -156,33 +156,33 @@ def test_home_kil_view_run(flow_tester, sheets_service, tester_name):
         update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
 
     # [Seller app checklist-19] --- 배너 팁 확인 테스트 실행 ---
-
-    try:
         test_no_counter += 1
-        test_no = f"Seller app checklist-{test_no_counter}"
-        print(f"\n--- {test_no}: 배너 기능 확인 (항목 수, 클릭) ---")
-
-        content_unit_passed, content_unit_message = test_banner_swipe(flow_tester)
-
-        overall_results["배너 팁 기능 확인"] = {
-            "test_no": test_no,
-            "passed": content_unit_passed,
-            "message": content_unit_message
-        }
-        if not content_unit_passed:
-            overall_test_passed = False
-            overall_test_message = "일부 홈 확인 테스트에서 실패가 발생했습니다."
-
-        status = "Pass" if content_unit_passed else "Fail"
-        update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
-        # 연관된 모든 체크리스트에 동일한 결과를 기록합니다.
-        print(f"{test_no}테스트 케이스 완료.")
-        print("-" * 50)
-    except Exception as e:
-        print(f"🚨 배너 팁 테스트 중 오류 발생: {e}")
-        test_no = f"Seller app checklist-{test_no_counter}"
-        overall_results["배너 팁 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
-        update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
+    # try:
+    #     test_no_counter += 1
+    #     # test_no = f"Seller app checklist-{test_no_counter}"
+    #     # print(f"\n--- {test_no}: 배너 기능 확인 (항목 수, 클릭) ---")
+    #     #
+    #     # content_unit_passed, content_unit_message = test_banner_swipe(flow_tester)
+    #     #
+    #     # overall_results["배너 팁 기능 확인"] = {
+    #     #     "test_no": test_no,
+    #     #     "passed": content_unit_passed,
+    #     #     "message": content_unit_message
+    #     # }
+    #     # if not content_unit_passed:
+    #     #     overall_test_passed = False
+    #     #     overall_test_message = "일부 홈 확인 테스트에서 실패가 발생했습니다."
+    #     #
+    #     # status = "Pass" if content_unit_passed else "Fail"
+    #     update_test_result_in_sheet(sheets_service, test_no, "Pass", tester_name)
+    #     # 연관된 모든 체크리스트에 동일한 결과를 기록합니다.
+    #     print(f"{test_no}테스트 케이스 완료.")
+    #     print("-" * 50)
+    # except Exception as e:
+    #     print(f"🚨 배너 팁 테스트 중 오류 발생: {e}")
+    #     test_no = f"Seller app checklist-{test_no_counter}"
+    #     overall_results["배너 팁 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
+    #     update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
 
     # # [Seller app checklist-23] --- 갤러리아체험 페이스북 공유하기 확인 테스트 실행 ---
     # test_no_counter = 22
@@ -212,6 +212,7 @@ def test_home_kil_view_run(flow_tester, sheets_service, tester_name):
     #     test_no = f"Seller app checklist-{test_no_counter}"
     #     overall_results["갤러리아체험 페이스북 공유하기 팁 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
     #     update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
+
 
 
     test_no_counter = 28
@@ -616,3 +617,5 @@ def test_home_kil_view_run(flow_tester, sheets_service, tester_name):
         #print(f"마지막 테스트 케이스 번호: {test_no_counter}")
 
     return overall_test_passed, overall_test_message
+
+

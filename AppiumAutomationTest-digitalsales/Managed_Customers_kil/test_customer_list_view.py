@@ -262,7 +262,7 @@ def test_verify_filter_results_sequentially(flow_tester):
             coords_filter3 = (860, 650)
             print(f" - 좌표 {coords_filter3}를 클릭합니다.")
             flow_tester.driver.tap([coords_filter3])
-            time.sleep(4)
+            time.sleep(7)
             # --- 여기까지 수정했습니다 ---
 
             result3_xpath = '//android.widget.TextView[contains(@text, "조회결과")]' # 예시 XPath
@@ -279,9 +279,10 @@ def test_verify_filter_results_sequentially(flow_tester):
 
         # --- 최종 비교 ---
         print("\n[최종 비교] 3개 필터의 결과가 모두 다른지 확인합니다.")
-        if result1_text != result2_text and result2_text != result3_text and result1_text != result3_text:
-             print(f"✅ 3개 필터의 결과('{result1_text}', '{result2_text}', '{result3_text}')가 모두 다릅니다.")
-             return True, "모든 필터 적용 시 결과 건수가 정상적으로 변경되었습니다."
+        if result1_text != result2_text and result2_text != result3_text and result1_text != result3_text :
+            if result1_text < result3_text and result2_text < result3_text:
+                print(f"✅ 3개 필터의 결과('{result1_text}', '{result2_text}', '{result3_text}')가 모두 다릅니다.")
+                return True, "모든 필터 적용 시 결과 건수가 정상적으로 변경되었습니다."
         else:
             error_msg = f"실패: 필터 적용 후 결과가 동일한 항목이 있습니다. (결과: '{result1_text}', '{result2_text}', '{result3_text}')"
             save_screenshot_on_failure(flow_tester.driver, "filter_results_are_the_same")

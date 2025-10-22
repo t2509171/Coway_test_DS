@@ -29,7 +29,7 @@ def test_fullMenu_run(flow_tester, sheets_service, tester_name):
     overall_test_message = "모든 전체메뉴 클릭 테스트 시나리오가 성공적으로 완료되었습니다."  # Initialize success message
 
     # 테스트 체크리스트 번호 동적 생성을 위한 카운터 변수 추가 (시작에서 -1을 한다)
-    test_no_counter = 112
+    test_no_counter = 109
 
     try:
 

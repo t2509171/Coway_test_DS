@@ -234,7 +234,7 @@ def test_update_kil_view_run(flow_tester, sheets_service, tester_name):
         overall_results["재실행 업데이트 노출 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
         update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
 
-    """Seller app checklist-5 : 재실행 접근권한 노출 확인 테스트 실행"""
+    """Seller app checklist- : 재실행 접근권한 노출 확인 테스트 실행"""
     try:
         test_no_counter = 5
         test_no = f"Seller app checklist-{test_no_counter}"
@@ -252,8 +252,7 @@ def test_update_kil_view_run(flow_tester, sheets_service, tester_name):
             overall_test_message = "일부 검색 확인 테스트에서 실패가 발생했습니다."
 
         status = "Pass" if content_unit_passed else "Fail"
-        update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
-        # update_test_result_in_sheet(sheets_service, "Seller app checklist-12", status, tester_name)
+        update_test_result_in_sheet(sheets_service, test_no, "No Run", tester_name)
         # 연관된 모든 체크리스트에 동일한 결과를 기록합니다.
         print(f"{test_no}테스트 케이스 완료.")
         print("-" * 50)

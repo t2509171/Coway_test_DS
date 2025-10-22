@@ -28,8 +28,7 @@ def test_login(flow_tester, sheets_service, tester_name):
     overall_test_passed = True  # Initialize for the overall test result
     overall_test_message = "모든 로그인 테스트 시나리오가 성공적으로 완료되었습니다."  # Initialize success message
 
-    test_etc_setting_view(flow_tester)
-    test_etc_setting_set_notifications(flow_tester)
+
     test_etc_setting_sign_out(flow_tester)
 
     # 테스트 체크리스트 번호 동적 생성을 위한 카운터 변수 추가 (시작에서 -1을 한다)
@@ -42,11 +41,10 @@ def test_login(flow_tester, sheets_service, tester_name):
     print("setup_driver()를 호출하여 새로운 드라이버 세션을 시작하고 앱을 실행합니다.")
     flow_tester.setup_driver()
     print("✅ 앱이 성공적으로 재실행되었습니다.")
-
     print("앱 안정화를 위해 8초간 대기합니다...")
     time.sleep(3)
     try:
-        # --- Seller app checklist- 12 자동 로그인 확인 테스트 실행 --- 5번 케이스 앱 재실행 테스트와 결과 같게 처리
+        # --- Seller app checklist-  자동 로그인 확인 테스트 실행 --- 5번 케이스 앱 재실행 테스트와 결과 같게 처리
         try:
             test_no_counter =12
             test_no = f"Seller app checklist-{test_no_counter}"

@@ -24,7 +24,7 @@ def test_self_pv_view(flow_tester, sheets_service, tester_name):
     overall_test_message = "모든 셀프홍보영상 확인 테스트 시나리오가 성공적으로 완료되었습니다."  # Initialize success message
 
     # 테스트 체크리스트 번호 동적 생성을 위한 카운터 변수 추가 (시작에서 -1을 한다)
-    test_no_counter = 104
+    test_no_counter = 102
 
     try:
         # --- 셀프홍보영상 항목 노출 확인 테스트 실행 ---
@@ -96,12 +96,12 @@ def test_self_pv_view(flow_tester, sheets_service, tester_name):
             overall_test_passed = False
             overall_test_message = f"마이페이지 버튼 노출 확인 실패: {e}"
 
+        """ 케이스 제외
         # --- 셀프홍보영상 페이지 구성 확인 테스트 실행 ---
         try:
             test_no_counter += 1
             test_no = f"Seller app checklist-{test_no_counter}"
             print(f"\n--- {test_no}:  셀프홍보영상 페이지 구성 확인 ---")
-            """
             my_page_view_passed, my_page_view_message = test_etc_self_promotional_video_detail_view(flow_tester)
             overall_results["게시글은 상단 노출 적용 컨텐츠부터 등록일 순으로 노출되며 그 뒤로 상단 노출 비적용 컨텐츠가 등록일 순으로 노출된다. (B/O 확인 필요)"] = {
                 "test_no": test_no,  # 동적 번호 할당
@@ -113,14 +113,14 @@ def test_self_pv_view(flow_tester, sheets_service, tester_name):
                 overall_test_message = "일부 전체메뉴 클릭 테스트 시나리오에서 실패가 발생했습니다. 상세 로그를 확인하세요."
             # 스프레드시트에 테스트 결과 기록
             status = "Pass" if my_page_view_passed else "Fail"
-            """
+            
             update_test_result_in_sheet(sheets_service, test_no, "No Run", tester_name)
             print(f"{test_no} 테스트 케이스 완료.")
             print("-" * 50)  # Separator
         except Exception as e:
             overall_test_passed = False
             overall_test_message = f"셀프홍보영상 페이지 구성 실패: {e}"
-
+        """
         # --- 셀프홍보영상 게시글 상세 페이지 이동 확인 테스트 실행 ---
         try:
             test_no_counter += 1

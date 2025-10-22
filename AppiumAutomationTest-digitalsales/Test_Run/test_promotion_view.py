@@ -79,28 +79,28 @@ def test_promotion_view(flow_tester, sheets_service, tester_name):
                 overall_test_passed = False
                 overall_test_message = f"고객 프로모션 목록 화면 이동 확인 실패: {e}"
 
-            # --- 고객 프로모션 게시글 노출 확인 테스트 실행 ---
-            try:
-                test_no_counter += 1
-                test_no = f"Seller app checklist-{test_no_counter}"
-                print(f"\n--- {test_no}:  고객 프로모션 게시글 노출 확인 ---")
-                my_page_view_passed, my_page_view_message = test_customer_promotion_bulletin_view(flow_tester)
-                overall_results["수정 시간 순서로 고객 프로모션 게시물이 노출된다."] = {
-                    "test_no": test_no,  # 동적 번호 할당
-                    "passed": my_page_view_passed,
-                    "message": my_page_view_message
-                }
-                if not my_page_view_passed:
-                    overall_test_passed = False  # Mark overall test as failed
-                    overall_test_message = "일부 전체메뉴 클릭 테스트 시나리오에서 실패가 발생했습니다. 상세 로그를 확인하세요."
-                # 스프레드시트에 테스트 결과 기록
-                status = "Pass" if my_page_view_passed else "Fail"
-                update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
-                print(f"{test_no} 테스트 케이스 완료.")
-                print("-" * 50)  # Separator
-            except Exception as e:
-                overall_test_passed = False
-                overall_test_message = f"고객 프로모션 게시글 노출 확인 실패: {e}"
+            # # --- 고객 프로모션 게시글 노출 확인 테스트 실행 --- 케이스 제외로 인한 주석 처리
+            # try:
+            #     test_no_counter += 1
+            #     test_no = f"Seller app checklist-{test_no_counter}"
+            #     print(f"\n--- {test_no}:  고객 프로모션 게시글 노출 확인 ---")
+            #     my_page_view_passed, my_page_view_message = test_customer_promotion_bulletin_view(flow_tester)
+            #     overall_results["수정 시간 순서로 고객 프로모션 게시물이 노출된다."] = {
+            #         "test_no": test_no,  # 동적 번호 할당
+            #         "passed": my_page_view_passed,
+            #         "message": my_page_view_message
+            #     }
+            #     if not my_page_view_passed:
+            #         overall_test_passed = False  # Mark overall test as failed
+            #         overall_test_message = "일부 전체메뉴 클릭 테스트 시나리오에서 실패가 발생했습니다. 상세 로그를 확인하세요."
+            #     # 스프레드시트에 테스트 결과 기록
+            #     status = "Pass" if my_page_view_passed else "Fail"
+            #     update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
+            #     print(f"{test_no} 테스트 케이스 완료.")
+            #     print("-" * 50)  # Separator
+            # except Exception as e:
+            #     overall_test_passed = False
+            #     overall_test_message = f"고객 프로모션 게시글 노출 확인 실패: {e}"
 
             # --- 고객 프로모션 상세 게시글 클릭 테스트 실행 ---
             try:
@@ -222,28 +222,28 @@ def test_promotion_view(flow_tester, sheets_service, tester_name):
                 overall_test_passed = False
                 overall_test_message = f"판매인 프로모션 목록 화면 이동 확인 실패: {e}"
 
-            # --- 판매인 프로모션 게시글 노출 확인 테스트 실행 ---
-            try:
-                test_no_counter += 1
-                test_no = f"Seller app checklist-{test_no_counter}"
-                print(f"\n--- {test_no}:  판매인 프로모션 게시글 노출 확인 ---")
-                my_page_view_passed, my_page_view_message = test_salesperson_promotion_bulletin_view(flow_tester)
-                overall_results["수정 시간 순서로 판매인 프로모션 게시물이 노출된다."] = {
-                    "test_no": test_no,  # 동적 번호 할당
-                    "passed": my_page_view_passed,
-                    "message": my_page_view_message
-                }
-                if not my_page_view_passed:
-                    overall_test_passed = False  # Mark overall test as failed
-                    overall_test_message = "일부 전체메뉴 클릭 테스트 시나리오에서 실패가 발생했습니다. 상세 로그를 확인하세요."
-                # 스프레드시트에 테스트 결과 기록
-                status = "Pass" if my_page_view_passed else "Fail"
-                update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
-                print(f"{test_no} 테스트 케이스 완료.")
-                print("-" * 50)  # Separator
-            except Exception as e:
-                overall_test_passed = False
-                overall_test_message = f"판매인 프로모션 게시글 노출 확인 실패: {e}"
+            # --- 판매인 프로모션 게시글 노출 확인 테스트 실행 --- 케이스 제외로 인한 주석 처리
+            # try:
+            #     test_no_counter += 1
+            #     test_no = f"Seller app checklist-{test_no_counter}"
+            #     print(f"\n--- {test_no}:  판매인 프로모션 게시글 노출 확인 ---")
+            #     my_page_view_passed, my_page_view_message = test_salesperson_promotion_bulletin_view(flow_tester)
+            #     overall_results["수정 시간 순서로 판매인 프로모션 게시물이 노출된다."] = {
+            #         "test_no": test_no,  # 동적 번호 할당
+            #         "passed": my_page_view_passed,
+            #         "message": my_page_view_message
+            #     }
+            #     if not my_page_view_passed:
+            #         overall_test_passed = False  # Mark overall test as failed
+            #         overall_test_message = "일부 전체메뉴 클릭 테스트 시나리오에서 실패가 발생했습니다. 상세 로그를 확인하세요."
+            #     # 스프레드시트에 테스트 결과 기록
+            #     status = "Pass" if my_page_view_passed else "Fail"
+            #     update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
+            #     print(f"{test_no} 테스트 케이스 완료.")
+            #     print("-" * 50)  # Separator
+            # except Exception as e:
+            #     overall_test_passed = False
+            #     overall_test_message = f"판매인 프로모션 게시글 노출 확인 실패: {e}"
 
             # --- 판매인 프로모션 상세 게시글 클릭 테스트 실행 ---
             try:

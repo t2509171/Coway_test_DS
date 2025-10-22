@@ -32,37 +32,38 @@ def test_home_view_kil_view_run(flow_tester, sheets_service, tester_name):
     overall_test_message = "모든 검색 확인 테스트 시나리오가 성공적으로 완료되었습니다."  # Initialize success message
 
 
-    test_no_counter = 136
+    test_no_counter = 132
 
-    # """Seller app checklist-136 : AI 코디 비서 진입 확인 테스트 실행"""
-    # try:
-    #     test_no_counter += 1
-    #     test_no = f"Seller app checklist-{test_no_counter}"
-    #     print(f"\n--- {test_no}: AI 코디 비서 진입 확인---")
-    #
-    #     content_unit_passed, content_unit_message = test_ai_cody_assistant_slide_and_visibility(flow_tester)
-    #
-    #     overall_results["AI 코디 비서 진입 확인"] = {
-    #         "test_no": test_no,
-    #         "passed": content_unit_passed,
-    #         "message": content_unit_message
-    #     }
-    #     if not content_unit_passed:
-    #         overall_test_passed = False
-    #         overall_test_message = "일부 검색 확인 테스트에서 실패가 발생했습니다."
-    #
-    #     status = "Pass" if content_unit_passed else "Fail"
-    #     update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
-    #     # 연관된 모든 체크리스트에 동일한 결과를 기록합니다.
-    #     print(f"{test_no}테스트 케이스 완료.")
-    #     print("-" * 50)
-    # except Exception as e:
-    #     print(f"🚨 AI 코디 비서 진입 확인 테스트 중 오류 발생: {e}")
-    #     test_no = f"Seller app checklist-{test_no_counter}"
-    #     overall_results["AI 코디 비서 진입 확인 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
-    #     update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
 
-    """Seller app checklist-137 : 전체메뉴 AI 코디 비서 노출 확인 테스트 실행"""
+    """Seller app checklist- : AI 코디 비서 진입 확인 테스트 실행"""
+    try:
+        test_no_counter += 1
+        test_no = f"Seller app checklist-{test_no_counter}"
+        print(f"\n--- {test_no}: AI 코디 비서 진입 확인---")
+
+        content_unit_passed, content_unit_message = test_ai_cody_assistant_slide_and_visibility(flow_tester)
+
+        overall_results["AI 코디 비서 진입 확인"] = {
+            "test_no": test_no,
+            "passed": content_unit_passed,
+            "message": content_unit_message
+        }
+        if not content_unit_passed:
+            overall_test_passed = False
+            overall_test_message = "일부 검색 확인 테스트에서 실패가 발생했습니다."
+
+        status = "Pass" if content_unit_passed else "Fail"
+        update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
+        # 연관된 모든 체크리스트에 동일한 결과를 기록합니다.
+        print(f"{test_no}테스트 케이스 완료.")
+        print("-" * 50)
+    except Exception as e:
+        print(f"🚨 AI 코디 비서 진입 확인 테스트 중 오류 발생: {e}")
+        test_no = f"Seller app checklist-{test_no_counter}"
+        overall_results["AI 코디 비서 진입 확인 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
+        update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
+
+    """Seller app checklist- : 전체메뉴 AI 코디 비서 노출 확인 테스트 실행"""
     try:
         test_no_counter += 1
         test_no = f"Seller app checklist-{test_no_counter}"
@@ -90,7 +91,7 @@ def test_home_view_kil_view_run(flow_tester, sheets_service, tester_name):
         overall_results["전체메뉴 AI 코디 비서 노출 확인 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
         update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
 
-    """Seller app checklist-138 : 홈화면 AI 코디 비서 노출 확인 테스트 실행"""
+    """Seller app checklist- : 홈화면 AI 코디 비서 노출 확인 테스트 실행"""
     try:
         test_no_counter += 1
         test_no = f"Seller app checklist-{test_no_counter}"
@@ -119,38 +120,36 @@ def test_home_view_kil_view_run(flow_tester, sheets_service, tester_name):
         update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
 
 
-    test_no_counter = 135
+    # """Seller app checklist- : AI 코디 비서 노출 확인 테스트 실행"""
+    # try:
+    #     test_no_counter += 1
+    #     test_no = f"Seller app checklist-{test_no_counter}"
+    #     print(f"\n--- {test_no}: AI 코디 비서 노출 확인---")
+    #
+    #     content_unit_passed, content_unit_message = test_navigate_to_webview_from_home(flow_tester)
+    #
+    #     overall_results["AI 코디 비서 노출 확인"] = {
+    #         "test_no": test_no,
+    #         "passed": content_unit_passed,
+    #         "message": content_unit_message
+    #     }
+    #     if not content_unit_passed:
+    #         overall_test_passed = False
+    #         overall_test_message = "일부 검색 확인 테스트에서 실패가 발생했습니다."
+    #
+    #     status = "Pass" if content_unit_passed else "Fail"
+    #     update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
+    #     # 연관된 모든 체크리스트에 동일한 결과를 기록합니다.
+    #     print(f"{test_no}테스트 케이스 완료.")
+    #     print("-" * 50)
+    # except Exception as e:
+    #     print(f"🚨 AI 코디 비서 노출 확인 테스트 중 오류 발생: {e}")
+    #     test_no = f"Seller app checklist-{test_no_counter}"
+    #     overall_results["AI 코디 비서 노출 확인 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
+    #     update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
 
-    """Seller app checklist-136 : AI 코디 비서 노출 확인 테스트 실행"""
-    try:
-        test_no_counter += 1
-        test_no = f"Seller app checklist-{test_no_counter}"
-        print(f"\n--- {test_no}: AI 코디 비서 노출 확인---")
-
-        content_unit_passed, content_unit_message = test_navigate_to_webview_from_home(flow_tester)
-
-        overall_results["AI 코디 비서 노출 확인"] = {
-            "test_no": test_no,
-            "passed": content_unit_passed,
-            "message": content_unit_message
-        }
-        if not content_unit_passed:
-            overall_test_passed = False
-            overall_test_message = "일부 검색 확인 테스트에서 실패가 발생했습니다."
-
-        status = "Pass" if content_unit_passed else "Fail"
-        update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
-        # 연관된 모든 체크리스트에 동일한 결과를 기록합니다.
-        print(f"{test_no}테스트 케이스 완료.")
-        print("-" * 50)
-    except Exception as e:
-        print(f"🚨 AI 코디 비서 노출 확인 테스트 중 오류 발생: {e}")
-        test_no = f"Seller app checklist-{test_no_counter}"
-        overall_results["AI 코디 비서 노출 확인 기능 확인"] = {"test_no": test_no, "passed": False, "message": str(e)}
-        update_test_result_in_sheet(sheets_service, test_no, "Fail", tester_name)
-
-    test_no_counter = 140
-    """Seller app checklist-141 : AI 코디 비서 키패드 확인 테스트 실행"""
+    test_no_counter = 137
+    """Seller app checklist- : AI 코디 비서 키패드 확인 테스트 실행"""
     try:
         test_no_counter += 1
         test_no = f"Seller app checklist-{test_no_counter}"
@@ -182,8 +181,8 @@ def test_home_view_kil_view_run(flow_tester, sheets_service, tester_name):
 
 
 
-    test_no_counter = 138
-    """Seller app checklist-139 : AI 코디 비서 큰글씨 모드 확인 테스트 실행"""
+    test_no_counter = 135
+    """Seller app checklist- : AI 코디 비서 큰글씨 모드 확인 테스트 실행"""
     try:
         test_no_counter += 1
         test_no = f"Seller app checklist-{test_no_counter}"

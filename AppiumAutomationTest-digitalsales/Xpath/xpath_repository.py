@@ -56,70 +56,11 @@ class LoginLocators(BaseLocators):
     class IOS(BaseLocators.IOS):
         pass
 
-
-class HomeLocators(BaseLocators):
-    """Home 폴더 테스트용 로케이터"""
-
-    class AOS(BaseLocators.AOS):
-        all_menu_button_xpath = '//android.view.View[@content-desc="전체메뉴"]'
-        notice_button_xpath = '//android.view.View[@content-desc="공지사항"]'
-        notice_title_xpath = '//android.widget.TextView[@text="공지사항"]'
-        notice_view_xpath = '//android.widget.ListView'
-        self_promotional_video_button_xpath = '//android.view.View[@content-desc="셀프 홍보영상"]'
-        self_promotional_video_title_xpath = '//android.widget.TextView[@text="셀프 홍보영상"]'
-        setting_button_xpath = '//android.view.View[@content-desc="설정"]'
-        setting_title_xpath = '//android.widget.TextView[@text="설정"]'
-        notification_button_xpath = '//android.view.View[@resource-id="root"]/android.view.View[2]'
-        notification_button_view_xpath = '//android.view.View[@resource-id="root"]/android.view.View[2]'
-        logout_button_xpath = '//android.widget.Button[@text="로그아웃"]'
-        logout_popup_xpath = '//android.widget.Button[@resource-id="android:id/button1"]'
-        login_id_field_xpath = '//android.widget.TextView[@text="디지털 세일즈"]'
-        home_main_element_xpath = '//android.view.View[@content-desc="홈"]'
-        mypage_button_xpath = '//android.view.View[@content-desc="마이페이지"]'
-        mypage_title_xpath = '(//android.widget.TextView[@text="마이페이지"])[1]'
-        recent_main_product_menu_xpath = '//android.view.View[@content-desc="최근 본 제품"]'
-        recent_main_product_title_xpath = '//android.view.View[@resource-id="root"]/android.view.View[1]'
-        water_purifier_menu_xpath = '//android.view.View[@content-desc="정수기"]'
-        water_purifier_title_xpath = '//android.widget.Button[@text="정수기"]'
-        cleaner_menu_xpath = '//android.view.View[@content-desc="청정기"]'
-        cleaner_title_xpath = '//android.widget.Button[@text="청정기"]'
-        bide_salter_menu_xpath = '//android.view.View[@content-desc="룰루비데/연수기"]'
-        bide_salter_title_xpath = '//android.widget.Button[@text="룰루비데/연수기"]'
-        berex_bed_menu_xpath = '//android.widget.TextView[@text="BEREX 침대"]'
-        berex_bed_title_xpath = '//android.widget.Button[@text="BEREX 침대"]'
-        berex_massage_chair_menu_xpath = '//android.widget.TextView[@text="BEREX 안마의자"]'
-        berex_massage_chair_title_xpath = '//android.widget.Button[@text="BEREX 안마의자"]'
-        kitchen_home_appliances_menu_xpath = '//android.view.View[@content-desc="주방/생활가전"]'
-        kitchen_home_appliances_title_xpath = '//android.widget.Button[@text="주방/생활가전"]'
-        refurbished_exhibition_menu_xpath = '//android.view.View[@content-desc="리퍼브 기획전"]'
-        refurbished_exhibition_title_xpath = '//android.widget.Button[@text="리퍼브 기획전"]'
-        customer_promotion_button_xpath = '//android.view.View[@content-desc="고객 프로모션"]'
-        promotion_title_xpath = '//android.widget.TextView[@text="프로모션"]'
-        promotion_tab_xpath = '//android.widget.ListView'
-        promotion_view_xpath = '//android.view.View[@resource-id="root"]/android.view.View[2]'
-        salesperson_promotion_button_xpath = '//android.view.View[@content-desc="판매인 프로모션"]'
-        lifestory_button_xpath = '//android.view.View[@content-desc="라이프스토리"]'
-        lifestory_title_xpath = '//android.widget.TextView[@text="라이프스토리"]'
-        lifestory_tab_xpath = '//android.widget.ListView'
-        lifestory_view_xpath = '//android.view.View[@resource-id="root"]/android.view.View[3]'
-        ecatalog_button_xpath = '//android.view.View[@content-desc="e카탈로그"]'
-        ecatalog_title_xpath = '//android.widget.TextView[@text="라이브러리"]'
-        ecatalog_tab_xpath = '//android.view.View[@resource-id="root"]/android.widget.ListView'
-        ecatalog_view_xpath = '//android.view.View[@resource-id="root"]/android.view.View[3]/android.widget.ListView'
-        productguide_button_xpath = '//android.view.View[@content-desc="제품 사용설명서"]'
-        productguide_title_xpath = '//android.widget.TextView[@text="라이브러리"]'
-        productguide_tab_xpath = '//android.view.View[@resource-id="root"]/android.widget.ListView'
-        productguide_view_xpath = '//android.view.View[@resource-id="root"]/android.view.View[3]/android.widget.ListView'
-
-    class IOS(BaseLocators.IOS):
-        pass
-
-
 class HomeKilLocators(BaseLocators):
     """Home_kil 폴더 테스트용 로케이터"""
 
     class AOS(BaseLocators.AOS):
-        banner_xpath = '//android.view.View[@resource-id="root"]/android.view.View[2]/android.view.View/android.view.View/android.view.View[4]/android.view.View'
+        banner_xpath = '//android.widget.TextView[@text="디지털세일즈"]'
         home_container_xpath = '//android.view.View[@content-desc="홈"]'
         notice_container_xpath = '//android.view.View[@resource-id="root"]/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]'
         first_item_xpath = '(//android.view.View[@resource-id="root"]/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View)[1]'
@@ -155,30 +96,82 @@ class HomeKilLocators(BaseLocators):
     class IOS(BaseLocators.IOS):
         pass
 
-
-class HomeViewKilLocators(BaseLocators):
-    """Home_View_kil 폴더 테스트용 로케이터"""
+class SearchLocators(BaseLocators):
+    """Search 폴더 테스트용 로케이터"""
 
     class AOS(BaseLocators.AOS):
-        ai_cody_button_xpath = '//android.view.View[@resource-id="root"]/android.view.View[1]/android.view.View/android.widget.Button[3]'
-        ai_cody_title_xpath = '//android.widget.TextView[@text="AI 코디 비서"]'
-        input_field_xpath = '//android.widget.EditText[@resource-id="txtBotMessage"]'
-        send_button_xpath = '//android.widget.Button[@text="전송"]'
-        error_message_xpath = '//android.widget.TextView[@text="답변을 생성할 수 없습니다. 잠시 후 다시 시도해 주세요."]'
-        ambiguous_message_xpath = '//android.widget.TextView[@text="말씀하신 내용을 제가 정확히 파악하기 어렵네요. 혹시 다음 키워드 중 궁금하신 점이 있으신가요?"]'
-        other_keyword_button_xpath = '//android.widget.Button[@text="다른 키워드 선택"]'
-        greeting_button_xpath = '//android.widget.Button[@text="안녕하세요. 무엇을 도와드릴까요?"]'
-        sidenav_button_xpath = '//android.view.View[@resource-id="mySidenav"]/android.view.View[1]/android.widget.Button'
-        home_button_xpath = '//android.view.View[@resource-id="root"]/android.view.View[1]/android.view.View/android.widget.Button[3]'
-        description_xpath = '//android.view.View[@resource-id="root"]/android.view.View[2]/android.widget.ListView[1]'
-        large_font_button_xpath = '//android.widget.Button[@text="큰글씨"]'
-        managed_customer_button_xpath = '//android.widget.Button[@text="관리고객"]'
-        recommendation_text_xpath = '//android.view.View[@resource-id="root"]/android.view.View[2]/android.widget.ListView[2]'
-        webview_xpath = '//android.webkit.WebView[@text="Seller AI"]'
+        search_button_xpath = '//android.view.View[@resource-id="root"]/android.view.View[1]/android.view.View/android.widget.Button[1]'
+        recent_Search_Words_details_view_xpath = '//android.widget.ListView'
+        recent_product_details_view_xpath = '//android.view.View[@resource-id="root"]/android.view.View[3]'
+        popular_search_details_view_xpath = '//android.widget.ListView'
+        ls_dv_tab1_details_view_xpath = '//android.view.View[@resource-id="root"]/android.view.View[2]'
+        search_input_xpath = '//android.widget.EditText'
+        search_result_text_xpath = '//android.widget.TextView[contains(@text, "총 ")]'
 
     class IOS(BaseLocators.IOS):
         pass
 
+class MyPageKilLocators(BaseLocators):
+    """My_Page_kil 폴더 테스트용 로케이터"""
+
+    class AOS(BaseLocators.AOS):
+        greeting_label_xpath = '//android.widget.TextView[@text="인사말"]'
+        initial_greeting_text_xpath = '//android.widget.TextView[@text="항상 고객님만을 생각하겠습니다!!"]'
+        edit_button_xpath = '//android.widget.Button[@text="편집"]'
+        dialog_confirm_button_xpath = '//android.app.Dialog/android.widget.Button'
+        download_button_xpath = '//android.widget.Button[@text="명함 다운로드"]'
+        dialog_message_xpath = '//android.widget.TextView[@resource-id="android:id/message"]'
+        permission_allow_once_button_xpath = '//android.widget.Button[@resource-id="com.android.permissioncontroller:id/permission_allow_button"]'
+        permission_allow_all_button_xpath = '//android.widget.Button[@resource-id="com.android.permissioncontroller:id/permission_allow_all_button"]'
+        toast_message_xpath = '//android.widget.Toast'
+        business_card_button_xpath = '//android.widget.Button[@text="명함설정"]'
+        page_verification_xpath = '//android.widget.TextView[@text="명함 설정"]'
+        copy_button_xpath = '//android.widget.Button[@text="텍스트 명함 복사"]'
+        dynamic_username_xpath_template = '//android.widget.TextView[@text="안녕하세요\n{username} {title}입니다."]'
+        dynamic_title_xpath_template = '//android.widget.TextView[@text="{title}"]'
+        dynamic_affiliation_xpath_template = '//android.widget.TextView[contains(@text, "{affiliation}")]'
+        dynamic_contact_information_xpath_template = '//android.widget.TextView[@text="{contact_information}"]'
+        total_order_label_xpath = '//android.widget.TextView[@text="코디매칭 총주문"]'
+        success_order_label_xpath = '//android.widget.TextView[@text="코디매칭 성공"]'
+        commission_tab_xpath = '//android.view.View[@text="수수료"]'
+        commission_title_xpath = '//android.widget.TextView[@text="수수료"]'
+        production_rate_label_xpath = '//android.widget.TextView[@text="생산율"]'
+        commission_detail_label_xpath = '//android.widget.TextView[@text="수수료 상세"]'
+        menu_button_xpath = '//android.view.View[@content-desc="전체메뉴"]'
+        mypage_icon_xpath = '(//android.view.View[@content-desc="마이페이지"])[1]'
+        mypage_title_xpath = '(//android.widget.TextView[@text="마이페이지"])[1]'
+        share_button_xpath = '//android.view.View[@text="공유하기"]'
+        share_page_title_xpath = '//android.widget.TextView[@text="공유하기"]'
+        total_share_count_xpath = '//android.widget.TextView[contains(@text, "총 공유")]'
+        channel_count_xpath_template = '//android.view.View[.//android.widget.TextView[@text="{channel_name}"]]//android.widget.TextView[contains(@text, "건")]'
+        item_xpath_template = '//android.widget.TextView[@text="{item}"]'
+        total_order_xpath = '//android.widget.TextView[@text="총주문"]'
+        net_order_complete_xpath = '//android.widget.TextView[@text="순주문완료"]'
+        share_element_xpath = '//android.widget.TextView[@text="콘텐츠 공유 현황"]'
+
+    class IOS(BaseLocators.IOS):
+        pass
+
+class MobileOrderLocators(BaseLocators):
+    """Mobile_Order 폴더 테스트용 로케이터"""
+
+    class AOS(BaseLocators.AOS):
+        home_main_element_xpath = '//android.view.View[@content-desc="홈"]'
+        mobile_order_button_xpath = '//android.view.View[@content-desc="모바일 주문"]'
+        order_start_title_xpath = '//android.widget.TextView[@text="주문 시작하기"]'
+        general_order_button_xpath = '//android.widget.Button[@text="일반 주문하기"]'
+        order_receipt_title_xpath = '//android.widget.TextView[@text="주문접수"]'
+        confirm_button_xpath = '//android.widget.Button[@text="확인"]'
+        pre_contract_order_button_xpath = '//android.widget.Button[@text="사전계약 주문하기"]'
+        re_rental_pre_contract_title_xpath = '//android.widget.TextView[@text="재렌탈 사전계약"]'
+        general_order_text_xpath = '//android.widget.TextView[@text="일반주문"]'
+        general_tab_title_xpath = '//android.view.View[@text="일반"]'
+        pre_contract_text_xpath = '//android.widget.TextView[@text="사전계약 주문"]'
+        pre_contract_tab_title_xpath = '//android.view.View[@text="사전계약"]'
+        home_button_xpath = '//android.view.View[@content-desc="홈"]'
+
+    class IOS(BaseLocators.IOS):
+        pass
 
 class LifeStoryLocators(BaseLocators):
     """Life_Story 폴더 테스트용 로케이터"""
@@ -225,68 +218,7 @@ class ManagedCustomersKilLocators(BaseLocators):
         pass
 
 
-class MobileOrderLocators(BaseLocators):
-    """Mobile_Order 폴더 테스트용 로케이터"""
 
-    class AOS(BaseLocators.AOS):
-        home_main_element_xpath = '//android.view.View[@content-desc="홈"]'
-        mobile_order_button_xpath = '//android.view.View[@content-desc="모바일 주문"]'
-        order_start_title_xpath = '//android.widget.TextView[@text="주문 시작하기"]'
-        general_order_button_xpath = '//android.widget.Button[@text="일반 주문하기"]'
-        order_receipt_title_xpath = '//android.widget.TextView[@text="주문접수"]'
-        confirm_button_xpath = '//android.widget.Button[@text="확인"]'
-        pre_contract_order_button_xpath = '//android.widget.Button[@text="사전계약 주문하기"]'
-        re_rental_pre_contract_title_xpath = '//android.widget.TextView[@text="재렌탈 사전계약"]'
-        general_order_text_xpath = '//android.widget.TextView[@text="일반주문"]'
-        general_tab_title_xpath = '//android.view.View[@text="일반"]'
-        pre_contract_text_xpath = '//android.widget.TextView[@text="사전계약 주문"]'
-        pre_contract_tab_title_xpath = '//android.view.View[@text="사전계약"]'
-        home_button_xpath = '//android.view.View[@content-desc="홈"]'
-
-    class IOS(BaseLocators.IOS):
-        pass
-
-
-class MyPageKilLocators(BaseLocators):
-    """My_Page_kil 폴더 테스트용 로케이터"""
-
-    class AOS(BaseLocators.AOS):
-        greeting_label_xpath = '//android.widget.TextView[@text="인사말"]'
-        initial_greeting_text_xpath = '//android.widget.TextView[@text="항상 고객님만을 생각하겠습니다!!"]'
-        edit_button_xpath = '//android.widget.Button[@text="편집"]'
-        dialog_confirm_button_xpath = '//android.app.Dialog/android.widget.Button'
-        download_button_xpath = '//android.widget.Button[@text="명함 다운로드"]'
-        dialog_message_xpath = '//android.widget.TextView[@resource-id="android:id/message"]'
-        permission_allow_once_button_xpath = '//android.widget.Button[@resource-id="com.android.permissioncontroller:id/permission_allow_button"]'
-        permission_allow_all_button_xpath = '//android.widget.Button[@resource-id="com.android.permissioncontroller:id/permission_allow_all_button"]'
-        toast_message_xpath = '//android.widget.Toast'
-        business_card_button_xpath = '//android.widget.Button[@text="명함설정"]'
-        page_verification_xpath = '//android.widget.TextView[@text="명함 설정"]'
-        copy_button_xpath = '//android.widget.Button[@text="텍스트 명함 복사"]'
-        dynamic_username_xpath_template = '//android.widget.TextView[@text="안녕하세요\n{username} {title}입니다."]'
-        dynamic_title_xpath_template = '//android.widget.TextView[@text="{title}"]'
-        dynamic_affiliation_xpath_template = '//android.widget.TextView[contains(@text, "{affiliation}")]'
-        dynamic_contact_information_xpath_template = '//android.widget.TextView[@text="{contact_information}"]'
-        total_order_label_xpath = '//android.widget.TextView[@text="코디매칭 총주문"]'
-        success_order_label_xpath = '//android.widget.TextView[@text="코디매칭 성공"]'
-        commission_tab_xpath = '//android.view.View[@text="수수료"]'
-        commission_title_xpath = '//android.widget.TextView[@text="수수료"]'
-        production_rate_label_xpath = '//android.widget.TextView[@text="생산율"]'
-        commission_detail_label_xpath = '//android.widget.TextView[@text="수수료 상세"]'
-        menu_button_xpath = '//android.view.View[@content-desc="전체메뉴"]'
-        mypage_icon_xpath = '(//android.view.View[@content-desc="마이페이지"])[1]'
-        mypage_title_xpath = '(//android.widget.TextView[@text="마이페이지"])[1]'
-        share_button_xpath = '//android.view.View[@text="공유하기"]'
-        share_page_title_xpath = '//android.widget.TextView[@text="공유하기"]'
-        total_share_count_xpath = '//android.widget.TextView[contains(@text, "총 공유")]'
-        channel_count_xpath_template = '//android.view.View[.//android.widget.TextView[@text="{channel_name}"]]//android.widget.TextView[contains(@text, "건")]'
-        item_xpath_template = '//android.widget.TextView[@text="{item}"]'
-        total_order_xpath = '//android.widget.TextView[@text="총주문"]'
-        net_order_complete_xpath = '//android.widget.TextView[@text="순주문완료"]'
-        share_element_xpath = '//android.widget.TextView[@text="콘텐츠 공유 현황"]'
-
-    class IOS(BaseLocators.IOS):
-        pass
 
 
 class PromotionLocators(BaseLocators):
@@ -307,20 +239,7 @@ class PromotionLocators(BaseLocators):
         pass
 
 
-class SearchLocators(BaseLocators):
-    """Search 폴더 테스트용 로케이터"""
 
-    class AOS(BaseLocators.AOS):
-        search_button_xpath = '//android.view.View[@resource-id="root"]/android.view.View[1]/android.view.View/android.widget.Button[1]'
-        recent_Search_Words_details_view_xpath = '//android.widget.ListView'
-        recent_product_details_view_xpath = '//android.view.View[@resource-id="root"]/android.view.View[3]'
-        popular_search_details_view_xpath = '//android.widget.ListView'
-        ls_dv_tab1_details_view_xpath = '//android.view.View[@resource-id="root"]/android.view.View[2]'
-        search_input_xpath = '//android.widget.EditText'
-        search_result_text_xpath = '//android.widget.TextView[contains(@text, "총 ")]'
-
-    class IOS(BaseLocators.IOS):
-        pass
 
 
 class SelfPvLocators(BaseLocators):
@@ -362,6 +281,30 @@ class SharedContentKilLocators(BaseLocators):
         confirm_button_xpath = '//android.widget.Button[@resource-id="android:id/button1"]'
         manual_item_xpath = '//android.view.View[@content-desc="제품 사용설명서"]'
         kakaotalk_xpath = '//android.widget.TextView[@text="카카오톡"]'
+
+    class IOS(BaseLocators.IOS):
+        pass
+
+
+class HomeViewKilLocators(BaseLocators):
+    """Home_View_kil 폴더 테스트용 로케이터"""
+
+    class AOS(BaseLocators.AOS):
+        ai_cody_button_xpath = '//android.view.View[@resource-id="root"]/android.view.View[1]/android.view.View/android.widget.Button[3]'
+        ai_cody_title_xpath = '//android.widget.TextView[@text="AI 코디 비서"]'
+        input_field_xpath = '//android.widget.EditText[@resource-id="txtBotMessage"]'
+        send_button_xpath = '//android.widget.Button[@text="전송"]'
+        error_message_xpath = '//android.widget.TextView[@text="답변을 생성할 수 없습니다. 잠시 후 다시 시도해 주세요."]'
+        ambiguous_message_xpath = '//android.widget.TextView[@text="말씀하신 내용을 제가 정확히 파악하기 어렵네요. 혹시 다음 키워드 중 궁금하신 점이 있으신가요?"]'
+        other_keyword_button_xpath = '//android.widget.Button[@text="다른 키워드 선택"]'
+        greeting_button_xpath = '//android.widget.Button[@text="안녕하세요. 무엇을 도와드릴까요?"]'
+        sidenav_button_xpath = '//android.view.View[@resource-id="mySidenav"]/android.view.View[1]/android.widget.Button'
+        home_button_xpath = '//android.view.View[@resource-id="root"]/android.view.View[1]/android.view.View/android.widget.Button[3]'
+        description_xpath = '//android.view.View[@resource-id="root"]/android.view.View[2]/android.widget.ListView[1]'
+        large_font_button_xpath = '//android.widget.Button[@text="큰글씨"]'
+        managed_customer_button_xpath = '//android.widget.Button[@text="관리고객"]'
+        recommendation_text_xpath = '//android.view.View[@resource-id="root"]/android.view.View[2]/android.widget.ListView[2]'
+        webview_xpath = '//android.webkit.WebView[@text="Seller AI"]'
 
     class IOS(BaseLocators.IOS):
         pass
