@@ -6,17 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="5f75c860-a388-4fb7-9107-ac045f0dcfe1" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home_kil/home_reset.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/home_reset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home_kil/test_banner.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_banner.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home_kil/test_gallery_sharing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_gallery_sharing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home_kil/test_home_etc.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_home_etc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home_kil/test_item.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_item.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home_kil/test_product_shortcuts.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_product_shortcuts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home_kil/test_promotion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_promotion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home_kil/test_recommended_products.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_recommended_products.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home_kil/test_sales_content.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_sales_content.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home_kil/test_sales_tip.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_sales_tip.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home_kil/test_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My_Page_kil/test_BC_greeting_edit.py" beforeDir="false" afterPath="$PROJECT_DIR$/My_Page_kil/test_BC_greeting_edit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My_Page_kil/test_BC_image_download.py" beforeDir="false" afterPath="$PROJECT_DIR$/My_Page_kil/test_BC_image_download.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My_Page_kil/test_BC_navigation.py" beforeDir="false" afterPath="$PROJECT_DIR$/My_Page_kil/test_BC_navigation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My_Page_kil/test_BC_text_copy.py" beforeDir="false" afterPath="$PROJECT_DIR$/My_Page_kil/test_BC_text_copy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My_Page_kil/test_BC_user_info_visibility.py" beforeDir="false" afterPath="$PROJECT_DIR$/My_Page_kil/test_BC_user_info_visibility.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My_Page_kil/test_cody_matching_visibility.py" beforeDir="false" afterPath="$PROJECT_DIR$/My_Page_kil/test_cody_matching_visibility.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My_Page_kil/test_commission_visibility.py" beforeDir="false" afterPath="$PROJECT_DIR$/My_Page_kil/test_commission_visibility.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My_Page_kil/test_mypage_navigation.py" beforeDir="false" afterPath="$PROJECT_DIR$/My_Page_kil/test_mypage_navigation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Search/test_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/Search/test_search.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,3 +1,52 @@
+# # -*- coding: utf-8 -*-
+#
+# import time
+# from appium.webdriver.common.appiumby import AppiumBy
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
+# from selenium.common.exceptions import TimeoutException, NoSuchElementException
+#
+# from Utils.screenshot_helper import save_screenshot_on_failure
+#
+#
+# def test_text_card_copy(flow_tester):
+#     """마이페이지 > 명함설정: 텍스트 명함 클립보드 복사 기능 확인"""
+#     print("\n--- 텍스트 명함 복사 시나리오 시작 ---")
+#
+#     copy_button_xpath = '//android.widget.Button[@text="텍스트 명함 복사"]'
+#     # 안드로이드의 기본 토스트 메시지 XPath
+#     toast_message_xpath = '//android.widget.Toast'
+#
+#     try:
+#         # 1. '텍스트 명함 복사' 버튼 클릭
+#         print(f"'{copy_button_xpath}' 버튼을 찾습니다...")
+#         copy_button = WebDriverWait(flow_tester.driver, 10).until(
+#             EC.element_to_be_clickable((AppiumBy.XPATH, copy_button_xpath))
+#         )
+#         print("✅ 버튼을 찾았습니다. 클릭합니다.")
+#         copy_button.click()
+#
+#         # 2. '복사되었습니다' 토스트 메시지가 나타나는지 확인
+#
+#         WebDriverWait(flow_tester.driver, 1).until(
+#             EC.presence_of_element_located((AppiumBy.XPATH, toast_message_xpath))
+#         )
+#
+#         flow_tester.driver.back()
+#         time.sleep(3)
+#
+#         return True, "텍스트 명함 복사 및 '복사' 알림 확인 성공"
+#
+#
+#     except (TimeoutException, NoSuchElementException) as e:
+#         save_screenshot_on_failure(flow_tester.driver, "bc_text_copy_fail")
+#         return False, f"실패: 복사 버튼 또는 토스트 메시지를 찾지 못했습니다. - {e}"
+#     except Exception as e:
+#         save_screenshot_on_failure(flow_tester.driver, "bc_text_copy_fail")
+#         return False, f"실패: 텍스트 명함 복사 중 오류 발생: {e}"
+#     finally:
+#         print("--- 텍스트 명함 복사 시나리오 종료 ---")
+
 # -*- coding: utf-8 -*-
 
 import time
@@ -8,14 +57,20 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
 from Utils.screenshot_helper import save_screenshot_on_failure
 
+# Xpath 저장소에서 MyPageKilLocators 임포트
+from Xpath.xpath_repository import MyPageKilLocators
+
 
 def test_text_card_copy(flow_tester):
     """마이페이지 > 명함설정: 텍스트 명함 클립보드 복사 기능 확인"""
     print("\n--- 텍스트 명함 복사 시나리오 시작 ---")
 
-    copy_button_xpath = '//android.widget.Button[@text="텍스트 명함 복사"]'
+    # AOS 로케이터 세트 선택
+    locators = MyPageKilLocators.AOS
+
+    copy_button_xpath = locators.copy_button_xpath # 수정됨
     # 안드로이드의 기본 토스트 메시지 XPath
-    toast_message_xpath = '//android.widget.Toast'
+    toast_message_xpath = locators.toast_message_xpath # 수정됨
 
     try:
         # 1. '텍스트 명함 복사' 버튼 클릭
