@@ -6,21 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="5f75c860-a388-4fb7-9107-ac045f0dcfe1" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DS_checklist_run.py" beforeDir="false" afterPath="$PROJECT_DIR$/DS_checklist_run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login/test_Login_failed.py" beforeDir="false" afterPath="$PROJECT_DIR$/Login/test_Login_failed.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login/test_Login_passed.py" beforeDir="false" afterPath="$PROJECT_DIR$/Login/test_Login_passed.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login/test_login_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/Login/test_login_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login/test_pw_change.py" beforeDir="false" afterPath="$PROJECT_DIR$/Login/test_pw_change.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Managed_Customers_kil/test_customer_list_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/Managed_Customers_kil/test_customer_list_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test_Run/test_fullMenu_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test_Run/test_fullMenu_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test_Run/test_home_kil_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test_Run/test_home_kil_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test_Run/test_home_view_kil_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test_Run/test_home_view_kil_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test_Run/test_login_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test_Run/test_login_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test_Run/test_promotion_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test_Run/test_promotion_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test_Run/test_self_pv_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test_Run/test_self_pv_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test_Run/test_update_kil_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test_Run/test_update_kil_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Utils/test_result_input.py" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/test_result_input.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Xpath/xpath_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/Xpath/xpath_repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/home_reset.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/home_reset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/test_banner.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_banner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/test_gallery_sharing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_gallery_sharing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/test_home_etc.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_home_etc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/test_item.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_item.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/test_product_shortcuts.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_product_shortcuts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/test_promotion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_promotion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/test_recommended_products.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_recommended_products.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/test_sales_content.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_sales_content.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/test_sales_tip.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_sales_tip.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/test_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_search.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
