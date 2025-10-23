@@ -17,8 +17,8 @@ class AndroidConfig:
 class IOSConfig:
     """iOS 테스트 환경 설정"""
     PLATFORM_NAME = 'iOS'
-    PLATFORM_VERSION = '16.0'  # 실제 iOS 버전
-    DEVICE_NAME = 'iPhone 14 Pro'  # 실제 iOS 기기/시뮬레이터 이름
+    PLATFORM_VERSION = '15.0'  # 실제 iOS 버전
+    DEVICE_NAME = 'iPhone 7+'  # 실제 iOS 기기/시뮬레이터 이름
     BUNDLE_ID = 'com.coway.ios.app.bundle.id'  # iOS 앱의 Bundle ID
     AUTOMATION_NAME = 'XCUITest'
     # ... 기타 iOS 설정 ...
