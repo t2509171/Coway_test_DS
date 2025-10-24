@@ -5,7 +5,7 @@ import sys
 # Ensure the Login directory is in the Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'Login')))
 # 새로 추가한 콘텐츠 유닛 테스트 함수 import
-from Shared_Content_kil.test_menu_navigation_verification import test_menu_navigation_and_verification
+from Shared_Content_kil.test_menu_navigation_verification import verify_menu_navigation
 from Shared_Content_kil.test_catalog_actions import test_share_catalog_to_facebook, test_download_catalog
 # Google Sheets API 연동을 위해 필요한 함수를 임포트
 from Utils.test_result_input import update_test_result_in_sheet

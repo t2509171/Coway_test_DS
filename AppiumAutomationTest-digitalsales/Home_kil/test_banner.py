@@ -30,7 +30,7 @@ def test_banner_swipe(flow_tester):
         # 이 테스트는 스와이프 가능한 배너를 대상으로 하므로 로컬 XPath를 유지합니다.
         banner_xpath = '//android.view.View[@resource-id="root"]/android.view.View[2]/android.view.View/android.view.View/android.view.View[4]/android.view.View'
         home_container_xpath = locators.home_container_xpath  # 수정됨
-
+        #herf 확인
         max_scroll_attempts = 10
         element_in_view = False
 

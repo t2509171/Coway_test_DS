@@ -13,18 +13,19 @@
       <change beforePath="$PROJECT_DIR$/Home_View_kil/test_large_font_mode.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_View_kil/test_large_font_mode.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Home_View_kil/test_recommended_questions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_View_kil/test_recommended_questions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Home_View_kil/test_webview_navigation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_View_kil/test_webview_navigation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Life_Story/test_LS_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/Life_Story/test_LS_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Managed_Customers_kil/test_customer_list_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/Managed_Customers_kil/test_customer_list_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Managed_Customers_kil/test_customized_sharing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Managed_Customers_kil/test_customized_sharing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Managed_Customers_kil/test_recommended_product_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Managed_Customers_kil/test_recommended_product_settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile_Order/test_mobile_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mobile_Order/test_mobile_order.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Promotion/test_customer_promotion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Promotion/test_customer_promotion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Promotion/test_salesperson_promotion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Promotion/test_salesperson_promotion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/test_banner.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_banner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Login/test_Login_passed.py" beforeDir="false" afterPath="$PROJECT_DIR$/Login/test_Login_passed.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My_Page_kil/test_BC_image_download.py" beforeDir="false" afterPath="$PROJECT_DIR$/My_Page_kil/test_BC_image_download.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My_Page_kil/test_my_page_entry.py" beforeDir="false" afterPath="$PROJECT_DIR$/My_Page_kil/test_my_page_view.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Self_pv/test_self_pv.py" beforeDir="false" afterPath="$PROJECT_DIR$/Self_pv/test_self_pv.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shared_Content_kil/test_catalog_actions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shared_Content_kil/test_catalog_actions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shared_Content_kil/test_manual_actions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shared_Content_kil/test_manual_actions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shared_Content_kil/test_menu_navigation_verification.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shared_Content_kil/test_menu_navigation_verification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Xpath/xpath_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/Xpath/xpath_repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test_Run/test_login_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test_Run/test_login_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test_Run/test_shared_content_kil_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test_Run/test_shared_content_kil_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Update_kil/test_app_permissions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Update_kil/test_app_permissions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Update_kil/test_update_alert.py" beforeDir="false" afterPath="$PROJECT_DIR$/Update_kil/test_update_alert.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utils/tost_message.py" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/tost_message.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +71,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "dev",
+    "git-widget-placeholder": "ios",
     "junie.onboarding.icon.badge.shown": "true",
     "last_opened_file_path": "C:/Coway_test/Coway_test/AppiumAutomationTest-digitalsales/Utils",
     "settings.editor.selected.configurable": "preferences.pluginManager",

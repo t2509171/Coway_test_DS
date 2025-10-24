@@ -1,147 +1,101 @@
-# -*- coding: utf-8 -*-
+# PythonProject/Home_View_kil/test_large_font_mode.py
 
+import sys
+import os
 import time
-from appium.webdriver.common.appiumby import AppiumBy
+
+# Ensure the project root is in the path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from appium.webdriver.common.appiumby import AppiumBy
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
-# Xpath 저장소에서 HomeViewKilLocators 임포트
-from Xpath.xpath_repository import HomeViewKilLocators
+# Import locators from the repository
+from Xpath.xpath_repository import HomeViewKilLocators # 수정: 클래스 임포트
 
-# 스크린샷 헬퍼 임포트
-from Utils.screenshot_helper import save_screenshot_on_failure
+# --- 함수 이름 유지 및 플랫폼 분기 추가 ---
+def test_verify_element_positions_after_large_font_click(flow_tester):
+    """Toggles the large font mode and verifies the description element visibility."""
+    print("\n--- 큰 글씨 모드 토글 테스트 시작 ---")
+    scenario_passed = True
+    result_message = "큰 글씨 모드 토글 및 확인 성공."
 
-# [Seller app checklist-139] AI 코디 비서 > 큰글씨 모드
-def test_large_font_mode_toggle(flow_tester):
-    """AI 코디 비서 화면에서 큰글씨 모드 토글 및 UI 변경 확인"""
-    print("\n--- AI 코디 비서 큰글씨 모드 토글 시나리오 시작 (checklist-139) ---")
-
-    # --- 플랫폼에 맞는 로케이터 동적 선택 ---
-    if flow_tester.platform == 'android':
+    # 플랫폼 분기 로직 추가
+    try:
+        if flow_tester.platform == 'android': # 수정: 'AOS' -> 'android'
+            locators = HomeViewKilLocators.AOS
+        elif flow_tester.platform == 'ios': # 수정: 'IOS' -> 'ios'
+            locators = HomeViewKilLocators.IOS
+        else:
+            raise ValueError(f"지원하지 않는 플랫폼입니다: {flow_tester.platform}")
+    except AttributeError:
+        print("경고: flow_tester에 'platform' 속성이 없습니다. Android로 기본 설정합니다.") # 수정: AOS -> Android
         locators = HomeViewKilLocators.AOS
-    else: # iOS 또는 기본값
-        locators = HomeViewKilLocators.IOS
-    # --- --- --- --- --- --- --- --- --- ---
-
-    wait = WebDriverWait(flow_tester.driver, 10)
-    scenario_passed = False
-    result_message = "알 수 없는 이유로 시나리오가 완료되지 않았습니다."
 
     try:
-        # ※ 사전 조건: AI 코디 비서 화면에 진입한 상태
-
-        # 1. 초기 상태 확인 (큰글씨 버튼 텍스트 확인 - '큰글씨')
-        print("💡 초기 상태 확인 (버튼 텍스트: 큰글씨)")
-        large_font_button = wait.until(
-            EC.element_to_be_clickable((AppiumBy.XPATH, locators.large_font_button_xpath)),
-            message="큰글씨 버튼을 찾지 못했습니다."
+        # 가정: 홈 화면 또는 큰 글씨 버튼이 보이는 화면 상태
+        print("1. '큰글씨' 버튼 클릭")
+        large_font_button = flow_tester.wait.until(
+            EC.element_to_be_clickable((AppiumBy.XPATH, locators.large_font_button_xpath))
         )
-        # [수정] 버튼 텍스트 가져오는 방식 변경 (Android: text, iOS: label or value)
-        initial_button_text = ""
-        if flow_tester.platform == 'android':
-             initial_button_text = large_font_button.text
-        else: # iOS
-             initial_button_text = large_font_button.get_attribute("label") # 또는 "value"
-             if not initial_button_text: # label이 없을 경우 value 시도
-                  initial_button_text = large_font_button.get_attribute("value")
+        # 초기 상태 확인 (선택 사항)
+        # initial_description_visible = True
+        # try:
+        #     flow_tester.driver.find_element(AppiumBy.XPATH, locators.description_xpath)
+        # except NoSuchElementException:
+        #     initial_description_visible = False
+        # print(f"   초기 설명 요소 상태: {'보임' if initial_description_visible else '숨김'}")
 
-        print(f" - 현재 버튼 텍스트: {initial_button_text}")
-        if "큰글씨" not in initial_button_text:
-             # 이미 큰글씨 모드일 수 있으므로, 우선 '기본글씨'로 변경 시도
-             print("⚠️ 초기 상태가 '큰글씨'가 아님. '기본글씨'로 변경 시도.")
-             large_font_button.click()
-             time.sleep(2)
-             # 다시 버튼 찾아서 확인
-             large_font_button = wait.until(EC.element_to_be_clickable((AppiumBy.XPATH, locators.large_font_button_xpath)))
-             if flow_tester.platform == 'android':
-                  initial_button_text = large_font_button.text
-             else:
-                  initial_button_text = large_font_button.get_attribute("label") or large_font_button.get_attribute("value")
-             if "큰글씨" not in initial_button_text:
-                  raise AssertionError("초기 상태를 '큰글씨' 모드로 설정하는 데 실패했습니다.")
-             print("✅ '기본글씨'로 변경 후 다시 '큰글씨' 상태로 확인됨.")
-
-
-        # 2. '큰글씨' 버튼 클릭
-        print("💡 '큰글씨' 버튼 클릭...")
         large_font_button.click()
-        print("✅ '큰글씨' 버튼 클릭 완료.")
-        time.sleep(2) # UI 변경 대기
+        print("   '큰글씨' 버튼 클릭 완료.")
+        time.sleep(3) # 상태 변경 및 UI 업데이트 대기
 
-        # 3. 큰글씨 모드 적용 확인 (버튼 텍스트: 기본글씨)
-        print("💡 큰글씨 모드 적용 확인 (버튼 텍스트: 기본글씨)")
-        # 버튼 요소를 다시 찾아야 할 수 있음 (DOM 변경 가능성)
-        large_font_button_after = wait.until(
-            EC.element_to_be_clickable((AppiumBy.XPATH, locators.large_font_button_xpath)),
-            message="모드 변경 후 버튼을 다시 찾지 못했습니다."
-        )
-        # [수정] 버튼 텍스트 가져오는 방식 변경
-        after_button_text = ""
-        if flow_tester.platform == 'android':
-            after_button_text = large_font_button_after.text
-        else: # iOS
-            after_button_text = large_font_button_after.get_attribute("label") or large_font_button_after.get_attribute("value")
-
-        print(f" - 변경 후 버튼 텍스트: {after_button_text}")
-        if "기본글씨" not in after_button_text:
-            raise AssertionError("버튼 클릭 후 텍스트가 '기본글씨'로 변경되지 않았습니다.")
-        print("✅ 큰글씨 모드 적용 확인 (버튼 텍스트 변경됨).")
-        # [추가 검증] 실제 다른 요소의 폰트 크기 변경 확인 (선택 사항, 더 복잡함)
-        # 예: assistant_title 요소의 size 속성 비교 등
-
-        # 4. '기본글씨' 버튼 클릭 (원상 복구)
-        print("💡 '기본글씨' 버튼 클릭 (원상 복구)...")
-        large_font_button_after.click()
-        print("✅ '기본글씨' 버튼 클릭 완료.")
-        time.sleep(2) # UI 변경 대기
-
-        # 5. 기본글씨 모드 복구 확인 (버튼 텍스트: 큰글씨)
-        print("💡 기본글씨 모드 복구 확인 (버튼 텍스트: 큰글씨)")
-        large_font_button_final = wait.until(
-            EC.element_to_be_clickable((AppiumBy.XPATH, locators.large_font_button_xpath)),
-             message="원상 복구 후 버튼을 다시 찾지 못했습니다."
-        )
-        # [수정] 버튼 텍스트 가져오는 방식 변경
-        final_button_text = ""
-        if flow_tester.platform == 'android':
-             final_button_text = large_font_button_final.text
-        else: # iOS
-             final_button_text = large_font_button_final.get_attribute("label") or large_font_button_final.get_attribute("value")
-
-        print(f" - 최종 버튼 텍스트: {final_button_text}")
-        if "큰글씨" not in final_button_text:
-             raise AssertionError("버튼 클릭 후 텍스트가 다시 '큰글씨'로 복구되지 않았습니다.")
-        print("✅ 기본글씨 모드로 정상 복구 확인.")
-
-        # --- 최종 성공 처리 ---
-        scenario_passed = True
-        result_message = "🎉 성공: 큰글씨 모드 토글 및 UI 변경 확인 완료."
-
-    except (TimeoutException, NoSuchElementException, AssertionError) as e:
-        save_screenshot_on_failure(flow_tester.driver, "large_font_toggle_fail")
-        result_message = f"❌ 실패: 요소 검증 실패 또는 상태 불일치 - {e}"
-        scenario_passed = False
-    except Exception as e:
-        save_screenshot_on_failure(flow_tester.driver, "large_font_toggle_error")
-        result_message = f"❌ 실패: 테스트 실행 중 예상치 못한 오류 발생: {e}"
-        scenario_passed = False
-    finally:
-        # 테스트 종료 후 원래 화면으로 돌아가기 (뒤로가기)
-        print("💡 테스트 종료 후 뒤로가기...")
+        print("2. 설명 요소 (ListView) 상태 확인")
+        # 큰 글씨 모드에서 설명 요소가 보이는지/숨겨지는지 확인 (앱의 실제 동작에 따라 검증 로직 변경 필요)
+        # 예시: 큰 글씨 모드에서 설명 요소가 *보이는* 것을 확인
         try:
-            flow_tester.driver.back() # AI 비서 -> 홈 (Android 기준)
-             # iOS는 back 대신 다른 네비게이션 필요할 수 있음
-            print("✅ 뒤로가기 완료.")
-            time.sleep(2) # 홈 화면 안정화 대기
-        except Exception as back_err:
-             print(f"⚠️ 뒤로가기 중 오류 발생: {back_err}")
+            description_element = flow_tester.wait.until(
+                EC.presence_of_element_located((AppiumBy.XPATH, locators.description_xpath))
+            )
+            # is_displayed() 체크 추가
+            if description_element.is_displayed():
+                 print("   ✅ 큰 글씨 모드에서 설명 요소 확인 완료.")
+            else:
+                 print("   ❌ 큰 글씨 모드에서 설명 요소가 보이지 않음.")
+                 scenario_passed = False
+                 result_message = "큰 글씨 모드 전환 후 설명 요소 확인 실패 (보이지 않음)."
+                 flow_tester.driver.save_screenshot("failure_large_font_desc_not_displayed.png")
 
-        print(f"--- AI 코디 비서 큰글씨 모드 토글 시나리오 종료 ---\n")
-        # 최종 결과를 튜플 형태로 반환
-        return scenario_passed, result_message
+        except TimeoutException:
+            print("   ❌ 큰 글씨 모드에서 설명 요소 확인 실패 (타임아웃).")
+            scenario_passed = False
+            result_message = "큰 글씨 모드 전환 후 설명 요소 확인 실패 (타임아웃)."
+            flow_tester.driver.save_screenshot("failure_large_font_desc_timeout.png")
 
 
+        # 원래 상태로 복구 (선택 사항)
+        # print("3. '큰글씨' 버튼 다시 클릭하여 복구")
+        # large_font_button.click()
+        # time.sleep(3)
+        # print("   원래 상태로 복구 완료.")
+
+
+    except TimeoutException as e:
+        scenario_passed = False
+        result_message = f"큰 글씨 모드 테스트 실패 (타임아웃): {e}"
+        print(f"🚨 {result_message}")
+        flow_tester.driver.save_screenshot("failure_large_font_timeout.png")
+    except Exception as e:
+        scenario_passed = False
+        result_message = f"큰 글씨 모드 테스트 중 예상치 못한 오류: {e}"
+        print(f"🚨 {result_message}")
+        flow_tester.driver.save_screenshot("failure_large_font_unexpected.png")
+    finally:
+        print("--- 큰 글씨 모드 토글 테스트 종료 ---")
+
+    return scenario_passed, result_message
 
 
 

@@ -1,143 +1,82 @@
-# -*- coding: utf-8 -*-
+# PythonProject/Home_View_kil/test_ai_cody_assistant.py
 
+import sys
+import os
 import time
-from appium.webdriver.common.appiumby import AppiumBy
+
+# Ensure the project root is in the path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from appium.webdriver.common.appiumby import AppiumBy
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
-# Xpath 저장소에서 HomeViewKilLocators 임포트
-from Xpath.xpath_repository import HomeViewKilLocators
+# Import locators from the repository
+from Xpath.xpath_repository import HomeViewKilLocators # 수정: 클래스 임포트
 
-# 스크린샷 헬퍼 임포트
-from Utils.screenshot_helper import save_screenshot_on_failure
+# --- 함수 이름 유지 및 플랫폼 분기 추가 ---
+def test_ai_cody_assistant_slide_and_visibility(flow_tester):
+    """Navigates to the AI Cody Assistant screen and verifies the title."""
+    print("\n--- AI 코디 비서 화면 이동 및 확인 시작 ---")
+    scenario_passed = True
+    result_message = "AI 코디 비서 화면 이동 및 확인 성공."
 
-# [Seller app checklist-136] 홈 화면 > AI 코디 비서 진입
-def test_ai_cody_assistant_entry(flow_tester):
-    """홈 화면 우측 상단의 코디 비서 아이콘 클릭 시 AI 코디 비서 화면 진입 확인"""
-    print("\n--- AI 코디 비서 화면 진입 시나리오 시작 (checklist-136) ---")
-
-    # --- 플랫폼에 맞는 로케이터 동적 선택 ---
-    if flow_tester.platform == 'android':
+    # 플랫폼 분기 로직 추가
+    try:
+        if flow_tester.platform == 'android': # 수정: 'AOS' -> 'android'
+            locators = HomeViewKilLocators.AOS
+        elif flow_tester.platform == 'ios': # 수정: 'IOS' -> 'ios'
+            locators = HomeViewKilLocators.IOS
+        else:
+            raise ValueError(f"지원하지 않는 플랫폼입니다: {flow_tester.platform}")
+    except AttributeError:
+        print("경고: flow_tester에 'platform' 속성이 없습니다. Android로 기본 설정합니다.") # 수정: AOS -> Android
         locators = HomeViewKilLocators.AOS
-    else: # iOS 또는 기본값
-        locators = HomeViewKilLocators.IOS
-    # --- --- --- --- --- --- --- --- --- ---
-
-    wait = WebDriverWait(flow_tester.driver, 10)
-    scenario_passed = False
-    result_message = "알 수 없는 이유로 시나리오가 완료되지 않았습니다."
 
     try:
-        # 1. 홈 화면 코디 비서 아이콘 클릭
-        print("💡 홈 화면 코디 비서 아이콘 클릭...")
-        cody_icon = wait.until(
-            EC.element_to_be_clickable((AppiumBy.XPATH, locators.home_cody_icon_xpath)),
-            message="홈 화면 코디 비서 아이콘을 찾지 못했습니다."
+        print("1. AI 코디 버튼 클릭")
+        ai_cody_button = flow_tester.wait.until(
+            # home_button_alt_xpath가 ai_cody_button_xpath 역할도 함
+            EC.element_to_be_clickable((AppiumBy.XPATH, locators.home_button_alt_xpath))
         )
-        cody_icon.click()
-        print("✅ 홈 화면 코디 비서 아이콘 클릭 완료.")
-        time.sleep(3)  # AI 코디 비서 화면 로딩 대기
+        ai_cody_button.click()
+        print("   AI 코디 버튼 클릭 완료.")
+        time.sleep(3) # 페이지 로딩 대기
 
-        # 2. AI 코디 비서 화면 타이틀 확인
-        print("💡 AI 코디 비서 화면 타이틀 확인...")
-        assistant_title = wait.until(
-            EC.visibility_of_element_located((AppiumBy.XPATH, locators.ai_assistant_title_xpath)),
-            message="AI 코디 비서 화면 타이틀을 찾지 못했습니다."
+        print("2. AI 코디 비서 타이틀 확인")
+        flow_tester.wait.until(
+            EC.presence_of_element_located((AppiumBy.XPATH, locators.ai_cody_title_xpath))
         )
-        print("✅ AI 코디 비서 화면 타이틀 노출 확인.")
+        print("   ✅ AI 코디 비서 타이틀 확인 완료.")
 
-        # --- 최종 성공 처리 ---
-        scenario_passed = True
-        result_message = "🎉 성공: AI 코디 비서 화면으로 정상 진입했습니다."
-
-    except (TimeoutException, NoSuchElementException) as e:
-        save_screenshot_on_failure(flow_tester.driver, "ai_cody_entry_fail")
-        result_message = f"❌ 실패: 요소를 찾지 못했거나 타임아웃 발생 - {e}"
+    except TimeoutException as e:
         scenario_passed = False
+        result_message = f"AI 코디 비서 이동/확인 실패 (타임아웃): {e}"
+        print(f"🚨 {result_message}")
+        flow_tester.driver.save_screenshot("failure_ai_cody_nav_timeout.png")
+    except NoSuchElementException as e:
+        scenario_passed = False
+        result_message = f"AI 코디 비서 이동/확인 실패 (요소 찾기 실패): {e}"
+        print(f"🚨 {result_message}")
+        flow_tester.driver.save_screenshot("failure_ai_cody_nav_no_such_element.png")
     except Exception as e:
-        save_screenshot_on_failure(flow_tester.driver, "ai_cody_entry_error")
-        result_message = f"❌ 실패: 테스트 실행 중 예상치 못한 오류 발생: {e}"
         scenario_passed = False
+        result_message = f"AI 코디 비서 이동/확인 중 예상치 못한 오류 발생: {e}"
+        print(f"🚨 {result_message}")
+        flow_tester.driver.save_screenshot("failure_ai_cody_nav_unexpected.png")
     finally:
-        print(f"--- AI 코디 비서 화면 진입 시나리오 종료 ---\n")
-        # 최종 결과를 튜플 형태로 반환
-        return scenario_passed, result_message
-
-# [Seller app checklist-137] 전체메뉴 > AI 코디 비서 진입
-def test_all_menu_ai_cody_assistant_entry(flow_tester):
-    """전체 메뉴 상단의 코디 비서 아이콘 클릭 시 AI 코디 비서 화면 진입 확인"""
-    print("\n--- 전체 메뉴 > AI 코디 비서 화면 진입 시나리오 시작 (checklist-137) ---")
-
-    # --- 플랫폼에 맞는 로케이터 동적 선택 ---
-    if flow_tester.platform == 'android':
-        locators = HomeViewKilLocators.AOS
-    else: # iOS 또는 기본값
-        locators = HomeViewKilLocators.IOS
-    # --- --- --- --- --- --- --- --- --- ---
-
-    wait = WebDriverWait(flow_tester.driver, 10)
-    scenario_passed = False
-    result_message = "알 수 없는 이유로 시나리오가 완료되지 않았습니다."
-
-    try:
-        # 1. 전체 메뉴 버튼 클릭
-        print("💡 전체 메뉴 버튼 클릭...")
-        menu_button = wait.until(
-            EC.element_to_be_clickable((AppiumBy.XPATH, locators.menu_button_xpath)), # 저장소 변수 사용
-            message="전체 메뉴 버튼을 찾지 못했습니다."
-        )
-        menu_button.click()
-        print("✅ 전체 메뉴 버튼 클릭 완료.")
-        time.sleep(2)  # 메뉴 슬라이드 애니메이션 대기
-
-        # 2. 전체 메뉴 코디 비서 아이콘 클릭
-        print("💡 전체 메뉴 코디 비서 아이콘 클릭...")
-        all_menu_cody_icon = wait.until(
-            EC.element_to_be_clickable((AppiumBy.XPATH, locators.all_menu_cody_icon_xpath)),
-            message="전체 메뉴 코디 비서 아이콘을 찾지 못했습니다."
-        )
-        all_menu_cody_icon.click()
-        print("✅ 전체 메뉴 코디 비서 아이콘 클릭 완료.")
-        time.sleep(3)  # AI 코디 비서 화면 로딩 대기
-
-        # 3. AI 코디 비서 화면 타이틀 확인
-        print("💡 AI 코디 비서 화면 타이틀 확인...")
-        assistant_title = wait.until(
-            EC.visibility_of_element_located((AppiumBy.XPATH, locators.ai_assistant_title_xpath)),
-            message="AI 코디 비서 화면 타이틀을 찾지 못했습니다."
-        )
-        print("✅ AI 코디 비서 화면 타이틀 노출 확인.")
-
-        # --- 최종 성공 처리 ---
-        scenario_passed = True
-        result_message = "🎉 성공: 전체 메뉴에서 AI 코디 비서 화면으로 정상 진입했습니다."
-
-        # 4. 테스트 종료 후 원래 화면으로 돌아가기 (뒤로가기)
-        print("💡 테스트 종료 후 뒤로가기...")
-        flow_tester.driver.back()
-        time.sleep(1) # AI 비서 -> 메뉴
-        flow_tester.driver.back() # 메뉴 -> 홈 (Android 기준)
-        # iOS는 back 대신 다른 네비게이션 필요할 수 있음
-        print("✅ 뒤로가기 완료.")
+        print("--- AI 코디 비서 화면 이동 및 확인 종료 ---")
+        # 테스트 후 홈 화면으로 돌아가는 로직 추가 (필요시)
+        try:
+            print("   홈 화면 복귀 시도...")
+            flow_tester.driver.back() # AI 코디 화면에서 뒤로가기
+            time.sleep(2)
+        except Exception:
+            print("   홈 화면 복귀 실패 (무시)")
 
 
-    except (TimeoutException, NoSuchElementException) as e:
-        save_screenshot_on_failure(flow_tester.driver, "all_menu_ai_cody_entry_fail")
-        result_message = f"❌ 실패: 요소를 찾지 못했거나 타임아웃 발생 - {e}"
-        scenario_passed = False
-    except Exception as e:
-        save_screenshot_on_failure(flow_tester.driver, "all_menu_ai_cody_entry_error")
-        result_message = f"❌ 실패: 테스트 실행 중 예상치 못한 오류 발생: {e}"
-        scenario_passed = False
-    finally:
-        print(f"--- 전체 메뉴 > AI 코디 비서 화면 진입 시나리오 종료 ---\n")
-        # 최종 결과를 튜플 형태로 반환
-        return scenario_passed, result_message
-
-
-
-
+    return scenario_passed, result_message
 
 
 

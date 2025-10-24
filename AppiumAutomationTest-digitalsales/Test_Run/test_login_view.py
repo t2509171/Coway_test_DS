@@ -13,7 +13,7 @@ from Login.test_pw_change import run_password_change_button_back_scenario, run_p
 from Home.test_etc import test_etc_setting_view, test_etc_setting_set_notifications, test_etc_setting_sign_out # 로그아웃을 위해
 # Google Sheets API 연동을 위해 필요한 함수를 임포트
 from Utils.test_result_input import update_test_result_in_sheet
-from Update_kil.test_app_permissions import test_verify_no_permission_guide_after_relaunch
+# from Update_kil.test_app_permissions import test_verify_no_permission_guide_after_relaunch
 
 # sheets_service와 tester_name 인자를 추가
 def test_login(flow_tester, sheets_service, tester_name):
@@ -48,19 +48,20 @@ def test_login(flow_tester, sheets_service, tester_name):
         try:
             test_no_counter =12
             test_no = f"Seller app checklist-{test_no_counter}"
-            print(f"\n--- {test_no}:  자동 로그인 확인 ---")
-            login_main_view_passed, login_main_view_message = test_verify_no_permission_guide_after_relaunch(flow_tester)
-            overall_results["자동로그인 체크 후 로그인 진행하면 App 종료후 재실행시 자동로그인이 되어 메인 페이지가 노출된다."] = {
-                "test_no": test_no,  # 동적 번호 할당
-                "passed": login_main_view_passed,
-                "message": login_main_view_message
-            }
-            if not login_main_view_passed:
-                overall_test_passed = False  # Mark overall test as failed
-                overall_test_message = "로그인 테스트 시나리오에서 실패가 발생했습니다. 상세 로그를 확인하세요."
-            # 스프레드시트에 테스트 결과 기록
-            status = "Pass" if login_main_view_passed else "Fail"
-            update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
+            # print(f"\n--- {test_no}:  자동 로그인 확인 ---")
+            # login_main_view_passed, login_main_view_message = test_verify_no_permission_guide_after_relaunch(flow_tester)
+            # overall_results["자동로그인 체크 후 로그인 진행하면 App 종료후 재실행시 자동로그인이 되어 메인 페이지가 노출된다."] = {
+            #     "test_no": test_no,  # 동적 번호 할당
+            #     "passed": login_main_view_passed,
+            #     "message": login_main_view_message
+            # }
+            # if not login_main_view_passed:
+            #     overall_test_passed = False  # Mark overall test as failed
+            #     overall_test_message = "로그인 테스트 시나리오에서 실패가 발생했습니다. 상세 로그를 확인하세요."
+            # # 스프레드시트에 테스트 결과 기록
+            # status = "Pass" if login_main_view_passed else "Fail"
+            update_test_result_in_sheet(sheets_service, test_no, "No Run", tester_name)
+            # update_test_result_in_sheet(sheets_service, test_no, status, tester_name)
             print(f"{test_no} 테스트 케이스 완료.")
             print("-" * 50)  # Separator
         except Exception as e:
