@@ -22,9 +22,18 @@ def login_successful(flow_tester):
     scenario_passed = False
     result_message = "알 수 없는 이유로 시나리오가 완료되지 않았습니다."
 
-    # 현재 플랫폼에 맞는 로케이터 세트를 선택합니다. (AOS 가정)
-    locators = LoginLocators.AOS
+    try:
+        if flow_tester.platform == 'android':  # 'AOS' -> 'android'
+            locators = LoginLocators.AOS
+        elif flow_tester.platform == 'ios':  # 'IOS' -> 'ios'
+            locators = LoginLocators.IOS
+        else:
+            raise ValueError(f"지원하지 않는 플랫폼입니다: {flow_tester.platform}")
+    except AttributeError:
+        print("경고: flow_tester에 'platform' 속성이 없습니다. Android로 기본 설정합니다.")  # AOS -> Android
+        locators = LoginLocators.AOS
 
+    # --- [수정 완료] ---
     # Read valid credentials
     valid_credentials_path = os.path.join(os.path.dirname(__file__), 'valid_credentials.txt')
     try:

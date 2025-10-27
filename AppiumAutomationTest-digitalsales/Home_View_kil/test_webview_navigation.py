@@ -13,7 +13,7 @@ from Xpath.xpath_repository import HomeViewKilLocators
 from Utils.screenshot_helper import save_screenshot_on_failure
 
 # [Seller app checklist-142] AI 코디 비서 > 웹뷰 이동
-def test_webview_navigation_from_assistant(flow_tester):
+def test_navigate_to_webview_from_home(flow_tester):
     """AI 코디 비서 답변 내 링크 클릭 시 관련 웹뷰 화면 이동 확인"""
     print("\n--- AI 코디 비서 웹뷰 이동 시나리오 시작 (checklist-142) ---")
 

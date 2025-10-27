@@ -216,7 +216,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
 from Utils.screenshot_helper import save_screenshot_on_failure
-from Utils.tost_message import watch_for_any_toast
+
 
 # Xpath 저장소에서 MyPageKilLocators 임포트
 from Xpath.xpath_repository import MyPageKilLocators

@@ -1,94 +1,66 @@
+# PythonProject/Home_View_kil/test_greeting_message.py
+
 import sys
 import os
 import time
 
-# 필요한 라이브러리 임포트
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
-from appium.webdriver.common.appiumby import AppiumBy
+# Ensure the project root is in the path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import logging
+from appium.webdriver.common.appiumby import AppiumBy
+from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
-from Base.base_driver import BaseAppiumDriver
-from Login.test_Login_passed import login_successful
+# Import locators from the repository
+from Xpath.xpath_repository import HomeViewKilLocators # 수정: 클래스 임포트
 
-# 스크린샷 헬퍼 함수
-from Utils.screenshot_helper import save_screenshot_on_failure
+# --- 함수 이름 유지 및 플랫폼 분기 추가 ---
+def test_verify_greeting_message_in_menu(flow_tester):
+    """Verifies the presence of the greeting message button."""
+    print("\n--- 코디 비서 초기 인사 메시지 확인 시작 ---")
+    scenario_passed = True
+    result_message = "초기 인사 메시지 확인 성공."
 
-# 동적 Xpath 생성 함수
-from Utils.valid_credentials import get_user_data
-
-# Xpath 저장소에서 HomeViewKilLocators 임포트
-from Xpath.xpath_repository import HomeViewKilLocators
-
-#인사말 확인 (10)
-def test_greeting_message_view(flow_tester):
-    """
-    홈 화면에서 사용자 이름이 포함된 인사말이 노출되는지 확인합니다.
-    """
-    print("\n--- 홈 화면 인사말 노출 확인 시나리오 시작 ---")
-    scenario_passed = False
-    result_message = "알 수 없는 이유로 시나리오가 완료되지 않았습니다."
-
-    # --- 플랫폼에 맞는 로케이터 동적 선택 ---
-    if flow_tester.platform == 'android':
+    # 플랫폼 분기 로직 추가
+    try:
+        if flow_tester.platform == 'android': # 수정: 'AOS' -> 'android'
+            locators = HomeViewKilLocators.AOS
+        elif flow_tester.platform == 'ios': # 수정: 'IOS' -> 'ios'
+            locators = HomeViewKilLocators.IOS
+        else:
+            raise ValueError(f"지원하지 않는 플랫폼입니다: {flow_tester.platform}")
+    except AttributeError:
+        print("경고: flow_tester에 'platform' 속성이 없습니다. Android로 기본 설정합니다.") # 수정: AOS -> Android
         locators = HomeViewKilLocators.AOS
-    else: # iOS 또는 기본값
-        locators = HomeViewKilLocators.IOS
-    # --- --- --- --- --- --- --- --- --- ---
 
     try:
-        # 1. 테스트 데이터 로드
-        # valid_credentials.txt 파일의 경로를 현재 파일 위치 기준으로 설정
-        data_file_path = os.path.join(os.path.dirname(__file__), '..', 'Login', 'valid_credentials.txt')
-        user_info = get_user_data(data_file_path)
-        print(f"💡 테스트 사용자 이름: {user_info['username']}")
+        # 가정: AI 코디 비서 화면에 이미 진입한 상태
+        print("1. '안녕하세요. 무엇을 도와드릴까요?' 버튼 확인")
+        greeting_button = flow_tester.wait.until(
+            EC.presence_of_element_located((AppiumBy.XPATH, locators.greeting_button_xpath))
+        )
+        print(f"   ✅ 인사 메시지 버튼 확인 완료: '{greeting_button.text}'")
 
-        # 2. 동적 XPath 생성 (저장소의 템플릿 사용)
-        # [수정] username만 사용하도록 템플릿 적용
-        dynamic_greeting_xpath = locators.greeting_xpath_template.format(username=user_info['username'])
-        print(f"💡 생성된 동적 XPath: {dynamic_greeting_xpath}")
-
-        # 3. 인사말 노출 확인
-        print("인사말 요소 노출을 확인합니다.")
-        try:
-            greeting_element = flow_tester.wait.until(
-                EC.presence_of_element_located((AppiumBy.XPATH, dynamic_greeting_xpath)),
-                 message=f"'{user_info['username']}'이 포함된 인사말 요소를 20초 내에 찾지 못했습니다."
-            )
-            print(f"✅ '{greeting_element.text}' 인사말이 성공적으로 노출되었습니다.")
-            scenario_passed = True
-            result_message = "홈 화면 인사말 노출 확인 성공."
-        except TimeoutException as e:
-             result_message = f"인사말 노출 확인 실패 (타임아웃): {e}"
-             print(f"❌ {result_message}")
-             save_screenshot_on_failure(flow_tester.driver, "greeting_message_timeout")
-             return False, result_message
-        except Exception as e:
-            result_message = f"인사말 노출 확인 중 오류 발생: {e}"
-            print(f"❌ {result_message}")
-            save_screenshot_on_failure(flow_tester.driver, "greeting_message_error")
-            return False, result_message
-
-    except FileNotFoundError:
-        result_message = f"테스트 데이터 파일을 찾을 수 없습니다: {data_file_path}"
+    except TimeoutException as e:
+        scenario_passed = False
+        result_message = f"인사 메시지 확인 실패 (타임아웃): {e}"
         print(f"🚨 {result_message}")
-        return False, result_message
-    except KeyError as e:
-        result_message = f"테스트 데이터 파일 형식 오류: 키 '{e}'를 찾을 수 없습니다."
+        flow_tester.driver.save_screenshot("failure_greeting_msg_timeout.png")
+    except NoSuchElementException as e:
+        scenario_passed = False
+        result_message = f"인사 메시지 확인 실패 (요소 찾기 실패): {e}"
         print(f"🚨 {result_message}")
-        return False, result_message
+        flow_tester.driver.save_screenshot("failure_greeting_msg_no_such_element.png")
     except Exception as e:
-        result_message = f"시나리오 실행 중 예상치 못한 오류 발생: {e}"
+        scenario_passed = False
+        result_message = f"인사 메시지 확인 중 예상치 못한 오류 발생: {e}"
         print(f"🚨 {result_message}")
-        save_screenshot_on_failure(flow_tester.driver, "greeting_message_unexpected_error")
-        return False, result_message
+        flow_tester.driver.save_screenshot("failure_greeting_msg_unexpected.png")
     finally:
-        print("--- 홈 화면 인사말 노출 확인 시나리오 종료 ---\n")
+        print("--- 코디 비서 초기 인사 메시지 확인 종료 ---")
 
     return scenario_passed, result_message
-
-
 
 
 # import time

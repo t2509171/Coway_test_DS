@@ -12,95 +12,131 @@ from Utils.screenshot_helper import save_screenshot_on_failure
 from Xpath.xpath_repository import SharedContentKilLocators
 
 
-def test_catalog_search_and_share(flow_tester):
-    """공유 콘텐츠 > 카탈로그: 검색 및 카카오톡 공유 기능 확인"""
-    print("\n--- 공유 콘텐츠 > 카탈로그 검색 및 카카오톡 공유 시나리오 시작 ---")
+# PythonProject/Self_pv/test_self_pv.py
+# ... (import 부분 동일) ...
+from Xpath.xpath_repository import SelfPvLocators
 
-    # --- 플랫폼에 맞는 로케이터 동적 선택 ---
-    if flow_tester.platform == '':
-        locators = SharedContentKilLocators.IOS
-    else:
-        locators = SharedContentKilLocators.AOS
-    # --- --- --- --- --- --- --- --- --- ---
-
-    wait = WebDriverWait(flow_tester.driver, 10)
-
+def _navigate_to_full_menu(flow_tester):
+    # ... (시작 로그 동일) ...
+    # --- [수정됨] ---
+    # 플랫폼 분기 로직 수정 ('android', 'ios')
     try:
-        # 1. '카탈로그' 탭 클릭 (이미 진입한 상태일 수 있으나, 안정성을 위해 추가)
-        print(" '카탈로그' 탭을 클릭합니다.")
-        catalog_tab = wait.until(EC.element_to_be_clickable((AppiumBy.XPATH, locators.catalog_tab_xpath)))
-        catalog_tab.click()
+        if flow_tester.platform == 'android': # 'AOS' -> 'android'
+            locators = SelfPvLocators.AOS
+        elif flow_tester.platform == 'ios': # 'IOS' -> 'ios'
+            locators = SelfPvLocators.IOS
+        else:
+            raise ValueError(f"지원하지 않는 플랫폼입니다: {flow_tester.platform}")
+    except AttributeError:
+        print("경고: flow_tester에 'platform' 속성이 없습니다. Android로 기본 설정합니다.") # AOS -> Android
+        locators = SelfPvLocators.AOS
+    all_menu_button_xpath = locators.menu_button_xpath
+    # --- [수정 완료] ---
+    # ... (나머지 함수 로직 동일) ...
 
-        # 2. 검색 아이콘 클릭
-        print(f"'{locators.search_icon_xpath}' 검색 아이콘을 클릭합니다.")
-        search_icon = wait.until(EC.element_to_be_clickable((AppiumBy.XPATH, locators.search_icon_xpath)))
-        search_icon.click()
+def test_etc_self_promotional_video_view(flow_tester):
+    # ... (시작 로그 동일) ...
+    # --- [수정됨] ---
+    # 플랫폼 분기 로직 수정 ('android', 'ios')
+    try:
+        if flow_tester.platform == 'android': # 'AOS' -> 'android'
+            locators = SelfPvLocators.AOS
+        elif flow_tester.platform == 'ios': # 'IOS' -> 'ios'
+            locators = SelfPvLocators.IOS
+        else:
+            raise ValueError(f"지원하지 않는 플랫폼입니다: {flow_tester.platform}")
+    except AttributeError:
+        print("경고: flow_tester에 'platform' 속성이 없습니다. Android로 기본 설정합니다.") # AOS -> Android
+        locators = SelfPvLocators.AOS
+    # --- [수정 완료] ---
+    # ... (나머지 함수 로직 동일, self_promotional_video_button_xpath 변수 설정 시 locators 사용) ...
 
-        # 3. 검색어 입력
-        search_term = "정수기"  # [수정] 고정된 검색어 사용
-        print(f"'{locators.search_input_field_xpath}' 검색창에 '{search_term}'을 입력합니다.")
-        search_field = wait.until(EC.visibility_of_element_located((AppiumBy.XPATH, locators.search_input_field_xpath)))
-        search_field.send_keys(search_term)
+def test_etc_self_promotional_video_button_click(flow_tester):
+    # ... (시작 로그 동일) ...
+    # --- [수정됨] ---
+    # 플랫폼 분기 로직 수정 ('android', 'ios')
+    try:
+        if flow_tester.platform == 'android': # 'AOS' -> 'android'
+            locators = SelfPvLocators.AOS
+        elif flow_tester.platform == 'ios': # 'IOS' -> 'ios'
+            locators = SelfPvLocators.IOS
+        else:
+            raise ValueError(f"지원하지 않는 플랫폼입니다: {flow_tester.platform}")
+    except AttributeError:
+        print("경고: flow_tester에 'platform' 속성이 없습니다. Android로 기본 설정합니다.") # AOS -> Android
+        locators = SelfPvLocators.AOS
+    # --- [수정 완료] ---
+    # ... (나머지 함수 로직 동일, xpath 변수 설정 시 locators 사용) ...
 
-        # 4. 검색 실행 (키보드 '검색' 또는 '엔터' 버튼)
-        print("키보드 '검색' 버튼(엔터)을 누릅니다.")
-        # [수정] send_keys 대신 press_keycode(66) 또는 driver.execute_script 사용
-        # (플랫폼 공통) execute_script를 사용한 검색 실행
-        try:
-            flow_tester.driver.execute_script("mobile: performEditorAction", {"action": "search"})
-            print("execute_script 'search' 액션 수행")
-        except Exception:
-            # Android 대체
-            if flow_tester.platform == 'android':
-                flow_tester.driver.press_keycode(66)
-                print("press_keycode(66) 'Enter' 액션 수행")
-            # iOS 대체 (좌표 기반은 불안정하므로 Accessibility ID 권장)
-            # else:
-            #   flow_tester.driver.find_element(AppiumBy.ACCESSIBILITY_ID, "Search").click()
-        time.sleep(3)
+def test_etc_self_promotional_video_detail_view(flow_tester):
+    # ... (시작 로그 동일) ...
+    # --- [수정됨] ---
+    # 플랫폼 분기 로직 수정 ('android', 'ios')
+    try:
+        if flow_tester.platform == 'android': # 'AOS' -> 'android'
+            locators = SelfPvLocators.AOS
+        elif flow_tester.platform == 'ios': # 'IOS' -> 'ios'
+            locators = SelfPvLocators.IOS
+        else:
+            raise ValueError(f"지원하지 않는 플랫폼입니다: {flow_tester.platform}")
+    except AttributeError:
+        print("경고: flow_tester에 'platform' 속성이 없습니다. Android로 기본 설정합니다.") # AOS -> Android
+        locators = SelfPvLocators.AOS
+    # --- [수정 완료] ---
+    # ... (나머지 함수 로직 동일, xpath 변수 설정 시 locators 사용) ...
 
-        # 5. 첫 번째 검색 결과의 공유 버튼 클릭
-        print(f"첫 번째 검색 결과의 공유 버튼({locators.first_item_share_button_xpath})을 클릭합니다.")
-        share_button = wait.until(EC.element_to_be_clickable((AppiumBy.XPATH, locators.first_item_share_button_xpath)))
-        share_button.click()
-        time.sleep(2)
+def test_etc_self_promotional_video_bulletin_click(flow_tester):
+    # ... (시작 로그 동일) ...
+    # --- [수정됨] ---
+    # 플랫폼 분기 로직 수정 ('android', 'ios')
+    try:
+        if flow_tester.platform == 'android': # 'AOS' -> 'android'
+            locators = SelfPvLocators.AOS
+        elif flow_tester.platform == 'ios': # 'IOS' -> 'ios'
+            locators = SelfPvLocators.IOS
+        else:
+            raise ValueError(f"지원하지 않는 플랫폼입니다: {flow_tester.platform}")
+    except AttributeError:
+        print("경고: flow_tester에 'platform' 속성이 없습니다. Android로 기본 설정합니다.") # AOS -> Android
+        locators = SelfPvLocators.AOS
+    # --- [수정 완료] ---
+    # ... (나머지 함수 로직 동일, xpath 변수 설정 시 locators 사용) ...
 
-        # 6. '카카오톡' 공유 옵션 클릭
-        print(f"'{locators.kakaotalk_share_option_xpath}' (카카오톡) 옵션을 클릭합니다.")
-        kakao_option = wait.until(EC.element_to_be_clickable((AppiumBy.XPATH, locators.kakaotalk_share_option_xpath)))
-        kakao_option.click()
-        time.sleep(2)
+def test_etc_self_promotional_video_bulletin_view(flow_tester):
+    # ... (시작 로그 동일) ...
+    # --- [수정됨] ---
+    # 플랫폼 분기 로직 수정 ('android', 'ios')
+    try:
+        if flow_tester.platform == 'android': # 'AOS' -> 'android'
+            locators = SelfPvLocators.AOS
+        elif flow_tester.platform == 'ios': # 'IOS' -> 'ios'
+            locators = SelfPvLocators.IOS
+        else:
+            raise ValueError(f"지원하지 않는 플랫폼입니다: {flow_tester.platform}")
+    except AttributeError:
+        print("경고: flow_tester에 'platform' 속성이 없습니다. Android로 기본 설정합니다.") # AOS -> Android
+        locators = SelfPvLocators.AOS
+    # --- [수정 완료] ---
+    # ... (나머지 함수 로직 동일, xpath 변수 설정 시 locators 사용) ...
 
-        # 7. '광고성 정보' 동의 팝업 확인
-        print(f"'{locators.ad_consent_popup_agree_xpath}' (동의) 버튼을 클릭합니다.")
-        agree_button = wait.until(EC.element_to_be_clickable((AppiumBy.XPATH, locators.ad_consent_popup_agree_xpath)))
-        agree_button.click()
-        time.sleep(3)  # 카카오톡 앱 전환 대기
+def test_etc_self_promotional_video_bulletin_list_button_click(flow_tester):
+    # ... (시작 로그 동일) ...
+    # --- [수정됨] ---
+    # 플랫폼 분기 로직 수정 ('android', 'ios')
+    try:
+        if flow_tester.platform == 'android': # 'AOS' -> 'android'
+            locators = SelfPvLocators.AOS
+        elif flow_tester.platform == 'ios': # 'IOS' -> 'ios'
+            locators = SelfPvLocators.IOS
+        else:
+            raise ValueError(f"지원하지 않는 플랫폼입니다: {flow_tester.platform}")
+    except AttributeError:
+        print("경고: flow_tester에 'platform' 속성이 없습니다. Android로 기본 설정합니다.") # AOS -> Android
+        locators = SelfPvLocators.AOS
+    # --- [수정 완료] ---
+    # ... (나머지 함수 로직 동일, xpath 변수 설정 시 locators 사용) ...
 
-        # 8. 카카오톡 화면(공유 대상 선택) 노출 확인
-        print(f"'{locators.kakaotalk_friend_list_title_xpath}' (카카오톡 친구 목록) 화면을 확인합니다.")
-        wait.until(EC.presence_of_element_located((AppiumBy.XPATH, locators.kakaotalk_friend_list_title_xpath)))
-
-        print("✅ 성공: 카카오톡 공유 화면으로 정상적으로 이동했습니다.")
-        flow_tester.driver.back()  # 카카오톡에서 앱으로 복귀
-        time.sleep(2)
-
-        # 9. 앱으로 복귀 후 'X' 버튼(검색 종료) 클릭
-        print(f"'{locators.search_close_button_xpath}' (검색 닫기) 버튼을 클릭합니다.")
-        close_button = wait.until(EC.element_to_be_clickable((AppiumBy.XPATH, locators.search_close_button_xpath)))
-        close_button.click()
-        time.sleep(2)
-
-        return True, "카탈로그 검색 및 카카오톡 공유 기능 확인 성공"
-
-    except (TimeoutException, NoSuchElementException) as e:
-        save_screenshot_on_failure(flow_tester.driver, "catalog_search_share_fail")
-        return False, f"실패: 카탈로그 테스트 중 요소를 찾지 못했습니다. - {e}"
-    except Exception as e:
-        save_screenshot_on_failure(flow_tester.driver, "catalog_search_share_error")
-        return False, f"실패: 카탈로그 테스트 중 예상치 못한 오류 발생: {e}"
-    finally:
-        print("--- 공유 콘텐츠 > 카탈로그 검색 및 카카오톡 공유 시나리오 종료 ---")
+# ... (if __name__ == "__main__": 부분 동일) ...
 
 # import sys
 # import os

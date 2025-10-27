@@ -6,25 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="5f75c860-a388-4fb7-9107-ac045f0dcfe1" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home_View_kil/test_ai_cody_assistant.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_View_kil/test_ai_cody_assistant.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home_View_kil/test_cody_secretary_input.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_View_kil/test_cody_secretary_input.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home_View_kil/test_greeting_message.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_View_kil/test_greeting_message.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home_View_kil/test_home_button_visibility.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_View_kil/test_home_button_visibility.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home_View_kil/test_large_font_mode.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_View_kil/test_large_font_mode.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home_View_kil/test_recommended_questions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_View_kil/test_recommended_questions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home_View_kil/test_webview_navigation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_View_kil/test_webview_navigation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Life_Story/test_LS_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/Life_Story/test_LS_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Managed_Customers_kil/test_customer_list_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/Managed_Customers_kil/test_customer_list_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Managed_Customers_kil/test_customized_sharing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Managed_Customers_kil/test_customized_sharing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Managed_Customers_kil/test_recommended_product_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Managed_Customers_kil/test_recommended_product_settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile_Order/test_mobile_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mobile_Order/test_mobile_order.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Promotion/test_customer_promotion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Promotion/test_customer_promotion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Promotion/test_salesperson_promotion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Promotion/test_salesperson_promotion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Self_pv/test_self_pv.py" beforeDir="false" afterPath="$PROJECT_DIR$/Self_pv/test_self_pv.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared_Content_kil/test_catalog_actions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shared_Content_kil/test_catalog_actions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared_Content_kil/test_manual_actions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shared_Content_kil/test_manual_actions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared_Content_kil/test_menu_navigation_verification.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shared_Content_kil/test_menu_navigation_verification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DS_checklist_run.py" beforeDir="false" afterPath="$PROJECT_DIR$/DS_checklist_run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/home_reset.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/home_reset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/test_banner.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_banner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/test_gallery_sharing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_gallery_sharing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/test_home_etc.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_home_etc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/test_item.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_item.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/test_product_shortcuts.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_product_shortcuts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/test_promotion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_promotion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/test_recommended_products.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_recommended_products.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/test_sales_content.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_sales_content.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/test_sales_tip.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_sales_tip.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/test_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_kil/test_units.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_kil/test_units.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utils/invalid_credentials.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/invalid_credentials.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utils/test_result_input.py" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/test_result_input.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Xpath/xpath_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/Xpath/xpath_repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/failure_permission_guide_timeout.png" beforeDir="false" afterPath="$PROJECT_DIR$/failure_permission_guide_timeout.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,21 +60,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.DS_checklist_run.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "dev",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/Coway_test/Coway_test/AppiumAutomationTest-digitalsales/Utils",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "to.speed.mode.migration.done": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.DS_checklist_run.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ios&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Coway_test/Coway_test/AppiumAutomationTest-digitalsales/Utils&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Coway_test\Coway_test\AppiumAutomationTest-digitalsales\Utils" />
@@ -110,5 +108,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Home_kil/test_recommended_products.py</url>
+          <line>16</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

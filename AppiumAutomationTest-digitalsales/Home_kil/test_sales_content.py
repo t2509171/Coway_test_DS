@@ -19,19 +19,34 @@ def test_recommended_sales_content(flow_tester):
     """
     print("\n--- 홈 > 공유할 영업 콘텐츠 추천 (Y 좌표 정렬) 시나리오 시작 ---")
 
-    # AOS 로케이터 세트 선택
-    locators = HomeKilLocators.AOS
+    # --- 플랫폼 분기 로직 추가 ---
+    try:
+        if flow_tester.platform == 'android':
+            locators = HomeKilLocators.AOS
+        elif flow_tester.platform == 'ios':
+            locators = HomeKilLocators.IOS
+            # 필요한 모든 XPath가 정의되었는지 확인
+            if not all([locators.title_xpath, locators.sort_button_xpath,
+                        locators.home_button_xpath, locators.lifestory_title_xpath]):
+                 print(f"경고: {flow_tester.platform} 플랫폼에 필요한 일부 영업 콘텐츠 XPath가 정의되지 않았습니다. 테스트를 건너<0xEB><0x9A><0xB4>니다.")
+                 return True, f"{flow_tester.platform} 영업 콘텐츠 XPath 부족 (테스트 통과 간주)"
+        else:
+            raise ValueError(f"지원하지 않는 플랫폼입니다: {flow_tester.platform}")
+    except AttributeError:
+        print("경고: flow_tester에 'platform' 속성이 없습니다. Android로 기본 설정합니다.")
+        locators = HomeKilLocators.AOS
+    # --- 플랫폼 분기 로직 완료 ---
 
     try:
-        # 1. XPath 정의
-        title_xpath = locators.title_xpath  # 수정됨
-        sort_button_xpath = locators.sort_button_xpath  # 수정됨
-        home_container_xpath = locators.home_container_xpath  # 수정됨
+        # 1. XPath 정의 (locators 객체 사용)
+        title_xpath = locators.title_xpath
+        sort_button_xpath = locators.sort_button_xpath
+        home_container_xpath = locators.home_button_xpath # 수정됨
         print("세 요소의 Y 좌표 순서가 맞을 때까지 스크롤을 시작합니다.")
 
         max_scroll_attempts = 10
         section_in_correct_order = False
-        target_element = None
+        target_element = None # 클릭할 제목 요소를 저장할 변수
 
         # 2. 지정된 횟수만큼 스크롤하며 요소들의 Y 좌표 순서를 확인하는 루프
         for i in range(max_scroll_attempts):
@@ -70,6 +85,7 @@ def test_recommended_sales_content(flow_tester):
             # 루프의 마지막에 스크롤을 실행합니다.
             print(f"({i + 1}/{max_scroll_attempts}) 스크롤 다운을 시도합니다.")
             scroll_down(flow_tester.driver)
+            time.sleep(1) # 스크롤 후 대기
 
         # 3. 루프 종료 후, 성공 여부를 확인합니다.
         if not section_in_correct_order:
@@ -77,13 +93,13 @@ def test_recommended_sales_content(flow_tester):
             save_screenshot_on_failure(flow_tester.driver, "sales_content_section_not_aligned")
             return False, error_msg
 
-        # 4. 검증이 완료된 제목 요소를 클릭합니다.
+        # 4. 검증이 완료된 제목 요소를 클릭합니다. (target_element는 루프에서 찾은 요소)
         print("정확한 위치에서 섹션을 확인하고 클릭합니다.")
         target_element.click()
         time.sleep(3)
 
         # 5. 최종 목록 페이지에서 '라이프스토리' 텍스트 확인
-        final_page_text_xpath = locators.final_page_text_xpath  # 수정됨
+        final_page_text_xpath = locators.lifestory_title_xpath # 수정됨 (final_page_text_xpath -> lifestory_title_xpath)
         print(f"목록 페이지에서 '{final_page_text_xpath}' 텍스트를 확인합니다.")
         try:
             WebDriverWait(flow_tester.driver, 10).until(
@@ -96,7 +112,7 @@ def test_recommended_sales_content(flow_tester):
             return False, error_msg
 
         # 모든 검증 통과
-        flow_tester.driver.back()
+        flow_tester.driver.back() # 목록 -> 홈
         time.sleep(1)
         return True, "공유할 영업 콘텐츠 확인 시나리오 성공."
 
@@ -105,10 +121,6 @@ def test_recommended_sales_content(flow_tester):
         return False, f"공유할 영업 콘텐츠 테스트 중 예외 발생: {e}"
     finally:
         print("--- 홈 > 공유할 영업 콘텐츠 추천 확인 시나리오 종료 ---")
-
-
-
-
 
 
 

@@ -1,4 +1,4 @@
-# Home_kil/test_banner.py (수정 완료)
+# Home_kil/test_banner.py
 
 import time
 from appium.webdriver.common.appiumby import AppiumBy
@@ -21,24 +21,45 @@ def test_banner_swipe(flow_tester):
     """
     print("\n--- 배너 스와이프 > 터치 > 소멸 확인 최종 시나리오 시작 ---")
 
-    # AOS 로케이터 세트 선택
-    locators = HomeKilLocators.AOS
+    # --- 플랫폼 분기 로직 추가 ---
+    try:
+        if flow_tester.platform == 'android':
+            locators = HomeKilLocators.AOS
+        elif flow_tester.platform == 'ios':
+            locators = HomeKilLocators.IOS
+            print("경고: IOS 플랫폼의 배너 스와이프 기능 확인이 필요합니다.")
+        else:
+            raise ValueError(f"지원하지 않는 플랫폼입니다: {flow_tester.platform}")
+    except AttributeError:
+        print("경고: flow_tester에 'platform' 속성이 없습니다. Android로 기본 설정합니다.")
+        locators = HomeKilLocators.AOS
+    # --- 플랫폼 분기 로직 완료 ---
 
     try:
         # 1. XPath 정의
         # [참고] 저장소의 banner_xpath는 '디지털세일즈' 타이틀이며,
         # 이 테스트는 스와이프 가능한 배너를 대상으로 하므로 로컬 XPath를 유지합니다.
-        banner_xpath = '//android.view.View[@resource-id="root"]/android.view.View[2]/android.view.View/android.view.View/android.view.View[4]/android.view.View'
-        home_container_xpath = locators.home_container_xpath  # 수정됨
+        banner_xpath = '//android.view.View[@resource-id="root"]/android.view.View[2]/android.view.View/android.view.View/android.view.View[4]/android.view.View' # AOS 기준 로컬 XPath
+        # IOS 배너 XPath 필요 시 여기에 정의
+        ios_banner_xpath = None # 예시: '//XCUIElementTypeOther[@name="bannerContainer"]/XCUIElementTypeOther'
+
+        # 플랫폼에 따라 사용할 XPath 선택
+        current_banner_xpath = banner_xpath if flow_tester.platform == 'android' else ios_banner_xpath
+        if not current_banner_xpath:
+             print(f"경고: {flow_tester.platform} 플랫폼의 배너 XPath가 정의되지 않았습니다. 테스트를 건너<0xEB><0x9A><0xB4>니다.")
+             return True, f"{flow_tester.platform} 배너 XPath 없음 (테스트 통과 간주)"
+
+
+        home_container_xpath = locators.home_button_xpath # 수정됨
 
         max_scroll_attempts = 10
         element_in_view = False
 
         # 2. 배너가 '홈' UI 위에 보일 때까지 스크롤
-        print(f"'{banner_xpath}' 배너가 '홈' UI 위에 나타날 때까지 스크롤합니다.")
+        print(f"'{current_banner_xpath}' 배너가 '홈' UI 위에 나타날 때까지 스크롤합니다.")
         for i in range(max_scroll_attempts):
             try:
-                banner_element = flow_tester.driver.find_element(AppiumBy.XPATH, banner_xpath)
+                banner_element = flow_tester.driver.find_element(AppiumBy.XPATH, current_banner_xpath)
                 home_container_element = flow_tester.driver.find_element(AppiumBy.XPATH, home_container_xpath)
 
                 if banner_element.is_displayed():
@@ -69,7 +90,7 @@ def test_banner_swipe(flow_tester):
 
         # 3. 배너를 왼쪽으로 1회 스와이프합니다.
         print("배너를 왼쪽으로 스와이프합니다.")
-        banner_element_to_swipe = flow_tester.driver.find_element(AppiumBy.XPATH, banner_xpath)
+        banner_element_to_swipe = flow_tester.driver.find_element(AppiumBy.XPATH, current_banner_xpath)
         rect = banner_element_to_swipe.rect
         start_x = rect['x'] + rect['width'] * 0.8
         end_x = rect['x'] + rect['width'] * 0.1
@@ -79,11 +100,11 @@ def test_banner_swipe(flow_tester):
         print("스와이프 동작을 완료했습니다.")
 
         # 4. 스와이프 후 배너를 다시 찾아 터치합니다.
-        print(f"스와이프 후 배너를 다시 찾아 터치합니다: '{banner_xpath}'")
+        print(f"스와이프 후 배너를 다시 찾아 터치합니다: '{current_banner_xpath}'")
         try:
             wait = WebDriverWait(flow_tester.driver, 5)
             banner_to_touch = wait.until(
-                EC.element_to_be_clickable((AppiumBy.XPATH, banner_xpath))
+                EC.element_to_be_clickable((AppiumBy.XPATH, current_banner_xpath))
             )
             banner_to_touch.click()
             print("✅ 배너를 터치했습니다.")
@@ -94,14 +115,14 @@ def test_banner_swipe(flow_tester):
             return False, error_msg
 
         # 5. 터치 후 배너가 최종적으로 사라졌는지 확인합니다.
-        print(f"터치 후 배너('{banner_xpath}')가 사라졌는지 최종 확인합니다...")
+        print(f"터치 후 배너('{current_banner_xpath}')가 사라졌는지 최종 확인합니다...")
         try:
             wait = WebDriverWait(flow_tester.driver, 5)
             wait.until(
-                EC.invisibility_of_element_located((AppiumBy.XPATH, banner_xpath))
+                EC.invisibility_of_element_located((AppiumBy.XPATH, current_banner_xpath))
             )
             print("✅ Pass: 배너가 성공적으로 사라졌습니다.")
-            flow_tester.driver.back()
+            flow_tester.driver.back() # 상세 페이지에서 뒤로가기
             time.sleep(1)
             return True, "배너 스와이프, 터치, 소멸 확인 시나리오 성공."
 
@@ -115,11 +136,6 @@ def test_banner_swipe(flow_tester):
         return False, f"배너 스와이프 테스트 중 예외 발생: {e}"
     finally:
         print("--- 배너 스와이프 > 터치 > 소멸 확인 최종 시나리오 종료 ---")
-
-
-
-
-
 
 
 

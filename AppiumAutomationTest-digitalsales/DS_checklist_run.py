@@ -194,10 +194,26 @@ if __name__ == "__main__":
     # print("-" * 50)
     user_id = "CWDS#QCL1"
     user_pw = "Test1234!"
+
+    contexts = appium_tester.driver.contexts
+
+    print("--- 사용 가능한 컨텍스트 ---")
+    print(contexts)
+
+    if len(contexts) > 1:
+        print("\n[결과] 웹뷰(WebView)가 활성화되어 있습니다.")
+        # 보통 contexts[1]이 웹뷰입니다.
+        # driver.switch_to.context(contexts[1]) # 이 코드로 웹뷰로 전환
+    else:
+        print("\n[결과] 네이티브(Native) 화면입니다.")
     # 각 테스트를 실행할 함수와 이름을 튜플로 묶어 리스트로 관리
+
+
+
+
     test_scenarios = [
-        ("앱 업데이트 / 권한 시나리오", test_update_kil_view_run),
-        ("로그인 시나리오", test_login),
+        # ("앱 업데이트 / 권한 시나리오", test_update_kil_view_run),
+        # ("로그인 시나리오", test_login),
 
         ("홈 시나리오", test_home_kil_view_run),
         ("검색 시나리오", test_search_view_run),

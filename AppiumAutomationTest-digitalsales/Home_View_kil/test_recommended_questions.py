@@ -13,7 +13,7 @@ from Xpath.xpath_repository import HomeViewKilLocators
 from Utils.screenshot_helper import save_screenshot_on_failure
 
 # [Seller app checklist-141] AI 코디 비서 > 추천 질문 선택
-def test_select_recommended_question(flow_tester):
+def test_verify_recommended_questions_for_managed_customers(flow_tester):
     """AI 코디 비서 화면에서 추천 질문 선택 후 답변 확인"""
     print("\n--- AI 코디 비서 추천 질문 선택 시나리오 시작 (checklist-141) ---")
 
