@@ -1,4 +1,4 @@
-# Home_kil/test_sales_tip.py (수정 완료)
+# Home_kil/test_sales_tip.py
 
 import time
 from appium.webdriver.common.appiumby import AppiumBy
@@ -14,7 +14,7 @@ from selenium.webdriver.common.actions.pointer_input import PointerInput
 
 # 유틸리티 함수 임포트
 from Utils.screenshot_helper import save_screenshot_on_failure
-from Utils.scrolling_function import scroll_down
+from Utils.scrolling_function import scroll_down # 사용되진 않지만 유지
 
 # Xpath 저장소에서 HomeKilLocators 임포트
 from Xpath.xpath_repository import HomeKilLocators
@@ -24,11 +24,21 @@ def test_sales_tip_interaction(flow_tester):
     """Seller app checklist-18: 판매 팁 기능 확인 (스와이프 및 터치)"""
     print("\n--- 판매 팁 기능 확인 시나리오 시작 (checklist-18) ---")
 
-    # AOS 로케이터 세트 선택
-    locators = HomeKilLocators.AOS
+    # --- 플랫폼 분기 로직 추가 ---
+    try:
+        if flow_tester.platform == 'android':
+            locators = HomeKilLocators.AOS
+        elif flow_tester.platform == 'ios':
+            locators = HomeKilLocators.IOS
+        else:
+            raise ValueError(f"지원하지 않는 플랫폼입니다: {flow_tester.platform}")
+    except AttributeError:
+        print("경고: flow_tester에 'platform' 속성이 없습니다. Android로 기본 설정합니다.")
+        locators = HomeKilLocators.AOS
+    # --- 플랫폼 분기 로직 완료 ---
 
-    sales_tip_xpath = locators.sales_tip_xpath  # 수정됨
-    home_container_xpath = locators.home_container_xpath  # 수정됨
+    sales_tip_xpath = locators.sales_tip_xpath
+    home_container_xpath = locators.home_button_xpath # 수정됨
 
     try:
         # 1. 판매 팁 요소가 화면에 나타날 때까지 대기
@@ -40,7 +50,7 @@ def test_sales_tip_interaction(flow_tester):
             # 홈 UI와 위치 비교 (일반적으로 상단에 있어 불필요하나, 안정성을 위해 추가)
             home_element = flow_tester.driver.find_element(AppiumBy.XPATH, home_container_xpath)
             if (sales_tip_element.rect['y'] + sales_tip_element.rect['height']) < home_element.rect['y']:
-                print("✅ 판매 팁 요소를 찾았습니다.")
+                 print("✅ 판매 팁 요소를 찾았습니다.")
             else:
                 save_screenshot_on_failure(flow_tester.driver, "sales_tip_obstructed")
                 return False, "실패: 판매 팁이 홈 UI에 가려져 있습니다."
@@ -91,6 +101,8 @@ def test_sales_tip_interaction(flow_tester):
         return False, f"판매 팁 테스트 중 오류 발생: {e}"
     finally:
         print("--- 판매 팁 기능 확인 시나리오 종료 ---")
+
+
 
 
 # # Home_kil/test_sales_tip.py (수정 완료)

@@ -204,8 +204,8 @@ from googleapiclient.errors import HttpError
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 CLIENT_SECRET_FILE = os.path.join(project_root, 'coway-qa-autotest-3b54f818ce8f.json')
 
-SPREADSHEET_ID = '1xKsSABiC0i9Dy2x1qmMC10i605dZkSMJsFmFztpstIs'
-SHEET_NAME = 'Digital sales checklist_자동화(파일럿)'
+SPREADSHEET_ID = '1VXh1iHXslVx0L9poJLOGd0x7YYY-GxFpU3OBh1w86NI'
+SHEET_NAME = 'Digital sales checklist 자동화'
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 
 # [핵심 수정] 현재 테스트 플랫폼을 저장할 전역 변수
