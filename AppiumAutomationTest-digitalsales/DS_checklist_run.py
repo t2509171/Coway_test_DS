@@ -192,7 +192,7 @@ if __name__ == "__main__":
     # login_passed, login_message = test_home_view_kil_view_run(appium_tester, sheets_service, tester_name)
     # print("테스트 케이스 5 완료.")
     # print("-" * 50)
-    user_id = "CWDS#QCL1"
+    user_id = "CWDS#QCL7"
     user_pw = "Test1234!"
 
     contexts = appium_tester.driver.contexts
@@ -212,8 +212,8 @@ if __name__ == "__main__":
 
 
     test_scenarios = [
-        # ("앱 업데이트 / 권한 시나리오", test_update_kil_view_run),
-        # ("로그인 시나리오", test_login),
+        ("앱 업데이트 / 권한 시나리오", test_update_kil_view_run),
+        ("로그인 시나리오", test_login),
 
         ("홈 시나리오", test_home_kil_view_run),
         ("검색 시나리오", test_search_view_run),

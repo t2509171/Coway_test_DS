@@ -10,7 +10,8 @@ def driver():
     capabilities = {
         "platformName": "Android",
         "appium:automationName": "UiAutomator2",
-        "appium:platformVersion": "15",
+        "appium:platformVersion": "16",
+        # "appium:udid": "emulator-5554",  # <-- 'adb devices'로 확인한 에뮬레이터 ID
         "appium:deviceName": "R3CT70V2T5H",
         "appium:appPackage": "com.coway.catalog.seller.stg",
         "appium:appActivity": "kr.coway.catalog.activity.webMain.WebMainActivity",
@@ -18,7 +19,9 @@ def driver():
         "appium:newCommandTimeout": 300, # 명령 대기 시간 연장
         # --- 안정성을 위한 추천 옵션 ---
         "appium:skipServerInstallation": True, # 매번 서버 재설치 건너뛰기
-        "appium:disableWindowAnimation": True # UI 애니메이션 비활성화로 테스트 속도 및 안정성 향상
+        "appium:disableWindowAnimation": True, # UI 애니메이션 비활성화로 테스트 속도 및 안정성 향상
+        "appium: chromedriver_autodownload": True,
+        "chromedriverExecutable": "C:\\chromedriver-win64\\chromedriver.exe"
     }
 
     appium_server_url = 'http://localhost:4723'

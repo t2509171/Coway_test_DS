@@ -39,6 +39,8 @@ class BaseAppiumDriver:
             options.no_reset = AppiumConfig.NO_RESET
             options.new_command_timeout = AppiumConfig.NEW_COMMAND_TIMEOUT
 
+            options.chromedriver_executable = "C:\\chromedriver-win64\\chromedriver.exe"
+
             self.driver = webdriver.Remote(AppiumConfig.APPIUM_SERVER_URL, options=options)
             self.platform = 'android'
             print("✅ Android 드라이버 초기화 성공 및 앱 실행.")

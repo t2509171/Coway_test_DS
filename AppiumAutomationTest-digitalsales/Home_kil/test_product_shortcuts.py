@@ -82,7 +82,7 @@ def test_verify_product_shortcuts_exist(flow_tester):
                                 print("⚠️ 경고: 기존 '정수기' 아이콘이 10초 내에 사라지지 않았습니다. 다음 단계로 계속 진행합니다.")
 
                             # 2. '정수기' 버튼(새 페이지)이 나타나는지 명시적 대기 (10초)
-                            new_button_aid = '정수기'  # 새 페이지의 버튼 ID
+                            new_button_aid = '//android.widget.Button[@text="정수기"]'  # 새 페이지의 버튼 ID
 
                             print(f"'{new_button_aid}'(ID) 버튼이 나타나는지 확인합니다.")
                             wait.until(EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, new_button_aid)))
